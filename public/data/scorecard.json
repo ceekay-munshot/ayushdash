@@ -1,0 +1,110 @@
+{
+  "generatedAt": "2026-11-26T14:56:00.384Z",
+  "window": {
+    "from": "2026-01-01",
+    "to": "2026-11-26"
+  },
+  "coverage": {
+    "episodes": 233,
+    "withTranscript": 181,
+    "extracted": 0
+  },
+  "totals": {
+    "names": 0,
+    "resolved": 0,
+    "unresolved": 0,
+    "episodesWithNames": 0,
+    "dateCoverage": null
+  },
+  "byDecision": {
+    "buy": 0,
+    "neutral": 0,
+    "avoid": 0
+  },
+  "byAssetType": {
+    "stock": 0,
+    "etf": 0,
+    "crypto": 0,
+    "commodity": 0,
+    "index": 0,
+    "other": 0
+  },
+  "performance": {
+    "overall": {
+      "p3m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "positive_alpha"
+      },
+      "p6m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "positive_alpha"
+      }
+    },
+    "buy": {
+      "p3m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "positive_alpha"
+      },
+      "p6m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "positive_alpha"
+      }
+    },
+    "neutral": {
+      "p3m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "positive_alpha"
+      },
+      "p6m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "positive_alpha"
+      }
+    },
+    "avoid": {
+      "p3m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "negative_return"
+      },
+      "p6m": {
+        "n": 0,
+        "inProgress": 0,
+        "avgReturn": null,
+        "avgAlpha": null,
+        "winRate": null,
+        "winRateBasis": "negative_return"
+      }
+    }
+  },
+  "topCalls": {
+    "best": [],
+    "worst": []
+  }
+}

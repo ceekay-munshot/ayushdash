@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-11-26T14:56:00.358Z",
+  "map": {
+    "stock": "^GSPC",
+    "etf": "^GSPC",
+    "index": "^GSPC",
+    "crypto": "BTC-USD",
+    "commodity": null,
+    "other": null
+  },
+  "benchmarks": {},
+  "note": "No names yet — run extract-names first."
+}

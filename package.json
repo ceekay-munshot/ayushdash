@@ -1,0 +1,35 @@
+{
+  "name": "investtalk-tracker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "InvestTalk Stock-Call Tracker — automated data engine + dashboard.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "fetch:episodes": "node scripts/fetch-episodes.mjs",
+    "fetch:transcripts": "node scripts/fetch-transcripts.mjs",
+    "extract:names": "node scripts/extract-names.mjs",
+    "enrich:performance": "node scripts/enrich-performance.mjs",
+    "build:scorecard": "node scripts/build-scorecard.mjs",
+    "pipeline": "npm run fetch:episodes && npm run fetch:transcripts && npm run extract:names && npm run enrich:performance && npm run build:scorecard"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

@@ -1,0 +1,62 @@
+name: backfill
+
+# One-shot (manual) full backfill over the whole window:
+# fetch episodes + transcripts, extract names, enrich performance, build the
+# scorecard, then commit public/data/** back to the branch this runs on.
+
+on:
+  workflow_dispatch:
+    inputs:
+      extract_limit:
+        description: 'Max episodes to extract this run (blank = all pending)'
+        required: false
+        default: ''
+
+concurrency:
+  group: investtalk-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch episodes
+        run: node scripts/fetch-episodes.mjs
+
+      - name: Fetch transcripts
+        run: node scripts/fetch-transcripts.mjs
+
+      - name: Extract names (Claude via Bedrock)
+        env:
+          BEDROCK_API_KEY: ${{ secrets.BEDROCK_API_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          BEDROCK_MODEL_IDS: ${{ secrets.BEDROCK_MODEL_IDS }}
+          DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
+        run: |
+          if [ -n "${{ github.event.inputs.extract_limit }}" ]; then
+            node scripts/extract-names.mjs --limit ${{ github.event.inputs.extract_limit }}
+          else
+            node scripts/extract-names.mjs
+          fi
+
+      - name: Enrich performance (Yahoo)
+        run: node scripts/enrich-performance.mjs
+
+      - name: Build scorecard
+        run: node scripts/build-scorecard.mjs
+
+      - name: Commit data
+        run: bash .github/scripts/commit-data.sh "backfill"
