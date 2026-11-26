@@ -78,6 +78,20 @@ export interface Metadata {
   source: string;
 }
 
+export interface BenchmarkSeries {
+  symbol: string;
+  name: string;
+  closes: Record<string, number>;
+}
+
+export interface Benchmarks {
+  generatedAt: string;
+  window?: { from: string; to: string };
+  map: Record<string, string | null>;
+  benchmarks: Record<string, BenchmarkSeries>;
+  note?: string;
+}
+
 export interface PerfCell {
   n: number;
   inProgress: number;

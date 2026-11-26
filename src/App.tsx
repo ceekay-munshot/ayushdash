@@ -1,189 +1,116 @@
-import { useEffect, useState } from 'react';
-import type { Episode, Metadata, NameRow } from './types';
+import { useMemo, useState } from 'react';
+import { Trophy, ListChecks, Compass, Headphones, AlertTriangle, Loader2 } from 'lucide-react';
+import type { Episode, NameRow } from './types';
+import {
+  useAppData, filterNames, filterEpisodes, windowRange,
+  type AssetClass, type WindowKey, type Horizon,
+} from './lib/data';
+import { ASSET_OPTIONS } from './lib/data';
+import { Header, type GlobalControls } from './components/Header';
+import { Tabs, type TabDef } from './components/ui/Tabs';
+import ScorecardTab from './tabs/ScorecardTab';
+import AllCallsTab from './tabs/AllCallsTab';
+import ThemesTab from './tabs/ThemesTab';
+import EpisodesTab from './tabs/EpisodesTab';
+import { CallDetail } from './modals/CallDetail';
+import { EpisodeDetail } from './modals/EpisodeDetail';
 
-const BASE = import.meta.env.BASE_URL; // "/" by default
+type TabKey = 'scorecard' | 'calls' | 'themes' | 'episodes';
 
-async function getJSON<T>(path: string, fallback: T): Promise<T> {
-  try {
-    const r = await fetch(`${BASE}data/${path}`, { cache: 'no-cache' });
-    if (!r.ok) throw new Error(String(r.status));
-    return (await r.json()) as T;
-  } catch {
-    return fallback;
-  }
-}
-
-const DECISION_STYLE: Record<string, string> = {
-  buy: 'bg-green-100 text-green-700',
-  neutral: 'bg-gray-100 text-gray-600',
-  avoid: 'bg-red-100 text-red-700',
-};
-
-function fmtPct(n: number | null | undefined): string {
-  if (n == null) return '–';
-  return `${n > 0 ? '+' : ''}${n.toFixed(1)}%`;
-}
-
-function fmtDate(iso: string): string {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', {
-    month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
-  });
-}
+const TABS: TabDef<TabKey>[] = [
+  { key: 'scorecard', label: 'Scorecard', icon: Trophy },
+  { key: 'calls', label: 'All calls', icon: ListChecks },
+  { key: 'themes', label: 'Themes & tone', icon: Compass },
+  { key: 'episodes', label: 'Episodes', icon: Headphones },
+];
 
 export default function App() {
-  const [meta, setMeta] = useState<Metadata | null>(null);
-  const [names, setNames] = useState<NameRow[]>([]);
-  const [episodes, setEpisodes] = useState<Episode[]>([]);
-  const [loading, setLoading] = useState(true);
+  const state = useAppData();
+  const [tab, setTab] = useState<TabKey>('scorecard');
+  const [assetClass, setAssetClass] = useState<AssetClass>('all');
+  const [windowKey, setWindowKey] = useState<WindowKey>('all');
+  const [horizon, setHorizon] = useState<Horizon>('p6m');
+  const [callOpen, setCallOpen] = useState<NameRow | null>(null);
+  const [epOpen, setEpOpen] = useState<Episode | null>(null);
 
-  useEffect(() => {
-    (async () => {
-      const [m, n, e] = await Promise.all([
-        getJSON<Metadata | null>('metadata.json', null),
-        getJSON<NameRow[]>('names.json', []),
-        getJSON<Episode[]>('episodes.json', []),
-      ]);
-      setMeta(m);
-      setNames(n);
-      setEpisodes(e);
-      setLoading(false);
-    })();
-  }, []);
+  const controls: GlobalControls = {
+    assetClass, setAssetClass, windowKey, setWindowKey, horizon, setHorizon,
+  };
 
-  const episodeCount = meta?.episodeCount ?? episodes.length;
-  const nameCount = meta?.nameCount ?? names.length;
-  const updated = meta?.generatedAt
-    ? new Date(meta.generatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-    : '—';
+  const meta = state.status === 'ready' ? state.data.meta : null;
 
-  const latestNames = names.slice(0, 15);
+  const rows = useMemo(
+    () => (state.status === 'ready' ? filterNames(state.data.names, assetClass, windowKey, meta) : []),
+    [state, assetClass, windowKey, meta]
+  );
+  const episodes = useMemo(
+    () => (state.status === 'ready' ? filterEpisodes(state.data.episodes, windowKey, meta) : []),
+    [state, windowKey, meta]
+  );
+
+  const ctx = useMemo(() => {
+    const win = windowRange(windowKey, meta).label;
+    const asset = ASSET_OPTIONS.find((o) => o.value === assetClass)?.label ?? 'All';
+    const h = horizon === 'p3m' ? '+3 months' : '+6 months';
+    return `${win} · ${asset} · ${h}`;
+  }, [windowKey, assetClass, horizon, meta]);
 
   return (
-    <div className="min-h-screen font-sans">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Phase 1 · data engine
-          </p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900">
-            InvestTalk Stock-Call Tracker
-          </h1>
-          <p className="mt-2 max-w-2xl text-slate-500">
-            Are the stock calls on the{' '}
-            <span className="font-medium text-slate-700">InvestTalk</span> podcast any good?
-            Every host verdict since Jan 2026, scored against the market at +3 and +6 months.
-          </p>
+    <div className="min-h-screen bg-[#f8fafc]">
+      <Header meta={meta} controls={controls} />
+
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
+        <div className="sticky top-[112px] z-30 -mx-4 border-b border-black/[0.06] bg-[#f8fafc]/95 px-4 pt-1.5 backdrop-blur sm:-mx-6 sm:px-6">
+          <Tabs tabs={TABS} active={tab} onChange={setTab} />
         </div>
-      </header>
 
-      <main className="mx-auto max-w-5xl px-6 py-8">
-        {loading ? (
-          <p className="text-slate-400">Loading data…</p>
-        ) : (
-          <>
-            {/* live counts */}
-            <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <Stat label="Episodes" value={episodeCount.toLocaleString()} />
-              <Stat label="Names tracked" value={nameCount.toLocaleString()} />
-              <Stat label="Updated" value={updated} />
-            </section>
-
-            {/* preview */}
-            <section className="mt-10">
-              <h2 className="mb-3 text-lg font-semibold text-slate-800">
-                {latestNames.length ? 'Latest 15 calls' : 'Latest episodes'}
-              </h2>
-
-              {latestNames.length ? (
-                <PreviewTable rows={latestNames} />
-              ) : (
-                <>
-                  <p className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-                    No extracted calls yet. Episodes and transcripts are loaded; name
-                    extraction runs in GitHub Actions once the <code>BEDROCK_API_KEY</code>{' '}
-                    secret is configured.
-                  </p>
-                  <EpisodeTable rows={episodes.slice(0, 15)} />
-                </>
+        <main className="py-5">
+          {state.status === 'loading' && <LoadingState />}
+          {state.status === 'error' && <ErrorState message={state.error} />}
+          {state.status === 'ready' && (
+            <>
+              {tab === 'scorecard' && (
+                <ScorecardTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
               )}
-            </section>
+              {tab === 'calls' && (
+                <AllCallsTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
+              )}
+              {tab === 'themes' && (
+                <ThemesTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
+              )}
+              {tab === 'episodes' && (
+                <EpisodesTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
+              )}
+            </>
+          )}
+        </main>
+      </div>
 
-            <footer className="mt-12 border-t border-slate-200 pt-6 text-xs text-slate-400">
-              {meta?.source ?? 'InvestTalk podcast'} · window{' '}
-              {meta?.window ? `${meta.window.from} → ${meta.window.to}` : '—'} · full UI in Phase 2
-            </footer>
-          </>
-        )}
-      </main>
+      {state.status === 'ready' && (
+        <>
+          <CallDetail row={callOpen} data={state.data} onClose={() => setCallOpen(null)} />
+          <EpisodeDetail episode={epOpen} data={state.data} onClose={() => setEpOpen(null)} />
+        </>
+      )}
     </div>
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function LoadingState() {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-400">{label}</div>
-      <div className="mt-1 text-2xl font-semibold text-slate-900">{value}</div>
+    <div className="grid place-items-center py-28 text-center">
+      <Loader2 className="mb-3 animate-spin text-fdc-green" size={32} />
+      <p className="text-[13px] font-medium text-fdc-grey">Loading InvestTalk data…</p>
     </div>
   );
 }
 
-function PreviewTable({ rows }: { rows: NameRow[] }) {
+function ErrorState({ message }: { message: string }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-400">
-            <th className="px-4 py-3">Date</th>
-            <th className="px-4 py-3">Ticker</th>
-            <th className="px-4 py-3">Company</th>
-            <th className="px-4 py-3">Verdict</th>
-            <th className="px-4 py-3 text-right">+3m</th>
-            <th className="px-4 py-3 text-right">+6m α</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.nameId} className="border-b border-slate-100 last:border-0">
-              <td className="whitespace-nowrap px-4 py-3 text-slate-500">{fmtDate(r.date)}</td>
-              <td className="px-4 py-3 font-mono font-medium text-slate-900">{r.ticker || '—'}</td>
-              <td className="max-w-[16rem] truncate px-4 py-3 text-slate-700">{r.company}</td>
-              <td className="px-4 py-3">
-                <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${DECISION_STYLE[r.decision] ?? ''}`}>
-                  {r.decision}
-                </span>
-              </td>
-              <td className="px-4 py-3 text-right tabular-nums text-slate-700">{fmtPct(r.perf?.p3m?.return)}</td>
-              <td className="px-4 py-3 text-right tabular-nums text-slate-700">{fmtPct(r.perf?.p6m?.alpha)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function EpisodeTable({ rows }: { rows: Episode[] }) {
-  return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-400">
-            <th className="px-4 py-3">Date</th>
-            <th className="px-4 py-3">Episode</th>
-            <th className="px-4 py-3 text-center">Transcript</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((e) => (
-            <tr key={e.id} className="border-b border-slate-100 last:border-0">
-              <td className="whitespace-nowrap px-4 py-3 text-slate-500">{fmtDate(e.date)}</td>
-              <td className="max-w-[28rem] truncate px-4 py-3 text-slate-700">{e.title}</td>
-              <td className="px-4 py-3 text-center">{e.hasTranscript ? '✓' : '—'}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="mx-auto max-w-lg rounded-2xl border border-fdc-red/20 bg-fdc-red/[0.04] p-6 text-center">
+      <AlertTriangle className="mx-auto mb-2 text-fdc-red" size={28} />
+      <h3 className="text-[15px] font-bold text-fdc-ink">Couldn't load the data</h3>
+      <p className="mt-1 text-[13px] text-fdc-grey">{message}</p>
     </div>
   );
 }
