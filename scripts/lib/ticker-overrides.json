@@ -21,6 +21,17 @@
     "nestle": "NESN.SW",
     "novo nordisk": "NVO",
     "asml": "ASML",
-    "saudi aramco": "2222.SR"
-  }
+    "saudi aramco": "2222.SR",
+    "pulte": "PHM",
+    "iris energy": "IREN"
+  },
+  "_trusted_comment": "Symbols whose ticker is unambiguous but whose extracted 'company' is often a description/nickname (e.g. QQQ as 'Nasdaq-100'). Name validation is skipped for these to avoid false rejections. Override targets are also auto-trusted.",
+  "trusted": [
+    "SPY", "QQQ", "VOO", "VTI", "IWM", "DIA", "RSP", "MDY",
+    "TLT", "IEF", "SHY", "AGG", "BND", "HYG", "LQD", "TIP",
+    "VNQ", "SCHH", "GLD", "SLV", "GC=F", "SI=F", "CL=F", "BZ=F", "NG=F",
+    "XLE", "XLF", "XLK", "XLV", "XLY", "XLP", "XLI", "XLU", "XLB", "XLC", "XME", "SMH", "SOXX",
+    "SCHD", "VIG", "VYM", "DVY", "ARKK", "QQQM",
+    "BTC-USD", "ETH-USD", "^GSPC", "^IXIC", "^DJI", "^RUT", "^VIX"
+  ]
 }

@@ -21,7 +21,14 @@ const HORIZONS = [
   { key: 'p6m', days: 183 },
 ];
 
-const OVERRIDES = await readJSON(resolve(ROOT, 'scripts/lib/ticker-overrides.json'), { bySymbol: {}, byCompany: {} });
+const OVERRIDES = await readJSON(resolve(ROOT, 'scripts/lib/ticker-overrides.json'), { bySymbol: {}, byCompany: {}, trusted: [] });
+// Symbols whose name-validation is skipped: explicit trust list + any symbol a
+// manual override resolves to (we've vouched for those).
+const TRUSTED_SYMBOLS = new Set([
+  ...(OVERRIDES.trusted || []),
+  ...Object.values(OVERRIDES.bySymbol || {}),
+  ...Object.values(OVERRIDES.byCompany || {}),
+]);
 
 // Is this a plausible, price-trackable Yahoo symbol?
 function isTrackable(ticker) {
@@ -177,9 +184,10 @@ async function main() {
       continue;
     }
 
+    const skipValidation = TRUSTED_SYMBOLS.has(symbol);
     for (const row of rows) {
-      // Guard against silently pricing the WRONG company.
-      if (!companyMatches(row.company, yahooName)) {
+      // Guard against silently pricing the WRONG company (trusted symbols skip).
+      if (!skipValidation && !companyMatches(row.company, yahooName)) {
         row.resolved = false; row.perf = null; mismatched++;
         console.warn(`[perf]     mismatch: "${row.company}" (${row.ticker}) != Yahoo "${yahooName}" [${symbol}] -> unresolved`);
         continue;
