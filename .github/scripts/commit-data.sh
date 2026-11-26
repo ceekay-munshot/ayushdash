@@ -4,12 +4,17 @@
 set -euo pipefail
 
 LABEL="${1:-update}"
+shift || true
+# Optional path args; default to the whole data dir.
+PATHS=("$@")
+if [ ${#PATHS[@]} -eq 0 ]; then PATHS=("public/data"); fi
+
 BRANCH="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
 
 git config user.name "investtalk-bot"
 git config user.email "github-actions[bot]@users.noreply.github.com"
 
-git add public/data
+git add -- "${PATHS[@]}"
 
 if git diff --cached --quiet; then
   echo "commit-data: no changes to commit"

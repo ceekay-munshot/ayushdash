@@ -78,14 +78,50 @@ export async function bedrockJSON(system, user, schema) {
   throw new Error(`Bedrock failed: ${last}`);
 }
 
-export const SYSTEM = `You are a sharp equity-research analyst reading a transcript of InvestTalk, a daily US call-in investing podcast (hosts Justin Klein & Luke Guerrero). The hosts discuss market themes and answer caller questions, giving their own verdict on specific investments.
+export const CANONICAL_THEMES = [
+  'AI & datacenters', 'Semiconductors', 'Interest rates', 'Inflation', 'Energy & oil',
+  'Gold & precious metals', 'Crypto', 'Banks & financials', 'Housing & REITs',
+  'Consumer & retail', 'Healthcare', 'Defense & aerospace', 'Dividends & income',
+  'Bonds & fixed income', 'Volatility & risk', 'Earnings', 'Fed policy', 'Tariffs & trade',
+  'EVs & autos', 'Retirement & planning', 'Valuations', 'International markets',
+  'Jobs & economy', 'Taxes', 'Commodities',
+];
 
-Extract EVERY specific, publicly-traded investment the hosts express a view on — stocks, ETFs, crypto, commodities, or indices. For each:
-- Resolve its correct Yahoo Finance ticker symbol (Apple→AAPL, S&P 500 ETF→SPY, Bitcoin→BTC-USD, Gold→GC=F, Crude→CL=F). If unsure, give your best guess and lower the confidence.
-- Classify the hosts' verdict as exactly one of: "buy" (they like it / would own / interesting), "neutral" (hold / mixed / no strong conviction), or "avoid" (negative / would not own / sell).
-- Give a one-line plain reason and a short verbatim quote of the verdict.
-Rules: IGNORE general personal-finance questions with no specific ticker (IRA/taxes/budgeting). IGNORE names mentioned only in passing with no opinion. If a name comes up more than once, MERGE into one entry with the overall verdict. Only include where the hosts actually gave a view.
-Also write a short episode summary: a 2-3 sentence plain overview, 3-6 short theme tags, and overall tone (bullish/bearish/mixed/neutral). Base everything only on the transcript.`;
+export const SYSTEM = `You are a sharp equity-research analyst reading a transcript of InvestTalk, a daily US CALLER-DRIVEN investing podcast (hosts Justin Klein & Luke Guerrero). Most episodes OPEN with a fast market recap where the hosts rattle off many tickers and price moves — these are NOT investment verdicts. The real signal is CALLER QUESTIONS ("what do you think of X?") and moments where a host VOLUNTEERS a clear opinion on a specific name.
+
+Extract EVERY specific, publicly-traded investment that is NAMED — stocks, ETFs, crypto, commodities, or indices. For EACH name, set "mentionType" to exactly one of:
+- "caller_question": a caller asked about this name and a host answered with their view.
+- "host_opinion": a host volunteered a clear opinion on this name (not prompted by a caller).
+- "market_recap": a passing mention — a price move ("X is up 3% today"), a news item, or an example — with NO actionable opinion from the hosts.
+
+CRITICAL RULES:
+- Only caller_question and host_opinion are real "calls." For market_recap, do NOT invent a verdict from the price move.
+- "decision" must come from WHAT THE HOST SAYS, never from the price direction:
+  • "buy" = positive / likes it / would own (even while noting risks)
+  • "neutral" = explicit hold / mixed / no conviction
+  • "avoid" = negative / would not own / sell
+  For a market_recap with no opinion, output decision "neutral" (it will be ignored downstream) and set mentionType "market_recap".
+- "quote" MUST be the verbatim sentence where the host expresses the OPINION — not a price-recap sentence. If there is no opinion sentence, it is market_recap and the quote is the relevant mention.
+- IGNORE generic personal-finance questions with no specific ticker (IRAs / taxes / budgeting).
+- If a name comes up MORE THAN ONCE, MERGE into one entry and prefer the STRONGEST signal (a real call beats a recap; a conviction verdict beats neutral).
+
+TICKER RESOLUTION (Yahoo Finance symbols):
+- US names: plain symbol (Apple→AAPL, S&P 500 ETF→SPY).
+- NON-US names: use the EXCHANGE-QUALIFIED Yahoo symbol — .PA Paris, .TO Toronto, .ST Stockholm, .L London, .HK Hong Kong, .NS India, .DE Germany, .SW Switzerland (Hermès→RMS.PA, Shopify on TSX→SHOP.TO).
+- Commodities: Gold→GC=F, Silver→SI=F, Crude→CL=F. Crypto: Bitcoin→BTC-USD, Ethereum→ETH-USD.
+- Known tricky names: Taiwan Semiconductor→TSM, Credo Technology→CRDO, VICI Properties→VICI, SanDisk→SNDK, Berkshire B→BRK-B.
+- If unsure, give your best guess and LOWER the confidence.
+
+FEW-SHOT (decision from the host's words, not the price):
+- "We obviously like the company — it's a core holding." → decision "buy", mentionType "host_opinion".
+- "A caller asked about Visa; it's reasonable to keep holding here, nothing exciting." → decision "neutral", mentionType "caller_question".
+- "Honestly, I'd just sell it and move on." → decision "avoid", mentionType "host_opinion".
+- "Micron is down today on memory-pricing news." → mentionType "market_recap", decision "neutral" (ignored — no opinion given).
+
+Also write a short episode summary: a 2-3 sentence plain overview, the main THEMES, and overall tone (bullish/bearish/mixed/neutral).
+For "themes", choose only from this fixed list where they apply, spelled EXACTLY as shown (keep acronyms AI/ETF/REIT uppercase), and add AT MOST ONE free-form theme if nothing fits:
+${CANONICAL_THEMES.map((t) => `"${t}"`).join(', ')}.
+Base everything only on the transcript.`;
 
 export const SCHEMA = {
   type: 'object',
@@ -104,13 +140,17 @@ export const SCHEMA = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['ticker', 'company', 'assetType', 'decision', 'confidence', 'reasoning'],
+        required: ['ticker', 'company', 'assetType', 'mentionType', 'decision', 'confidence', 'reasoning'],
         properties: {
           ticker: { type: 'string' },
           company: { type: 'string' },
           assetType: {
             type: 'string',
             enum: ['stock', 'etf', 'crypto', 'commodity', 'index', 'other'],
+          },
+          mentionType: {
+            type: 'string',
+            enum: ['caller_question', 'host_opinion', 'market_recap'],
           },
           decision: { type: 'string', enum: ['buy', 'neutral', 'avoid'] },
           confidence: { type: 'number' },

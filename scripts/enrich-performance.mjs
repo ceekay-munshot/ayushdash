@@ -8,9 +8,10 @@
 //
 // Benchmark map: stock/etf/index -> ^GSPC ; crypto -> BTC-USD ; commodity/other -> none.
 
-import { paths, readJSON, writeJSON, todayISO, addDays, sleep } from './lib/util.mjs';
+import { resolve } from 'node:path';
+import { paths, ROOT, readJSON, writeJSON, todayISO, addDays, sleep } from './lib/util.mjs';
 import {
-  yahooCloses, benchmarkFor, closeOnOrBefore, closeOnOrAfter, latestClose, pctReturn,
+  yahooFetch, yahooCloses, benchmarkFor, closeOnOrBefore, closeOnOrAfter, latestClose, pctReturn,
 } from './lib/yahoo.mjs';
 
 const TICKER_DELAY_MS = 250;
@@ -20,15 +21,65 @@ const HORIZONS = [
   { key: 'p6m', days: 183 },
 ];
 
+const OVERRIDES = await readJSON(resolve(ROOT, 'scripts/lib/ticker-overrides.json'), { bySymbol: {}, byCompany: {} });
+
 // Is this a plausible, price-trackable Yahoo symbol?
 function isTrackable(ticker) {
   if (!ticker) return false;
   const t = ticker.trim().toUpperCase();
-  if (!t || t.length > 12) return false;
+  if (!t || t.length > 15) return false;
   if (/\s/.test(t)) return false;
   if (['N/A', 'NA', 'NONE', 'CASH', '-', '--', 'TBD', 'UNKNOWN', 'PRIVATE'].includes(t)) return false;
-  // letters/digits plus the symbol chars Yahoo uses: ^ (index) = (futures) - . (classes/pairs)
+  // letters/digits plus the symbol chars Yahoo uses: ^ index, = futures, - pairs/classes, . exchange suffix
   return /^[A-Z0-9.\-=^]+$/.test(t);
+}
+
+// Resolve the Yahoo symbol to actually price: a manual override wins, else the
+// model's ticker as-is.
+function resolveSymbol(row) {
+  const t = String(row.ticker || '').trim().toUpperCase();
+  if (OVERRIDES.bySymbol?.[t]) return OVERRIDES.bySymbol[t];
+  const comp = String(row.company || '').toLowerCase();
+  for (const [key, sym] of Object.entries(OVERRIDES.byCompany || {})) {
+    if (comp.includes(key)) return sym;
+  }
+  return t;
+}
+
+const SUFFIXES = new Set(['inc', 'corp', 'corporation', 'co', 'company', 'ltd', 'limited', 'plc', 'sa', 'nv', 'ag', 'holdings', 'holding', 'group', 'the', 'etf', 'trust', 'fund', 'class', 'common', 'stock', 'shares', 'adr', 'international', 'technologies', 'technology']);
+const normTokens = (s) =>
+  String(s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/)
+    .filter((w) => w.length >= 3 && !SUFFIXES.has(w));
+const despace = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+function commonPrefixLen(a, b) {
+  let i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++; return i;
+}
+function trigramSim(a, b) {
+  const g = (s) => { const set = new Set(); for (let i = 0; i < s.length - 2; i++) set.add(s.slice(i, i + 3)); return set; };
+  const A = g(a), B = g(b);
+  if (!A.size || !B.size) return 0;
+  let inter = 0; for (const t of A) if (B.has(t)) inter++;
+  return inter / (A.size + B.size - inter);
+}
+
+// Does the Yahoo company name plausibly match the extracted company? Very
+// LENIENT — we only reject a CLEAR mismatch (the model's ticker resolved to an
+// unrelated company), never a mere formatting/brand difference:
+//  - single-word / acronym extracted names are trusted (can't validate by words)
+//  - a shared significant word, concatenation ("Exxon Mobil"↔"ExxonMobil"),
+//    a long common prefix ("United Healthcare"↔"UnitedHealth Group"), or decent
+//    fuzzy similarity all pass.
+function companyMatches(extracted, yahooName) {
+  if (!yahooName || !extracted) return true;
+  const eTok = normTokens(extracted);
+  if (eTok.length <= 1) return true; // acronym / single brand word → trust the ticker
+  const yTok = new Set(normTokens(yahooName));
+  for (const w of eTok) if (yTok.has(w)) return true;
+  const ed = despace(extracted), yd = despace(yahooName);
+  if (ed.length >= 5 && (yd.includes(ed) || ed.includes(yd))) return true;
+  if (commonPrefixLen(ed, yd) >= 6) return true;
+  if (trigramSim(ed, yd) >= 0.34) return true;
+  return false;
 }
 
 // Compute one horizon leg for a stock series (+ optional benchmark legs).
@@ -96,37 +147,43 @@ async function main() {
     await sleep(TICKER_DELAY_MS);
   }
 
-  // Group rows by ticker to fetch each symbol once.
-  const byTicker = new Map();
+  // Group rows by the RESOLVED symbol (after overrides) to fetch each once.
+  const bySymbol = new Map();
   for (const row of names) {
-    if (!isTrackable(row.ticker)) { row.resolved = false; row.perf = null; continue; }
-    const key = row.ticker.trim().toUpperCase();
-    if (!byTicker.has(key)) byTicker.set(key, []);
-    byTicker.get(key).push(row);
+    const symbol = resolveSymbol(row);
+    if (!isTrackable(symbol)) { row.resolved = false; row.perf = null; continue; }
+    if (!bySymbol.has(symbol)) bySymbol.set(symbol, []);
+    bySymbol.get(symbol).push(row);
   }
-  console.log(`[perf] ${byTicker.size} unique trackable tickers`);
+  console.log(`[perf] ${bySymbol.size} unique trackable symbols`);
 
-  let resolved = 0, unresolved = 0, i = 0;
-  for (const [ticker, rows] of byTicker) {
+  let resolved = 0, unresolved = 0, mismatched = 0, i = 0;
+  for (const [symbol, rows] of bySymbol) {
     i++;
     const mentionDates = rows.map((r) => r.date).sort();
     const from = addDays(mentionDates[0], -7);
     // Fetch through today (Yahoo clamps the future automatically).
-    let series = null;
+    let series = null, yahooName = null;
     try {
-      series = await yahooCloses(ticker, from, today);
-    } catch (e) {
-      series = null;
-    }
+      const res = await yahooFetch(symbol, from, today);
+      series = res.closes;
+      yahooName = res.name;
+    } catch { series = null; }
     if (!series) {
       for (const r of rows) { r.resolved = false; r.perf = null; }
       unresolved += rows.length;
-      console.warn(`[perf]   (${i}/${byTicker.size}) ${ticker}: no data -> ${rows.length} rows unresolved`);
+      console.warn(`[perf]   (${i}/${bySymbol.size}) ${symbol}: no data -> ${rows.length} unresolved`);
       await sleep(TICKER_DELAY_MS);
       continue;
     }
 
     for (const row of rows) {
+      // Guard against silently pricing the WRONG company.
+      if (!companyMatches(row.company, yahooName)) {
+        row.resolved = false; row.perf = null; mismatched++;
+        console.warn(`[perf]     mismatch: "${row.company}" (${row.ticker}) != Yahoo "${yahooName}" [${symbol}] -> unresolved`);
+        continue;
+      }
       const benchSym = benchmarkFor(row.assetType);
       const bench = benchSym ? benchSeries[benchSym] : null;
       const anchor = closeOnOrBefore(series, row.date, 14);
@@ -134,6 +191,7 @@ async function main() {
 
       const perf = {
         benchmark: benchSym,
+        symbol,
         priceAtMention: anchor.price,
         priceDate: anchor.date,
       };
@@ -146,7 +204,6 @@ async function main() {
       row.resolved = true;
       resolved++;
     }
-    console.log(`[perf]   (${i}/${byTicker.size}) ${ticker}: ${rows.length} row(s) resolved`);
     await sleep(TICKER_DELAY_MS);
   }
 
@@ -165,7 +222,7 @@ async function main() {
     ),
   });
 
-  console.log(`[perf] done: ${resolved} resolved, ${unresolved} unresolved`);
+  console.log(`[perf] done: ${resolved} resolved · ${unresolved} no-data · ${mismatched} name-mismatch`);
 }
 
 main().catch((e) => {

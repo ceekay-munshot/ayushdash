@@ -4,14 +4,17 @@ import { sleep } from './util.mjs';
 
 const UA = 'Mozilla/5.0 (compatible; InvestTalkTracker/1.0)';
 
-// Fetch daily closes for a symbol between two ISO dates.
-// Returns { 'YYYY-MM-DD': close } (UTC day keys), or throws.
-export async function yahooCloses(symbol, fromISO, toISO) {
+// Fetch daily data for a symbol between two ISO dates.
+// Returns { closes: { 'YYYY-MM-DD': price }, name } where price is the
+// SPLIT-ADJUSTED close (adjclose) when available, else the raw close — so a
+// split mid-window doesn't create a phantom jump. `name` is Yahoo's company
+// name for the symbol (for match validation). Throws on hard failure.
+export async function yahooFetch(symbol, fromISO, toISO) {
   const p1 = Math.floor(new Date(`${fromISO}T00:00:00Z`).getTime() / 1000);
   const p2 = Math.floor(new Date(`${toISO}T23:59:59Z`).getTime() / 1000);
   const url =
     `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}` +
-    `?period1=${p1}&period2=${p2}&interval=1d`;
+    `?period1=${p1}&period2=${p2}&interval=1d&events=split`;
   let lastErr;
   for (let a = 0; a < 3; a++) {
     try {
@@ -19,15 +22,18 @@ export async function yahooCloses(symbol, fromISO, toISO) {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const res = (await r.json())?.chart?.result?.[0];
       if (!res?.timestamp) throw new Error('no data');
-      const c = res.indicators?.quote?.[0]?.close || [];
-      const out = {};
+      const adj = res.indicators?.adjclose?.[0]?.adjclose;
+      const raw = res.indicators?.quote?.[0]?.close || [];
+      const series = Array.isArray(adj) && adj.length === res.timestamp.length ? adj : raw;
+      const closes = {};
       for (let i = 0; i < res.timestamp.length; i++) {
-        if (c[i] == null) continue;
-        out[new Date(res.timestamp[i] * 1000).toISOString().slice(0, 10)] =
-          Number(c[i].toFixed(4));
+        const v = series[i] ?? raw[i];
+        if (v == null) continue;
+        closes[new Date(res.timestamp[i] * 1000).toISOString().slice(0, 10)] = Number(v.toFixed(4));
       }
-      if (!Object.keys(out).length) throw new Error('empty series');
-      return out;
+      if (!Object.keys(closes).length) throw new Error('empty series');
+      const name = res.meta?.longName || res.meta?.shortName || null;
+      return { closes, name };
     } catch (e) {
       lastErr = e;
       if (a === 2) throw e;
@@ -35,6 +41,11 @@ export async function yahooCloses(symbol, fromISO, toISO) {
     }
   }
   throw lastErr;
+}
+
+// Back-compat thin wrapper: just the {date:price} map.
+export async function yahooCloses(symbol, fromISO, toISO) {
+  return (await yahooFetch(symbol, fromISO, toISO)).closes;
 }
 
 // Benchmark symbol for an asset type (null = raw return only, no benchmark).

@@ -9,12 +9,16 @@ import { VERDICT, ASSET_COLOR, ASSET_LABEL, returnColor, benchLabel } from '../l
 import { signedPct, usd, dateLabel } from '../lib/format';
 
 const SLATE = '#64748B';
+const MENTION_LABEL: Record<string, string> = {
+  caller_question: 'Caller question', host_opinion: 'Host opinion', market_recap: 'Market recap',
+};
 
 export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: Dataset; onClose: () => void }) {
   if (!row) return null;
   const ep = data.episodes.find((e) => e.id === row.episodeId);
   const perf = row.perf;
   const v = VERDICT[row.decision];
+  const recap = row.mentionType === 'market_recap';
 
   const groups: GGroup[] = perf
     ? (['p3m', 'p6m'] as const)
@@ -48,9 +52,11 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
     >
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <VerdictPill decision={row.decision} />
+          {recap ? <Badge color="#94A3B8">market recap · not scored</Badge> : <VerdictPill decision={row.decision} />}
           <Badge color={ASSET_COLOR[row.assetType]}>{ASSET_LABEL[row.assetType]}</Badge>
+          {row.mentionType && <Badge color={SLATE}>{MENTION_LABEL[row.mentionType] ?? row.mentionType}</Badge>}
           {row.confidence != null && <Badge color={SLATE}>confidence {(row.confidence * 100).toFixed(0)}%</Badge>}
+          {perf?.symbol && perf.symbol !== row.ticker && <Badge color={SLATE}>priced as {perf.symbol}</Badge>}
           {!row.resolved && <Badge color="#94A3B8">unmatched ticker</Badge>}
         </div>
 

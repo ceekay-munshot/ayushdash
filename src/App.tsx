@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Trophy, ListChecks, Compass, Headphones, AlertTriangle, Loader2 } from 'lucide-react';
 import type { Episode, NameRow } from './types';
 import {
-  useAppData, filterNames, filterEpisodes, windowRange,
+  useAppData, filterNames, filterEpisodes, windowRange, isRecap,
   type AssetClass, type WindowKey, type Horizon,
 } from './lib/data';
 import { ASSET_OPTIONS } from './lib/data';
@@ -30,17 +30,24 @@ export default function App() {
   const [assetClass, setAssetClass] = useState<AssetClass>('all');
   const [windowKey, setWindowKey] = useState<WindowKey>('all');
   const [horizon, setHorizon] = useState<Horizon>('p6m');
+  const [realCallsOnly, setRealCallsOnly] = useState(true);
   const [callOpen, setCallOpen] = useState<NameRow | null>(null);
   const [epOpen, setEpOpen] = useState<Episode | null>(null);
 
   const controls: GlobalControls = {
-    assetClass, setAssetClass, windowKey, setWindowKey, horizon, setHorizon,
+    assetClass, setAssetClass, windowKey, setWindowKey, horizon, setHorizon, realCallsOnly, setRealCallsOnly,
   };
 
   const meta = state.status === 'ready' ? state.data.meta : null;
 
   const rows = useMemo(
-    () => (state.status === 'ready' ? filterNames(state.data.names, assetClass, windowKey, meta) : []),
+    () => (state.status === 'ready' ? filterNames(state.data.names, assetClass, windowKey, meta, !realCallsOnly) : []),
+    [state, assetClass, windowKey, meta, realCallsOnly]
+  );
+  const recapCount = useMemo(
+    () => (state.status === 'ready'
+      ? filterNames(state.data.names, assetClass, windowKey, meta, true).filter(isRecap).length
+      : 0),
     [state, assetClass, windowKey, meta]
   );
   const episodes = useMemo(
@@ -70,10 +77,10 @@ export default function App() {
           {state.status === 'ready' && (
             <>
               {tab === 'scorecard' && (
-                <ScorecardTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
+                <ScorecardTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} assetClass={assetClass} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
               )}
               {tab === 'calls' && (
-                <AllCallsTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
+                <AllCallsTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} recapCount={recapCount} realCallsOnly={realCallsOnly} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />
               )}
               {tab === 'themes' && (
                 <ThemesTab data={state.data} rows={rows} episodes={episodes} horizon={horizon} ctx={ctx} onOpenCall={setCallOpen} onOpenEpisode={setEpOpen} />

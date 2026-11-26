@@ -91,8 +91,12 @@ async function main() {
   const summaries = await readJSON(paths.summaries, {});
   const today = todayISO();
 
-  const resolved = names.filter((r) => r.resolved);
-  const dates = names.map((r) => r.date).sort();
+  // Real calls only (caller questions + host opinions) drive every stat;
+  // market-recap mentions are counted separately but never scored.
+  const real = names.filter((r) => r.mentionType !== 'market_recap');
+  const recapMentions = names.length - real.length;
+  const resolved = real.filter((r) => r.resolved);
+  const dates = real.map((r) => r.date).sort();
 
   const byDecisionRows = Object.fromEntries(
     DECISIONS.map((d) => [d, resolved.filter((r) => r.decision === d)])
@@ -108,13 +112,15 @@ async function main() {
     },
     totals: {
       names: names.length,
+      realCalls: real.length,
+      recapMentions,
       resolved: resolved.length,
-      unresolved: names.length - resolved.length,
-      episodesWithNames: new Set(names.map((r) => r.episodeId)).size,
+      unresolved: real.length - resolved.length,
+      episodesWithNames: new Set(real.map((r) => r.episodeId)).size,
       dateCoverage: dates.length ? { from: dates[0], to: dates[dates.length - 1] } : null,
     },
-    byDecision: countBy(names, 'decision', DECISIONS),
-    byAssetType: countBy(names, 'assetType', ASSET_TYPES),
+    byDecision: countBy(real, 'decision', DECISIONS),
+    byAssetType: countBy(real, 'assetType', ASSET_TYPES),
     performance: {
       overall: perfBlock(resolved, 'positive_alpha'),
       buy: perfBlock(byDecisionRows.buy, 'positive_alpha'),
@@ -135,7 +141,7 @@ async function main() {
   });
 
   console.log(
-    `[scorecard] names=${names.length} resolved=${resolved.length} ` +
+    `[scorecard] names=${names.length} (real=${real.length} recap=${recapMentions}) resolved=${resolved.length} ` +
     `buy=${scorecard.byDecision.buy} neutral=${scorecard.byDecision.neutral} avoid=${scorecard.byDecision.avoid}`
   );
   console.log(`[scorecard] wrote scorecard.json + metadata.json`);

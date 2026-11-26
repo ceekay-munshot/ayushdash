@@ -42,7 +42,12 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           BEDROCK_MODEL_IDS: ${{ secrets.BEDROCK_MODEL_IDS }}
           DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
-        run: node scripts/extract-names.mjs
+        run: node scripts/extract-names.mjs --commit-every 20
+
+      # Safety net: persist paid extractions even if a later step fails.
+      - name: Commit extractions
+        if: always()
+        run: bash .github/scripts/commit-data.sh "extract" public/data/names.json public/data/summaries.json
 
       - name: Enrich performance (refresh all)
         run: node scripts/enrich-performance.mjs

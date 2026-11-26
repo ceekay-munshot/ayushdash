@@ -21,9 +21,10 @@ type Sub = 'mention' | 'company';
 type VFilter = 'all' | Decision;
 
 export default function AllCallsTab({
-  rows, horizon, ctx, onOpenCall,
+  rows, horizon, ctx, recapCount, realCallsOnly, onOpenCall,
 }: {
   data: Dataset; rows: NameRow[]; episodes: unknown; horizon: Horizon; ctx: string;
+  recapCount: number; realCallsOnly: boolean;
   onOpenCall: (n: NameRow) => void; onOpenEpisode: unknown;
 }) {
   const [sub, setSub] = useState<Sub>('mention');
@@ -126,8 +127,11 @@ export default function AllCallsTab({
         )}
       </Card>
       <p className="px-1 text-[11.5px] text-fdc-grey">
-        {sub === 'mention' ? `${filtered.length} calls` : `${companies.length} companies`} · green = gain / beat market,
+        {sub === 'mention' ? `${filtered.length} ${realCallsOnly ? 'calls' : 'rows'}` : `${companies.length} companies`} · green = gain / beat market,
         red = loss / lagged · <Clock size={11} className="inline" /> still maturing · click a row for detail.
+        {realCallsOnly && recapCount > 0 && (
+          <> · <span className="font-medium text-fdc-slate">{recapCount} market-recap mention{recapCount === 1 ? '' : 's'} hidden</span> (toggle “Real calls only” off to show)</>
+        )}
       </p>
     </div>
   );
@@ -153,7 +157,7 @@ function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon:
     { key: 'ticker', header: 'Ticker', sortable: true, sortValue: (r) => r.ticker, render: (r) => <span className="tnum font-bold text-fdc-ink">{r.ticker || '—'}</span> },
     { key: 'company', header: 'Company', sortable: true, sortValue: (r) => r.company, width: 190, render: (r) => <span className="block max-w-[190px] truncate">{r.company}</span> },
     { key: 'asset', header: 'Type', render: (r) => <Badge color={ASSET_COLOR[r.assetType]}>{ASSET_SHORT[r.assetType]}</Badge> },
-    { key: 'verdict', header: 'Verdict', sortable: true, sortValue: (r) => VERDICT_ORDER[r.decision], render: (r) => <VerdictPill decision={r.decision} size="sm" /> },
+    { key: 'verdict', header: 'Verdict', sortable: true, sortValue: (r) => VERDICT_ORDER[r.decision], render: (r) => r.mentionType === 'market_recap' ? <Badge color="#94A3B8">recap</Badge> : <VerdictPill decision={r.decision} size="sm" /> },
     { key: 'r3', header: '+3mo', align: 'right', sortable: true, sortValue: (r) => r.perf?.p3m?.return ?? -Infinity, heat: (r) => heatForReturn(r.perf?.p3m?.return, 20), render: (r) => <Ret leg={r.perf?.p3m} kind="return" /> },
     { key: 'a3', header: '+3mo vs mkt', align: 'right', sortable: true, sortValue: (r) => r.perf?.p3m?.alpha ?? -Infinity, heat: (r) => heatForReturn(r.perf?.p3m?.alpha, 15), render: (r) => <Ret leg={r.perf?.p3m} kind="alpha" /> },
     { key: 'r6', header: '+6mo', align: 'right', sortable: true, sortValue: (r) => r.perf?.p6m?.return ?? -Infinity, heat: (r) => heatForReturn(r.perf?.p6m?.return, 20), render: (r) => <Ret leg={r.perf?.p6m} kind="return" /> },

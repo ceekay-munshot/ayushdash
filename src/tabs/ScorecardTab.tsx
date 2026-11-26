@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Trophy, TrendingUp, TrendingDown, Target, ArrowRight } from 'lucide-react';
 import type { Episode, NameRow } from '../types';
-import type { Dataset, Horizon } from '../lib/data';
+import type { Dataset, Horizon, AssetClass } from '../lib/data';
 import { computeScores, bestWorst, type RankedCall } from '../lib/data';
 import { PageHeader, Card, CardHeader, MiniStat } from '../components/ui/Card';
 import { VerdictPill } from '../components/ui/VerdictPill';
@@ -14,14 +14,24 @@ import { signedPct, pct } from '../lib/format';
 const SLATE = '#64748B';
 
 export default function ScorecardTab({
-  rows, horizon, ctx, onOpenCall,
+  rows, horizon, ctx, assetClass, onOpenCall,
 }: {
   data: Dataset; rows: NameRow[]; episodes: Episode[]; horizon: Horizon; ctx: string;
-  onOpenCall: (n: NameRow) => void; onOpenEpisode: (e: Episode) => void;
+  assetClass: AssetClass; onOpenCall: (n: NameRow) => void; onOpenEpisode: (e: Episode) => void;
 }) {
   const scores = useMemo(() => computeScores(rows, horizon), [rows, horizon]);
   const { best, worst } = useMemo(() => bestWorst(rows, horizon, 5), [rows, horizon]);
   const hMonths = horizon === 'p3m' ? '3 months' : '6 months';
+
+  // Benchmark label follows the selected asset class; alpha is always per-call.
+  const marketLabel =
+    assetClass === 'crypto' ? 'Bitcoin' :
+    assetClass === 'stock' || assetClass === 'etf' || assetClass === 'index' ? 'S&P 500' :
+    'the market';
+  const benchNote =
+    assetClass === 'all'
+      ? 'Each call is compared to its own benchmark (S&P 500 for stocks/ETFs, Bitcoin for crypto)'
+      : `vs. ${marketLabel} over the same window`;
 
   const hasData = scores.overall.complete > 0;
 
@@ -33,11 +43,11 @@ export default function ScorecardTab({
       label: VERDICT[d].label,
       bars: [
         { seriesKey: 'call', label: 'InvestTalk call', value: s.avgReturn, color: VERDICT[d].color },
-        { seriesKey: 'mkt', label: 'The market', value: s.avgBench, color: SLATE },
+        { seriesKey: 'mkt', label: marketLabel, value: s.avgBench, color: SLATE },
       ],
       tipRows: [
         { label: 'InvestTalk call', value: s.avgReturn == null ? '—' : signedPct(s.avgReturn), color: VERDICT[d].color },
-        { label: 'The market', value: s.avgBench == null ? '—' : signedPct(s.avgBench), color: SLATE },
+        { label: marketLabel, value: s.avgBench == null ? '—' : signedPct(s.avgBench), color: SLATE },
         { label: 'Difference', value: s.avgAlpha == null ? '—' : signedPct(s.avgAlpha) },
         { label: 'Completed calls', value: String(s.complete) },
       ],
@@ -115,7 +125,7 @@ export default function ScorecardTab({
           <CardHeader
             icon={TrendingUp}
             title={`Average return by verdict — ${hMonths}`}
-            subtitle="Each verdict's calls vs. the market over the same window"
+            subtitle={benchNote}
             accent={VERDICT.buy.color}
           />
           {hasData ? (
@@ -126,7 +136,7 @@ export default function ScorecardTab({
                 { label: 'Buy', color: VERDICT.buy.color },
                 { label: 'Neutral', color: VERDICT.neutral.color },
                 { label: 'Avoid', color: VERDICT.avoid.color },
-                { label: 'The market', color: SLATE },
+                { label: marketLabel, color: SLATE },
               ]}
             />
           ) : <Empty />}

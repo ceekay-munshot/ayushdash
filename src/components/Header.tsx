@@ -1,6 +1,6 @@
 import { Radio } from 'lucide-react';
 import type { Metadata } from '../types';
-import { Segmented, Dropdown } from './ui/Controls';
+import { Segmented, Dropdown, Toggle } from './ui/Controls';
 import { ASSET_OPTIONS, WINDOW_OPTIONS, type AssetClass, type WindowKey, type Horizon } from '../lib/data';
 import { ASSET_COLOR } from '../lib/brand';
 import { datetimeLabel } from '../lib/format';
@@ -12,6 +12,8 @@ export interface GlobalControls {
   setWindowKey: (v: WindowKey) => void;
   horizon: Horizon;
   setHorizon: (v: Horizon) => void;
+  realCallsOnly: boolean;
+  setRealCallsOnly: (v: boolean) => void;
 }
 
 const ASSET_SEG = ASSET_OPTIONS.map((o) => ({
@@ -58,6 +60,15 @@ export function Header({ meta, controls }: { meta?: Metadata | null; controls: G
           </Control>
           <Control label="Performance horizon">
             <Segmented value={controls.horizon} options={HORIZON_SEG} onChange={controls.setHorizon} />
+          </Control>
+          <Control label="Call type">
+            <div className="flex h-[34px] items-center">
+              <Toggle
+                checked={controls.realCallsOnly}
+                onChange={controls.setRealCallsOnly}
+                label="Real calls only"
+              />
+            </div>
           </Control>
         </div>
       </div>

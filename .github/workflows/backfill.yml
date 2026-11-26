@@ -7,6 +7,11 @@ name: backfill
 on:
   workflow_dispatch:
     inputs:
+      force:
+        description: 'Re-extract ALL episodes (one-time clean re-run with the improved prompt — costs Bedrock credits)'
+        type: boolean
+        required: false
+        default: false
       extract_limit:
         description: 'Max episodes to extract this run (blank = all pending)'
         required: false
@@ -46,11 +51,16 @@ jobs:
           BEDROCK_MODEL_IDS: ${{ secrets.BEDROCK_MODEL_IDS }}
           DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
         run: |
-          if [ -n "${{ github.event.inputs.extract_limit }}" ]; then
-            node scripts/extract-names.mjs --limit ${{ github.event.inputs.extract_limit }}
-          else
-            node scripts/extract-names.mjs
-          fi
+          ARGS="--commit-every 20"
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          if [ -n "${{ github.event.inputs.extract_limit }}" ]; then ARGS="$ARGS --limit ${{ github.event.inputs.extract_limit }}"; fi
+          echo "extract-names $ARGS"
+          node scripts/extract-names.mjs $ARGS
+
+      # Safety net: persist paid extractions even if a later step fails.
+      - name: Commit extractions
+        if: always()
+        run: bash .github/scripts/commit-data.sh "extract" public/data/names.json public/data/summaries.json
 
       - name: Enrich performance (Yahoo)
         run: node scripts/enrich-performance.mjs

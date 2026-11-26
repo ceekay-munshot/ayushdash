@@ -2,6 +2,7 @@
 // Phase 2 UI builds on these.
 
 export type Decision = 'buy' | 'neutral' | 'avoid';
+export type MentionType = 'caller_question' | 'host_opinion' | 'market_recap';
 export type AssetType = 'stock' | 'etf' | 'crypto' | 'commodity' | 'index' | 'other';
 export type Tone = 'bullish' | 'bearish' | 'mixed' | 'neutral';
 export type PerfStatus = 'complete' | 'in_progress';
@@ -41,6 +42,7 @@ export interface PerfLeg {
 
 export interface Perf {
   benchmark: string | null; // "^GSPC" | "BTC-USD" | null
+  symbol?: string; // the Yahoo symbol actually priced (after overrides)
   priceAtMention: number;
   priceDate: string;
   p3m: PerfLeg | null;
@@ -54,6 +56,7 @@ export interface NameRow {
   ticker: string;
   company: string;
   assetType: AssetType;
+  mentionType?: MentionType; // absent on pre-Phase-3 data (treated as a real call)
   decision: Decision;
   confidence: number;
   reasoning: string;
@@ -107,6 +110,8 @@ export interface Scorecard {
   coverage: { episodes: number; withTranscript: number; extracted: number };
   totals: {
     names: number;
+    realCalls?: number;
+    recapMentions?: number;
     resolved: number;
     unresolved: number;
     episodesWithNames: number;

@@ -7,24 +7,31 @@
 // summaries.json entry (so even 0-name episodes are not re-processed).
 //
 // Flags:
-//   --limit N       process at most N pending episodes (oldest-first)
-//   --sample N      process N pending episodes spread evenly across the window
-//   --episodes a,b  process exactly these episode ids (comma separated)
-//   --force         re-process even already-done episodes (replaces their rows)
+//   --limit N        process at most N pending episodes (oldest-first)
+//   --sample N       process N pending episodes spread evenly across the window
+//   --episodes a,b   process exactly these episode ids (comma separated)
+//   --force          re-process even already-done episodes (replaces their rows)
+//   --commit-every N commit+push names.json+summaries.json every N episodes
+//                    (CI durability so each episode is paid for exactly once)
 
+import { execFileSync } from 'node:child_process';
+import { resolve } from 'node:path';
 import {
-  paths, readJSON, writeJSON, fileExists, parseArgs, evenSample,
+  paths, ROOT, readJSON, writeJSON, fileExists, parseArgs, evenSample,
 } from './lib/util.mjs';
 import { bedrockJSON, hasBedrockKey, SYSTEM, SCHEMA } from './lib/bedrock.mjs';
 import { diarizedText } from './lib/vtt.mjs';
 
 const DECISIONS = new Set(['buy', 'neutral', 'avoid']);
 const ASSET_TYPES = new Set(['stock', 'etf', 'crypto', 'commodity', 'index', 'other']);
+const MENTION_TYPES = new Set(['caller_question', 'host_opinion', 'market_recap']);
 const MAX_INPUT_CHARS = 180_000; // safety cap; real transcripts are ~50KB
 
 function normName(raw, episode, idx) {
   const assetType = ASSET_TYPES.has(raw.assetType) ? raw.assetType : 'other';
   const decision = DECISIONS.has(raw.decision) ? raw.decision : 'neutral';
+  // Default to a real call when missing/invalid so older data stays counted.
+  const mentionType = MENTION_TYPES.has(raw.mentionType) ? raw.mentionType : 'host_opinion';
   let confidence = Number(raw.confidence);
   if (!Number.isFinite(confidence)) confidence = 0.5;
   confidence = Math.max(0, Math.min(1, confidence));
@@ -35,12 +42,25 @@ function normName(raw, episode, idx) {
     ticker: String(raw.ticker || '').trim().toUpperCase(),
     company: String(raw.company || '').trim(),
     assetType,
+    mentionType,
     decision,
     confidence,
     reasoning: String(raw.reasoning || '').trim(),
     quote: String(raw.quote || '').trim(),
     context: String(raw.context || '').trim(),
   };
+}
+
+// Commit + push the two extraction files mid-run (best-effort; never aborts).
+function batchCommit(label) {
+  try {
+    execFileSync('bash', [
+      resolve(ROOT, '.github/scripts/commit-data.sh'), label,
+      'public/data/names.json', 'public/data/summaries.json',
+    ], { cwd: ROOT, stdio: 'inherit' });
+  } catch (e) {
+    console.warn(`[extract]   batch commit skipped: ${e.message}`);
+  }
 }
 
 async function main() {
@@ -61,9 +81,11 @@ async function main() {
   const names = await readJSON(paths.names, []);
   const summaries = await readJSON(paths.summaries, {});
   const force = Boolean(flags.force);
+  const commitEvery = Number(flags['commit-every'] ?? process.env.EXTRACT_COMMIT_EVERY ?? 0) || 0;
 
   // Candidates: episodes with a stored transcript.
-  let candidates = episodes.filter((e) => fileExists(paths.transcript(e.id)));
+  const withTranscript = episodes.filter((e) => fileExists(paths.transcript(e.id)));
+  let candidates = withTranscript;
 
   if (flags.episodes) {
     const want = new Set(String(flags.episodes).split(',').map((s) => s.trim()));
@@ -78,7 +100,12 @@ async function main() {
   if (flags.sample) candidates = evenSample(candidates, Number(flags.sample));
   if (flags.limit) candidates = candidates.slice(0, Number(flags.limit));
 
-  console.log(`[extract] ${candidates.length} episode(s) to extract${force ? ' (force)' : ''}`);
+  const skipped = withTranscript.length - candidates.length;
+  console.log(
+    `[extract] ${withTranscript.length} transcripts · ${candidates.length} to extract · ` +
+    `${skipped} skipped (already done)${force ? ' · FORCE' : ''}` +
+    `${commitEvery ? ` · commit every ${commitEvery}` : ''}`
+  );
   if (!candidates.length) return;
 
   let done = 0, failed = 0, totalNames = 0;
@@ -116,14 +143,18 @@ async function main() {
       await writeJSON(paths.summaries, summaries);
 
       done++; totalNames += rows.length;
-      console.log(`[extract]   ${ep.date} ${ep.id}: ${rows.length} names (tone ${summaries[ep.id].tone})`);
+      const real = rows.filter((r) => r.mentionType !== 'market_recap').length;
+      console.log(`[extract]   ${ep.date} ${ep.id}: ${rows.length} names (${real} calls, ${rows.length - real} recap · tone ${summaries[ep.id].tone})`);
+
+      if (commitEvery && done % commitEvery === 0) batchCommit(`extract ${done} eps`);
     } catch (e) {
       failed++;
       console.warn(`[extract]   FAIL ${ep.id} ${ep.date}: ${e.message}`);
     }
   }
 
-  console.log(`[extract] done: ${done} episodes, ${totalNames} names, ${failed} failed`);
+  if (commitEvery && done % commitEvery !== 0) batchCommit(`extract final ${done} eps`);
+  console.log(`[extract] done: extracted ${done} · ${totalNames} names · ${failed} failed · ${skipped} skipped`);
 }
 
 main().catch((e) => {

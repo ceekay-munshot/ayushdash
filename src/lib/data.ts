@@ -103,15 +103,22 @@ export const ASSET_OPTIONS: { value: AssetClass; label: string }[] = [
   { value: 'commodity', label: 'Commodities' },
 ];
 
+// A "real call" is a caller question or a host opinion — NOT a market-recap
+// mention. Rows without mentionType (pre-Phase-3 data) count as real calls.
+export const isRealCall = (r: NameRow) => r.mentionType !== 'market_recap';
+export const isRecap = (r: NameRow) => r.mentionType === 'market_recap';
+
 // ---- filtering -------------------------------------------------------------
 export function filterNames(
   names: NameRow[],
   assetClass: AssetClass,
   w: WindowKey,
-  meta: Metadata | null
+  meta: Metadata | null,
+  includeRecap = false
 ): NameRow[] {
   const { from, to } = windowRange(w, meta);
   return names.filter((n) => {
+    if (!includeRecap && isRecap(n)) return false;
     if (n.date < from || n.date > to) return false;
     if (assetClass !== 'all' && n.assetType !== assetClass) return false;
     return true;
@@ -159,7 +166,9 @@ export interface BucketStat {
 }
 
 function statFor(rows: NameRow[], decision: Decision | 'overall', h: Horizon): BucketStat {
-  const inBucket = decision === 'overall' ? rows : rows.filter((r) => r.decision === decision);
+  // Performance math is ALWAYS over real calls — recap mentions never count.
+  const real = rows.filter(isRealCall);
+  const inBucket = decision === 'overall' ? real : real.filter((r) => r.decision === decision);
   const resolved = inBucket.filter((r) => r.resolved && r.perf);
   const returns: number[] = [], benches: number[] = [], alphas: number[] = [];
   let complete = 0, inProgress = 0, hits = 0, decided = 0;
@@ -213,6 +222,7 @@ export interface RankedCall {
 export function bestWorst(rows: NameRow[], h: Horizon, k = 5): { best: RankedCall[]; worst: RankedCall[] } {
   const scored: RankedCall[] = [];
   for (const r of rows) {
+    if (!isRealCall(r)) continue;
     const leg = legOf(r, h);
     if (!r.resolved || !leg || leg.status !== 'complete' || leg.alpha == null) continue;
     scored.push({ row: r, leg, horizon: h, alpha: leg.alpha });
@@ -248,6 +258,7 @@ export function rollupByCompany(rows: NameRow[], h: Horizon): CompanyRoll[] {
     const latest = sorted[0];
     const returns: number[] = [], alphas: number[] = [];
     for (const r of rs) {
+      if (!isRealCall(r)) continue; // recap mentions never enter perf averages
       const leg = legOf(r, h);
       if (leg && leg.status === 'complete') {
         returns.push(leg.return);
@@ -310,7 +321,10 @@ export function themeFrequency(
   episodeIds: Set<string>,
   k = 12
 ): { theme: string; count: number }[] {
+  // Group case-insensitively but DISPLAY the first-seen original spelling, so
+  // canonical themes keep their acronym casing ("AI & datacenters", not "Ai …").
   const counts = new Map<string, number>();
+  const display = new Map<string, string>();
   for (const [id, s] of Object.entries(summaries)) {
     if (!episodeIds.has(id)) continue;
     for (const raw of s.themes ?? []) {
@@ -318,10 +332,11 @@ export function themeFrequency(
       if (!t) continue;
       const key = t.toLowerCase();
       counts.set(key, (counts.get(key) ?? 0) + 1);
+      if (!display.has(key)) display.set(key, t);
     }
   }
   return [...counts.entries()]
-    .map(([theme, count]) => ({ theme: theme.replace(/\b\w/g, (c) => c.toUpperCase()), count }))
+    .map(([key, count]) => ({ theme: display.get(key) ?? key, count }))
     .sort((a, b) => b.count - a.count)
     .slice(0, k);
 }

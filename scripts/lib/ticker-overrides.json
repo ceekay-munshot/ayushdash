@@ -1,0 +1,26 @@
+{
+  "_comment": "Manual ticker fixes for names the model tends to mis-resolve. bySymbol keys are UPPERCASE tickers the model might emit; byCompany keys are lowercased substrings matched against the extracted company name. Both map to the correct Yahoo Finance symbol. Extend as the audit finds more.",
+  "bySymbol": {
+    "FB": "META",
+    "BRK.B": "BRK-B",
+    "BRKB": "BRK-B",
+    "BRK.A": "BRK-A",
+    "RDS.A": "SHEL",
+    "RDS.B": "SHEL",
+    "GOOG.L": "GOOGL",
+    "BABA.HK": "BABA"
+  },
+  "byCompany": {
+    "taiwan semiconductor": "TSM",
+    "credo technology": "CRDO",
+    "sandisk": "SNDK",
+    "hermes": "RMS.PA",
+    "hermès": "RMS.PA",
+    "vici properties": "VICI",
+    "lvmh": "MC.PA",
+    "nestle": "NESN.SW",
+    "novo nordisk": "NVO",
+    "asml": "ASML",
+    "saudi aramco": "2222.SR"
+  }
+}
