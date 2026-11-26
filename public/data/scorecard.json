@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T16:28:37.344Z",
+  "generatedAt": "2026-11-26T17:27:52.549Z",
   "window": {
     "from": "2026-01-01",
     "to": "2026-11-26"
@@ -11,8 +11,10 @@
   },
   "totals": {
     "names": 2043,
-    "resolved": 1986,
-    "unresolved": 57,
+    "realCalls": 2043,
+    "recapMentions": 0,
+    "resolved": 1984,
+    "unresolved": 59,
     "episodesWithNames": 178,
     "dateCoverage": {
       "from": "2026-01-01",
@@ -35,73 +37,73 @@
   "performance": {
     "overall": {
       "p3m": {
-        "n": 1827,
+        "n": 1825,
         "inProgress": 159,
-        "avgReturn": 4.56,
-        "avgAlpha": 0.3,
-        "winRate": 42.64,
+        "avgReturn": 4.87,
+        "avgAlpha": 0.64,
+        "winRate": 44.8,
         "winRateBasis": "positive_alpha"
       },
       "p6m": {
-        "n": 1089,
-        "inProgress": 897,
-        "avgReturn": 5.73,
-        "avgAlpha": -2.32,
-        "winRate": 35.82,
+        "n": 1084,
+        "inProgress": 900,
+        "avgReturn": 6.6,
+        "avgAlpha": -1.42,
+        "winRate": 38.87,
         "winRateBasis": "positive_alpha"
       }
     },
     "buy": {
       "p3m": {
-        "n": 597,
-        "inProgress": 54,
-        "avgReturn": 3.71,
-        "avgAlpha": 0.29,
-        "winRate": 42.71,
+        "n": 594,
+        "inProgress": 56,
+        "avgReturn": 4.14,
+        "avgAlpha": 0.75,
+        "winRate": 44.49,
         "winRateBasis": "positive_alpha"
       },
       "p6m": {
-        "n": 376,
-        "inProgress": 275,
-        "avgReturn": 2.87,
-        "avgAlpha": -4.02,
-        "winRate": 33.86,
+        "n": 374,
+        "inProgress": 276,
+        "avgReturn": 3.61,
+        "avgAlpha": -3.16,
+        "winRate": 35.56,
         "winRateBasis": "positive_alpha"
       }
     },
     "neutral": {
       "p3m": {
-        "n": 762,
+        "n": 763,
         "inProgress": 74,
-        "avgReturn": 4.37,
-        "avgAlpha": -0.03,
-        "winRate": 42.88,
+        "avgReturn": 4.7,
+        "avgAlpha": 0.32,
+        "winRate": 45.88,
         "winRateBasis": "positive_alpha"
       },
       "p6m": {
         "n": 421,
-        "inProgress": 415,
-        "avgReturn": 5.96,
-        "avgAlpha": -2.56,
-        "winRate": 35.92,
+        "inProgress": 416,
+        "avgReturn": 6.89,
+        "avgAlpha": -1.67,
+        "winRate": 40.72,
         "winRateBasis": "positive_alpha"
       }
     },
     "avoid": {
       "p3m": {
         "n": 468,
-        "inProgress": 31,
-        "avgReturn": 5.96,
-        "avgAlpha": 0.82,
-        "winRate": 41.03,
+        "inProgress": 29,
+        "avgReturn": 6.06,
+        "avgAlpha": 1,
+        "winRate": 39.96,
         "winRateBasis": "negative_return"
       },
       "p6m": {
-        "n": 292,
-        "inProgress": 207,
-        "avgReturn": 9.07,
-        "avgAlpha": -0.13,
-        "winRate": 43.84,
+        "n": 289,
+        "inProgress": 208,
+        "avgReturn": 10.04,
+        "avgAlpha": 0.85,
+        "winRate": 41.18,
         "winRateBasis": "negative_return"
       }
     }
@@ -130,8 +132,8 @@
         "assetType": "stock",
         "date": "2026-04-09",
         "horizon": "p6m",
-        "return": 222.97,
-        "alpha": 208.51,
+        "return": 224.5,
+        "alpha": 210.04,
         "benchmark": "^GSPC"
       },
       {
@@ -143,8 +145,8 @@
         "assetType": "stock",
         "date": "2026-03-31",
         "horizon": "p6m",
-        "return": 215.27,
-        "alpha": 198.07,
+        "return": 215.32,
+        "alpha": 198.12,
         "benchmark": "^GSPC"
       },
       {
@@ -169,8 +171,8 @@
         "assetType": "stock",
         "date": "2026-01-09",
         "horizon": "p6m",
-        "return": 171.52,
-        "alpha": 163.64,
+        "return": 171.68,
+        "alpha": 163.8,
         "benchmark": "^GSPC"
       }
     ],
