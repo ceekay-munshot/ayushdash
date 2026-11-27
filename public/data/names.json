@@ -1,231 +1,157 @@
 [
   {
-    "nameId": "2026-11-18-54558bc8-n6",
+    "nameId": "2026-11-18-54558bc8-n9",
     "episodeId": "2026-11-18-54558bc8",
     "date": "2026-11-18",
-    "ticker": "NVDA",
-    "company": "NVIDIA",
-    "assetType": "stock",
+    "ticker": "SI=F",
+    "company": "Silver",
+    "assetType": "commodity",
+    "mentionType": "market_recap",
     "decision": "neutral",
-    "confidence": 0.6,
-    "reasoning": "Mentioned in passing as reporting earnings that beat and trading up ~3.76% after hours; part of AI trade under pressure from export controls and ecosystem funding concerns.",
-    "quote": "In video, a company that reported earnings and at least last time I checked did beat and was trading up after hours... about 3.76%.",
-    "context": "Brief mention during market recap discussing AI sector weakness.",
-    "perf": {
-      "benchmark": "^GSPC",
-      "symbol": "NVDA",
-      "priceAtMention": 150.96,
-      "priceDate": "2026-11-18",
-      "p3m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-02-17",
-        "price": 149.3,
-        "return": -1.1,
-        "benchReturn": -1.92,
-        "alpha": 0.82,
-        "status": "in_progress"
-      },
-      "p6m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-05-20",
-        "price": 149.3,
-        "return": -1.1,
-        "benchReturn": -1.92,
-        "alpha": 0.82,
-        "status": "in_progress"
-      }
-    },
-    "resolved": true
+    "confidence": 0.9,
+    "reasoning": "Luke reports silver was up 1.1% on the day. No opinion offered.",
+    "quote": "silver was up 1.1%",
+    "context": "Daily commodity price update; no host opinion."
   },
   {
-    "nameId": "2026-11-18-54558bc8-n5",
+    "nameId": "2026-11-18-54558bc8-n8",
+    "episodeId": "2026-11-18-54558bc8",
+    "date": "2026-11-18",
+    "ticker": "GC=F",
+    "company": "Gold",
+    "assetType": "commodity",
+    "mentionType": "market_recap",
+    "decision": "neutral",
+    "confidence": 0.9,
+    "reasoning": "Luke reports gold finished up 30 basis points on the day as part of the market recap. No opinion offered.",
+    "quote": "gold finished up 30",
+    "context": "Daily commodity price update; no host opinion."
+  },
+  {
+    "nameId": "2026-11-18-54558bc8-n7",
     "episodeId": "2026-11-18-54558bc8",
     "date": "2026-11-18",
     "ticker": "SPG",
     "company": "Simon Property Group",
     "assetType": "stock",
+    "mentionType": "caller_question",
     "decision": "buy",
-    "confidence": 0.78,
-    "reasoning": "Largest US mall REIT, up 27% in 52 weeks, outperforming industry by 14%, 97% occupancy, rising rents, growing dividend, solid balance sheet; well-run company but take profits to rebalance.",
-    "quote": "This is a very role-run company with a very solid balance sheet but as I said you know if you're up on this it is a good idea to take profit take the opportunity to rebalance when you can.",
-    "context": "Caller holding SPG since mid-80s asking if should take profits.",
-    "perf": {
-      "benchmark": "^GSPC",
-      "symbol": "SPG",
-      "priceAtMention": 231.38,
-      "priceDate": "2026-11-18",
-      "p3m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-02-17",
-        "price": 233.98,
-        "return": 1.12,
-        "benchReturn": -1.92,
-        "alpha": 3.04,
-        "status": "in_progress"
-      },
-      "p6m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-05-20",
-        "price": 233.98,
-        "return": 1.12,
-        "benchReturn": -1.92,
-        "alpha": 3.04,
-        "status": "in_progress"
-      }
-    },
-    "resolved": true
+    "confidence": 0.82,
+    "reasoning": "Caller asked whether to take profits on SPG, a mall REIT, bought in the mid-80s. Luke highlights 24% YTD gain, 97% occupancy, 6% rent growth, growing dividend, buybacks, strong balance sheet ($2B debt on $88B cap), and consistent outperformance. He says 'this is a very well-run company with a very solid balance sheet' and suggests rebalancing but implies holding is fine.",
+    "quote": "This is a very role-run company with a very solid balance sheet… if you're up on this it is a good idea to take profit take the opportunity to rebalance when you can.",
+    "context": "Caller question on Simon Property Group; Luke praises fundamentals and suggests rebalancing but no sell signal."
   },
   {
-    "nameId": "2026-11-18-54558bc8-n4",
+    "nameId": "2026-11-18-54558bc8-n6",
     "episodeId": "2026-11-18-54558bc8",
     "date": "2026-11-18",
-    "ticker": "SKHY",
+    "ticker": "HY9.DE",
     "company": "SK Hynix",
     "assetType": "stock",
+    "mentionType": "caller_question",
     "decision": "neutral",
-    "confidence": 0.7,
-    "reasoning": "Not a cyclical downturn yet; sold out through 2029, 80% operating margins, revenue up 91% YTD; trimmed positions but didn't sell out; caller should trim if overweight (sounds like 'outsized position').",
-    "quote": "I think it's reasonable to continue to hold this name, but it sounds to me like you're holding it and you say it an outside position that exposes you towards a lot of risk that you might not want to take... maybe trim if you're overweight.",
-    "context": "Caller in Bulgaria down 15% on SK Hynix, asking if memory chip cycle is turning.",
-    "perf": {
-      "benchmark": "^GSPC",
-      "symbol": "SKHY",
-      "priceAtMention": 122.47,
-      "priceDate": "2026-11-18",
-      "p3m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-02-17",
-        "price": 111.14,
-        "return": -9.25,
-        "benchReturn": -1.92,
-        "alpha": -7.33,
-        "status": "in_progress"
-      },
-      "p6m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-05-20",
-        "price": 111.14,
-        "return": -9.25,
-        "benchReturn": -1.92,
-        "alpha": -7.33,
-        "status": "in_progress"
-      }
-    },
-    "resolved": true
+    "confidence": 0.75,
+    "reasoning": "A listener in Bulgaria asked about SK Hynix (trades as HY9 in Frankfurt, SKHY on NASDAQ). Luke notes phenomenal revenue growth (91% YTD, 175% expected YoY), sold out through 2029, and 80% operating margins. He says the cycle isn't over yet but warns the caller's 'outside position' exposes them to too much risk and advises trimming if overweight.",
+    "quote": "I think it's reasonable to continue to hold this name, but it sounds to me like you're holding it and you say it an outside position that exposes you towards a lot of risk that you might not want to take… maybe trim if you're overweight.",
+    "context": "Web-form question on SK Hynix; Luke says hold but reduce if overweight."
   },
   {
-    "nameId": "2026-11-18-54558bc8-n3",
+    "nameId": "2026-11-18-54558bc8-n5",
     "episodeId": "2026-11-18-54558bc8",
     "date": "2026-11-18",
     "ticker": "BEEM",
     "company": "Beam Global",
     "assetType": "stock",
+    "mentionType": "caller_question",
     "decision": "avoid",
-    "confidence": 0.95,
-    "reasoning": "Micro-cap ($15M) trading at 61 cents after falling from $66; revenue declining, negative margins, delisting risk, illiquid, and moving into trendy sectors (drones) is concerning; this is gambling, not investing.",
-    "quote": "If you want to buy this name, don't call it investing, it's gambling, because The risk here is astronomical... So big thumbs down from me.",
-    "context": "Caller asking about off-grid solar EV charging company trading under $1.",
-    "perf": {
-      "benchmark": "^GSPC",
-      "symbol": "BEEM",
-      "priceAtMention": 0.62,
-      "priceDate": "2026-11-18",
-      "p3m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-02-17",
-        "price": 0.521,
-        "return": -15.97,
-        "benchReturn": -1.92,
-        "alpha": -14.05,
-        "status": "in_progress"
-      },
-      "p6m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-05-20",
-        "price": 0.521,
-        "return": -15.97,
-        "benchReturn": -1.92,
-        "alpha": -14.05,
-        "status": "in_progress"
-      }
-    },
-    "resolved": true
+    "confidence": 0.9,
+    "reasoning": "Caller asked about Beam Global, trading under $1. Luke calls it a $15 million micro-cap with 'astronomical' risk, down from $66.75 to $0.61 since 2021, facing delisting risk, poor margins, and speculative financing. He says 'if you want to buy this name, don't call it investing, it's gambling' and gives a 'big thumbs down.'",
+    "quote": "Anytime you get a company like this that is very illiquid, that has really poor reporting, and a business that is frankly struggling to continue to be finance. So big thumbs down from me.",
+    "context": "Caller question on Beam Global (BEEM); Luke strongly advises against it."
   },
   {
-    "nameId": "2026-11-18-54558bc8-n2",
+    "nameId": "2026-11-18-54558bc8-n4",
     "episodeId": "2026-11-18-54558bc8",
     "date": "2026-11-18",
     "ticker": "IDXX",
     "company": "IDEXX Laboratories",
     "assetType": "stock",
+    "mentionType": "caller_question",
     "decision": "neutral",
-    "confidence": 0.65,
-    "reasoning": "Strong diagnostics growth, expanding margins, and steady buybacks, but expensive at 42x P/E and facing declining clinic visit volume; keep on watch list.",
-    "quote": "I think you have to keep that in mind, even though this company's doing really well, it's got a tough hill to climb with declining overall that visit volume. So I keep it on my watch list a bit expensive for now.",
-    "context": "Caller asking about veterinary diagnostics provider IDEXX.",
-    "perf": {
-      "benchmark": "^GSPC",
-      "symbol": "IDXX",
-      "priceAtMention": 698.47,
-      "priceDate": "2026-11-18",
-      "p3m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-02-17",
-        "price": 709.46,
-        "return": 1.57,
-        "benchReturn": -1.92,
-        "alpha": 3.49,
-        "status": "in_progress"
-      },
-      "p6m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-05-20",
-        "price": 709.46,
-        "return": 1.57,
-        "benchReturn": -1.92,
-        "alpha": 3.49,
-        "status": "in_progress"
-      }
-    },
-    "resolved": true
+    "confidence": 0.78,
+    "reasoning": "Caller asked about IDEXX, a veterinary diagnostics company. Luke highlights strong revenue growth (9.7% YoY), expanding margins, double-digit diagnostics growth, and three consecutive raises. However, he warns clinic visits are declining and the stock trades at 42× P/E, which he considers expensive. He advises keeping it on a watch list but says it's 'a bit expensive for now.'",
+    "quote": "I wouldn't pay a high multiple for this name. And it's trading at 42 times price before looking earnings… So I keep it on my watch list a bit expensive for now.",
+    "context": "Caller question on IDEXX; Luke likes the fundamentals but finds valuation stretched."
   },
   {
-    "nameId": "2026-11-18-54558bc8-n1",
+    "nameId": "2026-11-18-54558bc8-n3",
     "episodeId": "2026-11-18-54558bc8",
     "date": "2026-11-18",
     "ticker": "SCHW",
     "company": "Charles Schwab",
     "assetType": "stock",
+    "mentionType": "caller_question",
     "decision": "buy",
     "confidence": 0.8,
-    "reasoning": "Owned for clients; rising rates boost net interest revenue, nearly $10 trillion in client assets creates unmatched moat, strong TD Ameritrade integration, long-term thesis intact.",
-    "quote": "We own Schwab for our clients... the long-term case for holding it... They have nearly $10 trillion in client assets, creates a note that is for a lot of companies, even their top competitors, close to impossible to replicate.",
-    "context": "YouTube question on how rising rates affect Schwab and whether to exit.",
-    "perf": {
-      "benchmark": "^GSPC",
-      "symbol": "SCHW",
-      "priceAtMention": 92.56,
-      "priceDate": "2026-11-18",
-      "p3m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-02-17",
-        "price": 93.45,
-        "return": 0.96,
-        "benchReturn": -1.92,
-        "alpha": 2.88,
-        "status": "in_progress"
-      },
-      "p6m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-05-20",
-        "price": 93.45,
-        "return": 0.96,
-        "benchReturn": -1.92,
-        "alpha": 2.88,
-        "status": "in_progress"
-      }
-    },
-    "resolved": true
+    "reasoning": "A YouTube viewer asked how rising rates affect Schwab and whether to exit. Luke explains rising rates boost net interest revenue (a positive), notes Schwab has nearly $10 trillion in client assets creating a 'moat,' successful TD Ameritrade integration, and growing earnings. He says 'the long-term thesis on Schwab is still there' and KPP holds it in strategies.",
+    "quote": "They have nearly $10 trillion in client assets, creates a note that is for a lot of companies, even their top competitors, close to impossible to replicate… we think in general the long-term thesis on Schwab is still there.",
+    "context": "YouTube question on Schwab; Luke affirms the long-term case and KPP ownership."
+  },
+  {
+    "nameId": "2026-11-18-54558bc8-n2",
+    "episodeId": "2026-11-18-54558bc8",
+    "date": "2026-11-18",
+    "ticker": "NVDA",
+    "company": "NVIDIA",
+    "assetType": "stock",
+    "mentionType": "market_recap",
+    "decision": "neutral",
+    "confidence": 0.75,
+    "reasoning": "Luke mentions NVIDIA reported earnings, beat estimates, and was trading up ~3.76% after hours. He notes concerns about ecosystem funding and export controls but offers no buy/sell opinion—purely a market update.",
+    "quote": "You have these newsings about ecosystem funding concerns. You have tighter export controls on the the wake of Jensen's exit from In video, a company that reported earnings and at least last time I checked did beat and was trading up after hours.",
+    "context": "Market recap of NVIDIA earnings and after-hours move; no host verdict."
+  },
+  {
+    "nameId": "2026-11-18-54558bc8-n11",
+    "episodeId": "2026-11-18-54558bc8",
+    "date": "2026-11-18",
+    "ticker": "SPY",
+    "company": "S&P 500 ETF",
+    "assetType": "etf",
+    "mentionType": "market_recap",
+    "decision": "neutral",
+    "confidence": 0.95,
+    "reasoning": "Luke reports the S&P was down 103 points, with decliners outnumbering gainers 6:1. Pure market recap, no opinion.",
+    "quote": "You had the down, down 164, the S&P down 103.",
+    "context": "Daily market performance summary."
+  },
+  {
+    "nameId": "2026-11-18-54558bc8-n10",
+    "episodeId": "2026-11-18-54558bc8",
+    "date": "2026-11-18",
+    "ticker": "CL=F",
+    "company": "Crude Oil",
+    "assetType": "commodity",
+    "mentionType": "host_opinion",
+    "decision": "neutral",
+    "confidence": 0.8,
+    "reasoning": "Luke devotes a segment to oil, explaining the IEA projects a global surplus but a $25/barrel war premium keeps prices elevated. He says fundamentals are bearish (surplus, record production, falling demand) but geopolitics support prices. He advises owning energy equities for dividends and cash flow is reasonable, but warns against stretched valuations and betting on war escalation. This is a nuanced, mixed view—neither a clear buy nor avoid.",
+    "quote": "If you own energy for the dividends for the cash flow and your own companies that are reasonable valuations, I think that these still holds even if crude oil falls. If you're owning things that have run up significantly with stretched valuations… That's when you might want to start to reconsider.",
+    "context": "Host deep-dive on oil markets and energy investing strategy."
+  },
+  {
+    "nameId": "2026-11-18-54558bc8-n1",
+    "episodeId": "2026-11-18-54558bc8",
+    "date": "2026-11-18",
+    "ticker": "HOOD",
+    "company": "Robinhood",
+    "assetType": "stock",
+    "mentionType": "market_recap",
+    "decision": "neutral",
+    "confidence": 0.7,
+    "reasoning": "Luke mentions that yesterday's show answered a listener question on Robinhood (ticker HOD, likely a typo for HOOD) regarding crypto proxy exposure, but provides no opinion in this episode.",
+    "quote": "We also answered a listener question on ticker HOD, which is Robin Hood. It was an interesting one. The big question being, you know, does investing in Robin Hood give you crypto proxy exposure.",
+    "context": "Reference to a prior episode discussion; no actionable opinion given today."
   },
   {
     "nameId": "2026-11-18-54558bc8-n0",
@@ -234,36 +160,12 @@
     "ticker": "TER",
     "company": "Teradyne",
     "assetType": "stock",
+    "mentionType": "caller_question",
     "decision": "neutral",
-    "confidence": 0.75,
-    "reasoning": "Solid fundamentals and long-term thesis intact, but trimmed in October due to near-term volatility and AI hardware headwinds; still held but not a time to enter full position.",
-    "quote": "It's still something that we hold in our portfolio. It's still a name that we think has a medium to long-term growth thesis that is very much still intact... might not be a time to enter a full position.",
-    "context": "Caller from Iowa asking about Teradyne after six-month decline despite strong earnings.",
-    "perf": {
-      "benchmark": "^GSPC",
-      "symbol": "TER",
-      "priceAtMention": 235.0607,
-      "priceDate": "2026-11-18",
-      "p3m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-02-17",
-        "price": 212.15,
-        "return": -9.75,
-        "benchReturn": -1.92,
-        "alpha": -7.83,
-        "status": "in_progress"
-      },
-      "p6m": {
-        "date": "2026-11-25",
-        "targetDate": "2027-05-20",
-        "price": 212.15,
-        "return": -9.75,
-        "benchReturn": -1.92,
-        "alpha": -7.83,
-        "status": "in_progress"
-      }
-    },
-    "resolved": true
+    "confidence": 0.85,
+    "reasoning": "Caller Tom from Iowa asked about Teradyne. Luke notes explosive growth (revenue up 70%, six consecutive beats, 32% operating margins) and that KPP has held it for clients and trimmed in early October but hasn't fully sold. He says the medium-to-long-term thesis is intact but warns of near-term volatility and market headwinds, advising it 'might not be a time to enter a full position.' This is a hold with caution, not a buy or avoid.",
+    "quote": "It's still something that we hold in our portfolio. It's still a name that we think has a medium to long-term growth thesis that is very much still intact. But a lot of these names are going to be heavily volatile. And right now, as we're seeing a bit of a rotation, might not be a time to enter a full position.",
+    "context": "Caller question on Teradyne (TER), a semiconductor test equipment maker."
   },
   {
     "nameId": "2026-11-13-acbc157c-n9",
