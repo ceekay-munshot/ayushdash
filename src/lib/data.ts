@@ -9,7 +9,7 @@ import type {
 const BASE = import.meta.env.BASE_URL;
 
 export type Horizon = 'p3m' | 'p6m';
-export type WindowKey = 'all' | 'study' | 'last3';
+export type WindowKey = 'all' | 'y2025h2' | 'study' | 'last3';
 export type AssetClass = 'all' | AssetType;
 
 export interface Dataset {
@@ -96,6 +96,7 @@ function addDaysISO(iso: string, d: number) {
 export function windowRange(w: WindowKey, meta: Metadata | null): { from: string; to: string; label: string } {
   const to = meta?.window?.to ?? todayISO();
   const from = meta?.window?.from ?? '2026-01-01';
+  if (w === 'y2025h2') return { from: '2025-07-01', to: '2025-12-31', label: 'Jul–Dec 2025' };
   if (w === 'study') return { from: '2026-01-01', to: '2026-06-30', label: 'Jan–Jun 2026 study' };
   if (w === 'last3') return { from: addDaysISO(todayISO(), -92), to: todayISO(), label: 'Last 3 months' };
   return { from, to, label: 'All time' };
@@ -103,6 +104,7 @@ export function windowRange(w: WindowKey, meta: Metadata | null): { from: string
 
 export const WINDOW_OPTIONS: { value: WindowKey; label: string }[] = [
   { value: 'all', label: 'All time (live)' },
+  { value: 'y2025h2', label: '2025 (Jul–Dec)' },
   { value: 'study', label: 'Study: Jan–Jun 2026' },
   { value: 'last3', label: 'Last 3 months' },
 ];

@@ -23,8 +23,10 @@ export const paths = {
 };
 
 // ---- config ----------------------------------------------------------------
-// Pipeline window: everything on or after this date (UTC).
-export const WINDOW_FROM = '2026-01-01';
+// Pipeline window: everything on or after this date (UTC). The podcast began
+// publishing free transcripts in July 2025, so that's our start (earlier
+// episodes have no transcript to analyse).
+export const WINDOW_FROM = '2025-07-01';
 export const SOURCE = 'InvestTalk podcast (RedCircle RSS)';
 export const FEED_URL =
   'https://feeds.redcircle.com/6fb1e853-719d-44d9-8b9e-9d4af81d7a89';
