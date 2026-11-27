@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T09:38:55.112Z",
+  "generatedAt": "2026-11-27T22:09:15.098Z",
   "window": {
     "from": "2026-01-01",
     "to": "2026-11-27"
@@ -13,8 +13,8 @@
     "names": 3654,
     "realCalls": 1504,
     "recapMentions": 2150,
-    "resolved": 1451,
-    "unresolved": 53,
+    "resolved": 1450,
+    "unresolved": 54,
     "episodesWithNames": 178,
     "dateCoverage": {
       "from": "2026-01-01",
@@ -37,21 +37,21 @@
   "performance": {
     "overall": {
       "p3m": {
-        "n": 1349,
+        "n": 1348,
         "inProgress": 102,
         "avgReturn": 3.86,
-        "avgAlpha": -0.09,
+        "avgAlpha": -0.1,
         "dirHits": 443,
-        "dirN": 914,
-        "dirRate": 48.47,
+        "dirN": 913,
+        "dirRate": 48.52,
         "beatHits": 441,
-        "beatN": 914,
-        "beatRate": 48.25
+        "beatN": 913,
+        "beatRate": 48.3
       },
       "p6m": {
         "n": 849,
-        "inProgress": 602,
-        "avgReturn": 5.71,
+        "inProgress": 601,
+        "avgReturn": 5.72,
         "avgAlpha": -2.5,
         "dirHits": 286,
         "dirN": 587,
@@ -91,8 +91,8 @@
       "p3m": {
         "n": 435,
         "inProgress": 32,
-        "avgReturn": 4.94,
-        "avgAlpha": 0.95,
+        "avgReturn": 4.95,
+        "avgAlpha": 0.94,
         "dirHits": 0,
         "dirN": 0,
         "dirRate": null,
@@ -115,21 +115,21 @@
     },
     "avoid": {
       "p3m": {
-        "n": 409,
+        "n": 408,
         "inProgress": 23,
-        "avgReturn": 3.76,
-        "avgAlpha": -0.96,
+        "avgReturn": 3.74,
+        "avgAlpha": -1,
         "dirHits": 181,
-        "dirN": 409,
-        "dirRate": 44.25,
+        "dirN": 408,
+        "dirRate": 44.36,
         "beatHits": 228,
-        "beatN": 409,
-        "beatRate": 55.75
+        "beatN": 408,
+        "beatRate": 55.88
       },
       "p6m": {
         "n": 269,
-        "inProgress": 163,
-        "avgReturn": 6.94,
+        "inProgress": 162,
+        "avgReturn": 6.96,
         "avgAlpha": -2.16,
         "dirHits": 123,
         "dirN": 269,
