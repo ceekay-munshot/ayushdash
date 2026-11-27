@@ -4454,5 +4454,60 @@
     ],
     "tone": "mixed",
     "nameCount": 7
+  },
+  "2025-12-26-3593f5f0": {
+    "overview": "This is a 'Best of Caller Questions' compilation episode featuring a wide range of listener inquiries on bonds, retirement accounts, debt management, real estate co-ops, investing for children, value vs. growth stocks, and more. The hosts provide educational answers on portfolio construction, tax strategies, and market dynamics without making specific buy/sell calls on individual names.",
+    "themes": [
+      "Bonds & fixed income",
+      "Retirement & planning",
+      "Taxes",
+      "Valuations",
+      "Consumer & retail",
+      "International markets",
+      "Dividends & income"
+    ],
+    "tone": "neutral",
+    "nameCount": 8
+  },
+  "2025-12-27-34691221": {
+    "overview": "Luke Guerrero hosts this post-Christmas episode, reflecting on 2025 and looking ahead to 2026. The main focus is the corporate 'maturity wall'—a trillion-dollar wave of low-rate pandemic-era debt maturing in 2026 that will force companies to refinance at higher rates. Luke also discusses off-balance-sheet AI infrastructure financing, Permian Basin environmental risks, and answers multiple caller questions on insurance, pawn shops, coal, timber REITs, and entertainment stocks.",
+    "themes": [
+      "Interest rates",
+      "Bonds & fixed income",
+      "AI & datacenters",
+      "Energy & oil",
+      "Dividends & income",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-12-30-1bf01c66": {
+    "overview": "This 'Best of Caller Questions' compilation episode features a wide range of listener inquiries on portfolio strategy, tax-advantaged accounts, bonds, options, dividends, and estate planning. Hosts Justin Klein and Luke Guerrero provide guidance on recession preparation, cash allocation, sector rotation, Roth conversions, and financial ratios, emphasizing diversification and individual circumstances.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Bonds & fixed income",
+      "Dividends & income",
+      "Volatility & risk",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-12-31-27075b8d": {
+    "overview": "Luke Guerrero hosts the final 2025 episode, reflecting on the year and discussing the Dogs of the Dow strategy for 2026. He fields caller questions on water infrastructure, international dividend ETFs, small-cap exposure, and precious metals. The show also covers why international stocks outperformed U.S. equities in 2025 and reviews cautious Fed minutes signaling fewer rate cuts ahead.",
+    "themes": [
+      "Dividends & income",
+      "International markets",
+      "Fed policy",
+      "Interest rates",
+      "Commodities",
+      "Gold & precious metals",
+      "Defense & aerospace",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
   }
 }
