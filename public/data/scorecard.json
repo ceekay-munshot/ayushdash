@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-27T07:15:31.135Z",
+  "generatedAt": "2026-11-27T09:38:55.112Z",
   "window": {
     "from": "2026-01-01",
     "to": "2026-11-27"
   },
   "coverage": {
-    "episodes": 233,
+    "episodes": 234,
     "withTranscript": 181,
     "extracted": 181
   },
   "totals": {
-    "names": 2043,
-    "realCalls": 2043,
-    "recapMentions": 0,
-    "resolved": 1984,
-    "unresolved": 59,
+    "names": 3654,
+    "realCalls": 1504,
+    "recapMentions": 2150,
+    "resolved": 1451,
+    "unresolved": 53,
     "episodesWithNames": 178,
     "dateCoverage": {
       "from": "2026-01-01",
@@ -22,77 +22,77 @@
     }
   },
   "byDecision": {
-    "buy": 664,
-    "neutral": 858,
-    "avoid": 521
+    "buy": 563,
+    "neutral": 487,
+    "avoid": 454
   },
   "byAssetType": {
-    "stock": 1512,
-    "etf": 281,
-    "crypto": 54,
-    "commodity": 166,
-    "index": 24,
-    "other": 6
+    "stock": 1140,
+    "etf": 252,
+    "crypto": 22,
+    "commodity": 79,
+    "index": 7,
+    "other": 4
   },
   "performance": {
     "overall": {
       "p3m": {
-        "n": 1825,
-        "inProgress": 159,
-        "avgReturn": 4.87,
-        "avgAlpha": 0.64,
-        "dirHits": 502,
-        "dirN": 1062,
-        "dirRate": 47.27,
-        "beatHits": 499,
-        "beatN": 1062,
-        "beatRate": 46.99
+        "n": 1349,
+        "inProgress": 102,
+        "avgReturn": 3.86,
+        "avgAlpha": -0.09,
+        "dirHits": 443,
+        "dirN": 914,
+        "dirRate": 48.47,
+        "beatHits": 441,
+        "beatN": 914,
+        "beatRate": 48.25
       },
       "p6m": {
-        "n": 1084,
-        "inProgress": 900,
-        "avgReturn": 6.6,
-        "avgAlpha": -1.42,
-        "dirHits": 311,
-        "dirN": 663,
-        "dirRate": 46.91,
-        "beatHits": 281,
-        "beatN": 663,
-        "beatRate": 42.38
+        "n": 849,
+        "inProgress": 602,
+        "avgReturn": 5.71,
+        "avgAlpha": -2.5,
+        "dirHits": 286,
+        "dirN": 587,
+        "dirRate": 48.72,
+        "beatHits": 261,
+        "beatN": 587,
+        "beatRate": 44.46
       }
     },
     "buy": {
       "p3m": {
-        "n": 594,
-        "inProgress": 56,
-        "avgReturn": 4.14,
-        "avgAlpha": 0.75,
-        "dirHits": 315,
-        "dirN": 594,
-        "dirRate": 53.03,
-        "beatHits": 257,
-        "beatN": 594,
-        "beatRate": 43.27
+        "n": 505,
+        "inProgress": 47,
+        "avgReturn": 3.01,
+        "avgAlpha": -0.28,
+        "dirHits": 262,
+        "dirN": 505,
+        "dirRate": 51.88,
+        "beatHits": 213,
+        "beatN": 505,
+        "beatRate": 42.18
       },
       "p6m": {
-        "n": 374,
-        "inProgress": 276,
-        "avgReturn": 3.61,
-        "avgAlpha": -3.16,
-        "dirHits": 192,
-        "dirN": 374,
-        "dirRate": 51.34,
-        "beatHits": 122,
-        "beatN": 374,
-        "beatRate": 32.62
+        "n": 318,
+        "inProgress": 234,
+        "avgReturn": 1.96,
+        "avgAlpha": -4.87,
+        "dirHits": 163,
+        "dirN": 318,
+        "dirRate": 51.26,
+        "beatHits": 107,
+        "beatN": 318,
+        "beatRate": 33.65
       }
     },
     "neutral": {
       "p3m": {
-        "n": 763,
-        "inProgress": 74,
-        "avgReturn": 4.7,
-        "avgAlpha": 0.32,
+        "n": 435,
+        "inProgress": 32,
+        "avgReturn": 4.94,
+        "avgAlpha": 0.95,
         "dirHits": 0,
         "dirN": 0,
         "dirRate": null,
@@ -101,10 +101,10 @@
         "beatRate": null
       },
       "p6m": {
-        "n": 421,
-        "inProgress": 416,
-        "avgReturn": 6.89,
-        "avgAlpha": -1.67,
+        "n": 262,
+        "inProgress": 205,
+        "avgReturn": 9,
+        "avgAlpha": -0.34,
         "dirHits": 0,
         "dirN": 0,
         "dirRate": null,
@@ -115,38 +115,38 @@
     },
     "avoid": {
       "p3m": {
-        "n": 468,
-        "inProgress": 29,
-        "avgReturn": 6.06,
-        "avgAlpha": 1,
-        "dirHits": 187,
-        "dirN": 468,
-        "dirRate": 39.96,
-        "beatHits": 242,
-        "beatN": 468,
-        "beatRate": 51.71
+        "n": 409,
+        "inProgress": 23,
+        "avgReturn": 3.76,
+        "avgAlpha": -0.96,
+        "dirHits": 181,
+        "dirN": 409,
+        "dirRate": 44.25,
+        "beatHits": 228,
+        "beatN": 409,
+        "beatRate": 55.75
       },
       "p6m": {
-        "n": 289,
-        "inProgress": 208,
-        "avgReturn": 10.04,
-        "avgAlpha": 0.85,
-        "dirHits": 119,
-        "dirN": 289,
-        "dirRate": 41.18,
-        "beatHits": 159,
-        "beatN": 289,
-        "beatRate": 55.02
+        "n": 269,
+        "inProgress": 163,
+        "avgReturn": 6.94,
+        "avgAlpha": -2.16,
+        "dirHits": 123,
+        "dirN": 269,
+        "dirRate": 45.72,
+        "beatHits": 154,
+        "beatN": 269,
+        "beatRate": 57.25
       }
     }
   },
   "topCalls": {
     "best": [
       {
-        "nameId": "2026-02-10-435e27b6-n9",
+        "nameId": "2026-02-10-435e27b6-n20",
         "episodeId": "2026-02-10-435e27b6",
-        "ticker": "STX",
-        "company": "Seagate Technology (implied as SanDisk parent WDC)",
+        "ticker": "SNDK",
+        "company": "SanDisk (Western Digital)",
         "decision": "buy",
         "assetType": "stock",
         "date": "2026-02-10",
@@ -157,7 +157,7 @@
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-02-10-435e27b6-n8",
+        "nameId": "2026-02-10-435e27b6-n21",
         "episodeId": "2026-02-10-435e27b6",
         "ticker": "MU",
         "company": "Micron Technology",
@@ -171,51 +171,51 @@
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-02-12-8507d911-n3",
-        "episodeId": "2026-02-12-8507d911",
+        "nameId": "2026-02-07-af4bb5b9-n1",
+        "episodeId": "2026-02-07-af4bb5b9",
         "ticker": "MU",
         "company": "Micron Technology",
         "decision": "buy",
         "assetType": "stock",
-        "date": "2026-02-12",
+        "date": "2026-02-07",
         "horizon": "p6m",
-        "edge": 134.85,
-        "return": 134.85,
-        "alpha": 120.9,
+        "edge": 118.27,
+        "return": 118.27,
+        "alpha": 106.43,
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-02-18-83fda98c-n9",
-        "episodeId": "2026-02-18-83fda98c",
-        "ticker": "AMD",
-        "company": "Advanced Micro Devices",
+        "nameId": "2026-05-06-35f53de3-n7",
+        "episodeId": "2026-05-06-35f53de3",
+        "ticker": "ANF",
+        "company": "Abercrombie & Fitch",
         "decision": "buy",
         "assetType": "stock",
-        "date": "2026-02-18",
+        "date": "2026-05-06",
         "horizon": "p6m",
-        "edge": 134.59,
-        "return": 134.59,
-        "alpha": 123.55,
+        "edge": 98.48,
+        "return": 98.48,
+        "alpha": 98.63,
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-02-12-8507d911-n4",
-        "episodeId": "2026-02-12-8507d911",
-        "ticker": "INTC",
-        "company": "Intel",
-        "decision": "buy",
+        "nameId": "2026-04-22-8015a036-n0",
+        "episodeId": "2026-04-22-8015a036",
+        "ticker": "CAR",
+        "company": "Avis Budget Group",
+        "decision": "avoid",
         "assetType": "stock",
-        "date": "2026-02-12",
+        "date": "2026-04-22",
         "horizon": "p6m",
-        "edge": 120.52,
-        "return": 120.52,
-        "alpha": 106.57,
+        "edge": 77.13,
+        "return": -77.13,
+        "alpha": -84.49,
         "benchmark": "^GSPC"
       }
     ],
     "worst": [
       {
-        "nameId": "2026-04-11-e42972d5-n1",
+        "nameId": "2026-04-11-e42972d5-n6",
         "episodeId": "2026-04-11-e42972d5",
         "ticker": "TEAM",
         "company": "Atlassian",
@@ -229,7 +229,7 @@
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-03-31-9a9ca16f-n3",
+        "nameId": "2026-03-31-9a9ca16f-n2",
         "episodeId": "2026-03-31-9a9ca16f",
         "ticker": "MU",
         "company": "Micron Technology",
@@ -257,31 +257,31 @@
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-02-05-33c1145d-n6",
-        "episodeId": "2026-02-05-33c1145d",
-        "ticker": "AMD",
-        "company": "AMD",
+        "nameId": "2026-01-24-0fcb3bd9-n2",
+        "episodeId": "2026-01-24-0fcb3bd9",
+        "ticker": "SNDK",
+        "company": "Schneider Electric",
         "decision": "avoid",
         "assetType": "stock",
-        "date": "2026-02-05",
+        "date": "2026-01-24",
         "horizon": "p6m",
-        "edge": -151.1,
-        "return": 151.1,
-        "alpha": 136.99,
+        "edge": -169.77,
+        "return": 169.77,
+        "alpha": 162.58,
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-02-25-269c8e95-n6",
-        "episodeId": "2026-02-25-269c8e95",
-        "ticker": "CRWD",
-        "company": "CrowdStrike",
+        "nameId": "2026-04-28-8faa55dc-n20",
+        "episodeId": "2026-04-28-8faa55dc",
+        "ticker": "SNOW",
+        "company": "Snowflake",
         "decision": "avoid",
         "assetType": "stock",
-        "date": "2026-02-25",
+        "date": "2026-04-28",
         "horizon": "p6m",
-        "edge": -150.98,
-        "return": 150.98,
-        "alpha": 139.68,
+        "edge": -138.43,
+        "return": 138.43,
+        "alpha": 129.95,
         "benchmark": "^GSPC"
       }
     ]
