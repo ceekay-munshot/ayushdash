@@ -149,6 +149,20 @@ export function isHit(n: NameRow, h: Horizon): boolean | null {
   return null;
 }
 
+/** The live "so far" return for a still-maturing call: taken from whichever
+ *  window is still in-progress (that leg is priced at the latest close), plus
+ *  how many days have elapsed since the mention. null once fully matured. */
+export interface ToDate { return: number; alpha: number | null; days: number; benchmark: string | null }
+export function toDateProgress(r: NameRow): ToDate | null {
+  const p6 = r.perf?.p6m, p3 = r.perf?.p3m;
+  const leg = p6?.status === 'in_progress' ? p6 : p3?.status === 'in_progress' ? p3 : null;
+  if (!leg) return null;
+  const days = Math.round(
+    (Date.parse(`${leg.date}T00:00:00Z`) - Date.parse(`${r.date}T00:00:00Z`)) / 86400000
+  );
+  return { return: leg.return, alpha: leg.alpha, days, benchmark: r.perf?.benchmark ?? null };
+}
+
 const avg = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
 const round2 = (n: number | null) => (n == null ? null : Math.round(n * 100) / 100);
 

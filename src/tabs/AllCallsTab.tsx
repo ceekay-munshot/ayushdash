@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { ListChecks, Search, Download, Clock } from 'lucide-react';
 import type { NameRow, Decision, PerfLeg, AssetType } from '../types';
 import type { Dataset, Horizon } from '../lib/data';
-import { rollupByCompany, netVerdict, type CompanyRoll } from '../lib/data';
+import { rollupByCompany, netVerdict, toDateProgress, type CompanyRoll } from '../lib/data';
 import { PageHeader, Card, Badge } from '../components/ui/Card';
 import { SubTabs } from '../components/ui/Tabs';
 import { Segmented, Toggle } from '../components/ui/Controls';
@@ -47,13 +47,18 @@ export default function AllCallsTab({
   const exportNow = () => {
     if (sub === 'mention') {
       void exportToExcel(
-        filtered.map((r) => ({
-          Date: r.date, Ticker: r.ticker, Company: r.company, Asset: ASSET_SHORT[r.assetType],
-          Verdict: r.decision, Confidence: r.confidence,
-          '+3mo return %': r.perf?.p3m?.return ?? '', '+3mo vs market %': r.perf?.p3m?.alpha ?? '',
-          '+6mo return %': r.perf?.p6m?.return ?? '', '+6mo vs market %': r.perf?.p6m?.alpha ?? '',
-          Status: r.resolved ? (r.perf?.[horizon]?.status ?? 'n/a') : 'unmatched', Reasoning: r.reasoning,
-        })),
+        filtered.map((r) => {
+          const td = toDateProgress(r);
+          const done = (h: 'p3m' | 'p6m') => (r.perf?.[h]?.status === 'complete');
+          return {
+            Date: r.date, Ticker: r.ticker, Company: r.company, Asset: ASSET_SHORT[r.assetType],
+            Verdict: r.decision, Confidence: r.confidence,
+            'To date %': td?.return ?? '', 'Days so far': td?.days ?? '',
+            '+3mo return %': done('p3m') ? r.perf!.p3m!.return : '', '+3mo vs market %': done('p3m') ? (r.perf!.p3m!.alpha ?? '') : '',
+            '+6mo return %': done('p6m') ? r.perf!.p6m!.return : '', '+6mo vs market %': done('p6m') ? (r.perf!.p6m!.alpha ?? '') : '',
+            Status: r.resolved ? (r.perf?.[horizon]?.status ?? 'n/a') : 'unmatched', Reasoning: r.reasoning,
+          };
+        }),
         'investtalk-calls', 'Calls'
       );
     } else {
@@ -127,8 +132,8 @@ export default function AllCallsTab({
         )}
       </Card>
       <p className="px-1 text-[11.5px] text-fdc-grey">
-        {sub === 'mention' ? `${filtered.length} ${realCallsOnly ? 'calls' : 'rows'}` : `${companies.length} companies`} · green = gain / beat market,
-        red = loss / lagged · <Clock size={11} className="inline" /> still maturing · click a row for detail.
+        {sub === 'mention' ? `${filtered.length} ${realCallsOnly ? 'calls' : 'rows'}` : `${companies.length} companies`} · <span className="font-medium text-fdc-slate">To date</span> = return so far (<Clock size={11} className="inline" /> live);
+        <span className="font-medium text-fdc-slate"> +3mo/+6mo</span> show “—” until that window closes · green = gain / beat market, red = loss / lagged · click a row for detail.
         {realCallsOnly && recapCount > 0 && (
           <> · <span className="font-medium text-fdc-slate">{recapCount} market-recap mention{recapCount === 1 ? '' : 's'} hidden</span> (toggle “Real calls only” off to show)</>
         )}
@@ -137,16 +142,34 @@ export default function AllCallsTab({
   );
 }
 
-/** One perf metric cell: coloured signed %, clock if in-progress, — if missing. */
+/** A matured horizon cell: coloured signed %. While the window is still open
+ *  (in-progress) it shows "—" — the real 3-/6-month number doesn't exist yet;
+ *  the live number lives in the "To date" column instead. */
 function Ret({ leg, kind }: { leg: PerfLeg | null | undefined; kind: 'return' | 'alpha' }) {
-  if (!leg) return <span className="text-fdc-light">—</span>;
+  if (!leg || leg.status === 'in_progress') {
+    return <span className="text-fdc-light" title={leg ? 'window still open' : undefined}>—</span>;
+  }
   const v = kind === 'return' ? leg.return : leg.alpha;
   if (v == null) return <span className="text-fdc-light">—</span>;
-  const inProg = leg.status === 'in_progress';
   return (
-    <span className={`tnum inline-flex items-center gap-1 font-semibold ${inProg ? 'opacity-60' : ''}`} style={{ color: returnColor(v) }}>
-      {inProg && <Clock size={10.5} />}
+    <span className="tnum inline-flex items-center gap-1 font-semibold" style={{ color: returnColor(v) }}>
       {signedPct(v)}
+    </span>
+  );
+}
+
+/** The "so far" return since the call, with age in days. "matured" once both
+ *  windows have closed; "—" when unmatched/unresolved. */
+function ToDateCell({ row }: { row: NameRow }) {
+  const td = toDateProgress(row);
+  if (!td) {
+    return <span className="text-fdc-light">{row.resolved && row.perf ? 'matured' : '—'}</span>;
+  }
+  return (
+    <span className="tnum inline-flex items-center gap-1 font-semibold" style={{ color: returnColor(td.return) }}>
+      <Clock size={10} className="opacity-60" />
+      {signedPct(td.return)}
+      <span className="text-[10px] font-normal text-fdc-grey">· {td.days}d</span>
     </span>
   );
 }
@@ -158,10 +181,11 @@ function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon:
     { key: 'company', header: 'Company', sortable: true, sortValue: (r) => r.company, width: 190, render: (r) => <span className="block max-w-[190px] truncate">{r.company}</span> },
     { key: 'asset', header: 'Type', render: (r) => <Badge color={ASSET_COLOR[r.assetType]}>{ASSET_SHORT[r.assetType]}</Badge> },
     { key: 'verdict', header: 'Verdict', sortable: true, sortValue: (r) => VERDICT_ORDER[r.decision], render: (r) => r.mentionType === 'market_recap' ? <Badge color="#94A3B8">recap</Badge> : <VerdictPill decision={r.decision} size="sm" /> },
-    { key: 'r3', header: '+3mo', align: 'right', sortable: true, sortValue: (r) => r.perf?.p3m?.return ?? -Infinity, heat: (r) => heatForReturn(r.perf?.p3m?.return, 20), render: (r) => <Ret leg={r.perf?.p3m} kind="return" /> },
-    { key: 'a3', header: '+3mo vs mkt', align: 'right', sortable: true, sortValue: (r) => r.perf?.p3m?.alpha ?? -Infinity, heat: (r) => heatForReturn(r.perf?.p3m?.alpha, 15), render: (r) => <Ret leg={r.perf?.p3m} kind="alpha" /> },
-    { key: 'r6', header: '+6mo', align: 'right', sortable: true, sortValue: (r) => r.perf?.p6m?.return ?? -Infinity, heat: (r) => heatForReturn(r.perf?.p6m?.return, 20), render: (r) => <Ret leg={r.perf?.p6m} kind="return" /> },
-    { key: 'a6', header: '+6mo vs mkt', align: 'right', sortable: true, sortValue: (r) => r.perf?.p6m?.alpha ?? -Infinity, heat: (r) => heatForReturn(r.perf?.p6m?.alpha, 15), render: (r) => <Ret leg={r.perf?.p6m} kind="alpha" /> },
+    { key: 'todate', header: 'To date', align: 'right', sortable: true, headerHint: 'Return since the call, so far (live)', sortValue: (r) => toDateProgress(r)?.return ?? -Infinity, heat: (r) => heatForReturn(toDateProgress(r)?.return, 20), render: (r) => <ToDateCell row={r} /> },
+    { key: 'r3', header: '+3mo', align: 'right', sortable: true, headerHint: 'Return 3 months after the call (— until the window closes)', sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? r.perf.p3m.return : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="return" /> },
+    { key: 'a3', header: '+3mo vs mkt', align: 'right', sortable: true, sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? (r.perf.p3m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="alpha" /> },
+    { key: 'r6', header: '+6mo', align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? r.perf.p6m.return : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="return" /> },
+    { key: 'a6', header: '+6mo vs mkt', align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? (r.perf.p6m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="alpha" /> },
     { key: 'status', header: 'Status', render: (r) => renderStatus(r, horizon) },
   ];
   return (

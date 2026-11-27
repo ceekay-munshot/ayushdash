@@ -1,6 +1,6 @@
 import { Quote, ExternalLink, Headphones, Info } from 'lucide-react';
 import type { NameRow } from '../types';
-import type { Dataset } from '../lib/data';
+import { toDateProgress, type Dataset } from '../lib/data';
 import { Modal } from '../components/ui/Modal';
 import { Badge, MiniStat } from '../components/ui/Card';
 import { VerdictPill } from '../components/ui/VerdictPill';
@@ -19,10 +19,12 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
   const perf = row.perf;
   const v = VERDICT[row.decision];
   const recap = row.mentionType === 'market_recap';
+  const td = toDateProgress(row); // live "so far" return while a window is open
 
+  // Only COMPLETED windows get a bar — an open window has no real 3-/6-month number yet.
   const groups: GGroup[] = perf
     ? (['p3m', 'p6m'] as const)
-        .filter((h) => perf[h])
+        .filter((h) => perf[h]?.status === 'complete')
         .map((h) => {
           const leg = perf[h]!;
           return {
@@ -32,7 +34,6 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
               { seriesKey: 'call', label: row.ticker, value: leg.return, color: v.color },
               { seriesKey: 'mkt', label: benchLabel(perf.benchmark), value: leg.benchReturn, color: SLATE },
             ],
-            note: leg.status === 'in_progress' ? 'still maturing' : undefined,
             tipRows: [
               { label: row.ticker, value: signedPct(leg.return), color: v.color },
               { label: benchLabel(perf.benchmark), value: leg.benchReturn == null ? '—' : signedPct(leg.benchReturn), color: SLATE },
@@ -41,6 +42,18 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
           };
         })
     : [];
+  const horizonStat = (h: 'p3m' | 'p6m', label: string) => {
+    const leg = perf?.[h];
+    const complete = leg?.status === 'complete';
+    return (
+      <MiniStat
+        label={label}
+        value={complete ? signedPct(leg!.alpha) : '—'}
+        color={complete ? returnColor(leg!.alpha) : SLATE}
+        sub={complete ? signedPct(leg!.return) + ' raw' : leg ? 'window still open' : '—'}
+      />
+    );
+  };
 
   return (
     <Modal
@@ -81,9 +94,20 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
           <div className="rounded-xl border border-black/[0.06] p-3.5">
             <div className="mb-3 grid grid-cols-3 gap-2">
               <MiniStat label="Price at mention" value={usd(perf.priceAtMention)} color={SLATE} sub={dateLabel(perf.priceDate)} />
-              <MiniStat label={`+3mo vs ${benchLabel(perf.benchmark)}`} value={signedPct(perf.p3m?.alpha)} color={returnColor(perf.p3m?.alpha)} sub={perf.p3m ? signedPct(perf.p3m.return) + ' raw' : '—'} />
-              <MiniStat label={`+6mo vs ${benchLabel(perf.benchmark)}`} value={signedPct(perf.p6m?.alpha)} color={returnColor(perf.p6m?.alpha)} sub={perf.p6m ? signedPct(perf.p6m.return) + ' raw' : '—'} />
+              {horizonStat('p3m', `+3mo vs ${benchLabel(perf.benchmark)}`)}
+              {horizonStat('p6m', `+6mo vs ${benchLabel(perf.benchmark)}`)}
             </div>
+            {td && (
+              <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-fdc-offwhite px-3 py-2 text-[12.5px]">
+                <span className="font-semibold text-fdc-slate">So far</span>
+                <span className="tnum font-bold" style={{ color: returnColor(td.return) }}>{signedPct(td.return)}</span>
+                <span className="text-fdc-grey">since the call · {td.days} day{td.days === 1 ? '' : 's'} in</span>
+                {td.alpha != null && (
+                  <span className="tnum" style={{ color: returnColor(td.alpha) }}>{signedPct(td.alpha)} vs {benchLabel(td.benchmark)}</span>
+                )}
+                <span className="text-fdc-grey">· {td.days < 91 ? '3-month' : '6-month'} window not closed yet</span>
+              </div>
+            )}
             {groups.length > 0 && (
               <GroupedBars
                 groups={groups}
