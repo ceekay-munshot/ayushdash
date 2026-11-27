@@ -3575,5 +3575,285 @@
     ],
     "tone": "mixed",
     "nameCount": 10
+  },
+  "2025-10-02-f7982848": {
+    "overview": "Justin Klein opens Q4 2025 with a focus on the new Secure Act 2.0 Roth catch-up rule for high earners starting in 2026, reviews market performance amid mixed economic data (weak ADP payrolls, ISM manufacturing below 50), and answers caller questions on HVAC/data-center plays, Bitcoin proxies, oil services, RFID tech, and pharma. He also discusses the risks of alternative investments and Yale's $3B sale of private holdings.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Healthcare",
+      "Jobs & economy",
+      "Retirement & planning",
+      "Taxes",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 30
+  },
+  "2025-10-03-f29c27a6": {
+    "overview": "Luke Guerrero hosts a caller-driven episode covering a wide range of individual stock questions, from construction materials to Chinese tech, insurance, and semiconductors. The main educational segment explores the risks and rewards of precious metals IRAs, emphasizing high fees, liquidity constraints, and the lack of income generation. The episode also touches on the cooling corporate Bitcoin treasury trend and rising competition in the single-family rental market.",
+    "themes": [
+      "AI & datacenters",
+      "Semiconductors",
+      "Crypto",
+      "Housing & REITs",
+      "Retirement & planning",
+      "Valuations",
+      "International markets",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 11
+  },
+  "2025-10-04-4c284aed": {
+    "overview": "Justin Klein hosts the October 3, 2025 episode, discussing the government shutdown's minimal market impact, reviewing caller questions on individual stocks (Perdocio Education, Schneider Electric, Nutrient), and highlighting 18 U.S. cities/states that don't tax 401(k) or pension income. He also warns that AI stocks are in a bubble driven by unsustainable CapEx spending with negative ROI, predicting an eventual bust similar to the late-1990s telecom bubble.",
+    "themes": [
+      "Retirement & planning",
+      "AI & datacenters",
+      "Taxes",
+      "Valuations",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 21
+  },
+  "2025-10-08-5e939234": {
+    "overview": "Luke Guerrero hosts this episode, focusing on regional economic weakness, with 22 U.S. states potentially in recession-like conditions according to Moody's economist Mark Zandi. The show covers a range of caller questions on individual stocks and ETFs, discusses emerging market strength, and touches on gold's record highs. Market performance was mixed, with tech underperforming and small caps pulling back.",
+    "themes": [
+      "Jobs & economy",
+      "Tariffs & trade",
+      "International markets",
+      "AI & datacenters",
+      "Banks & financials",
+      "Gold & precious metals",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-10-09-230b783f": {
+    "overview": "Justin Klein hosts the October 8, 2025 episode, opening with a caller question on uranium miner Dentists & Mines, then diving into a main focus on systemic risks in AI—specifically OpenAI's interlocking deals with AMD, Nvidia, Oracle, and CoreWeave. He also discusses Social Security timing, levered ETFs, and answers listener questions on Gevo, Sprouts Farmers Market, Valtara Platinum, fixed income strategy, and Novo Nordisk.",
+    "themes": [
+      "AI & datacenters",
+      "Commodities",
+      "Gold & precious metals",
+      "Healthcare",
+      "Retirement & planning",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-10-10-8a3f60af": {
+    "overview": "Justin Klein hosts the October 9, 2025 episode, focusing on mortgage rates and the housing market outlook. He fields caller questions on covered-call ETFs, Starbucks, mining stocks, and data sources, while cautioning against leveraged single-stock ETFs and discussing gold's rally amid geopolitical and monetary instability.",
+    "themes": [
+      "Housing & REITs",
+      "Gold & precious metals",
+      "Interest rates",
+      "Fed policy",
+      "Volatility & risk",
+      "Dividends & income",
+      "AI & datacenters",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 11
+  },
+  "2025-10-11-7a9c291e": {
+    "overview": "Luke Guerrero hosts Friday's show (October 10, 2025) as markets plunge on renewed U.S.-China trade tensions. President Trump announced 100% tariffs on Chinese exports and sweeping export controls, triggering the S&P 500's worst day since April. The episode explores AI's copper demand, the fiscal year 2025 budget, and rising auto-loan defaults, while fielding caller questions on Carlisle Group, ADM, Freeport-McMoRan, Verizon, and utilities.",
+    "themes": [
+      "AI & datacenters",
+      "Tariffs & trade",
+      "Commodities",
+      "Interest rates",
+      "Volatility & risk",
+      "Energy & oil",
+      "Dividends & income",
+      "Retirement & planning"
+    ],
+    "tone": "bearish",
+    "nameCount": 13
+  },
+  "2025-10-14-5112cf43": {
+    "overview": "Justin Klein hosts the October 13, 2025 episode, focusing on dividend-stock pitfalls and fielding caller questions on individual names. Markets bounced back after Friday's tariff-driven sell-off, with the White House walking back fears of escalating China tariffs. Klein also discusses tariff pass-through to consumers, Gen Z's preference for stocks over homeownership, and the government shutdown's muted market impact.",
+    "themes": [
+      "Tariffs & trade",
+      "Dividends & income",
+      "Housing & REITs",
+      "Valuations",
+      "Retirement & planning",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-10-15-80db7e9c": {
+    "overview": "This 'Best of Caller Questions' compilation episode features a wide range of listener inquiries on portfolio strategy, retirement accounts, bonds, options, dividends, and tax planning. Hosts Justin Klein and Luke Guerrero provide guidance on recession preparation, cash allocation, sector rotation, Roth conversions, and financial ratios. No specific stock calls are made; the episode is entirely educational and strategic in nature.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Bonds & fixed income",
+      "Volatility & risk",
+      "Dividends & income",
+      "Valuations"
+    ],
+    "tone": "neutral",
+    "nameCount": 7
+  },
+  "2025-10-15-c313412d": {
+    "overview": "Justin Klein hosts the October 14, 2025 episode, focusing on retirement cost-of-living analysis across U.S. states, particularly Florida, Arizona, and other Sunbelt destinations. The show also covers caller questions on AutoZone, Exxon Mobil, BlackRock, and Enersys, while discussing the disconnect between strong GDP growth (~4%) and a weakening labor market, and the impact of tariffs on smaller businesses.",
+    "themes": [
+      "Retirement & planning",
+      "Tariffs & trade",
+      "Jobs & economy",
+      "Energy & oil",
+      "Volatility & risk",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-10-17-acd062d9": {
+    "overview": "Justin Klein hosts the October 16, 2025 episode, focusing on rising market volatility, regional bank earnings, and a deep dive into reverse mortgages as a home-buying tool for retirees. Callers ask about QXO, IIPR, Berkshire Hathaway, and portfolio diversification. Klein warns that liquidity dynamics are shifting and the market may be entering a topping process.",
+    "themes": [
+      "Volatility & risk",
+      "Banks & financials",
+      "Housing & REITs",
+      "Retirement & planning",
+      "Valuations",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 31
+  },
+  "2025-10-18-9ff4f9a3": {
+    "overview": "Luke Guerrero hosts Friday's episode, addressing the ongoing government shutdown and its minimal historical impact on markets. He fields caller questions on Neptune Insurance (IPO), Coloplast (Danish MedTech), Games Workshop (tabletop gaming), Sanofi (biopharma), UPS (logistics), Kenon Holdings (Israeli utility), and several coal/mining names. The show emphasizes sticking to long-term plans despite political noise and notes rising liquidity stress as banks tap the Fed's repo facility.",
+    "themes": [
+      "Interest rates",
+      "Fed policy",
+      "Volatility & risk",
+      "Commodities",
+      "Energy & oil",
+      "Healthcare",
+      "International markets"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-10-21-0c8e6ffd": {
+    "overview": "Monday, October 20, 2025 episode. Justin Klein fields caller questions on individual stocks (Pool Corp, Murphy USA, AT&T, Illumina, TransAlta) and discusses silver with a live caller. The main focus is on how blockchain-based asset tokenization will revolutionize global finance by making real-world assets programmable, fractionalized, and accessible worldwide. Klein also covers why gold and equities are rising together (liquidity and geopolitical risk), and highlights a study linking financial literacy to lower loan defaults and stronger GDP growth.",
+    "themes": [
+      "Crypto",
+      "Gold & precious metals",
+      "Commodities",
+      "Earnings",
+      "International markets",
+      "Jobs & economy"
+    ],
+    "tone": "mixed",
+    "nameCount": 18
+  },
+  "2025-10-22-ac7f6a70": {
+    "overview": "Luke Guerrero hosts this Tuesday episode, covering a range of caller questions on individual stocks and ETFs, with a main focus on when and how to change financial advisors. The show also touches on consumer earnings trends, AI infrastructure spending concerns, and gold's sharp pullback after a record rally.",
+    "themes": [
+      "AI & datacenters",
+      "Healthcare",
+      "Commodities",
+      "Consumer & retail",
+      "Valuations",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 21
+  },
+  "2025-10-23-d5b7260f": {
+    "overview": "Justin Klein hosts the October 22, 2025 episode, focusing on gold's parabolic rally driven by Chinese central bank buying and the Shanghai Gold Exchange expansion. The show covers caller questions on biotech, Brazil ETFs, luxury goods trends, and various individual stocks. Klein discusses liquidity concerns, upcoming Fed meetings, and the Trump-Xi trade talks.",
+    "themes": [
+      "Gold & precious metals",
+      "Crypto",
+      "International markets",
+      "AI & datacenters",
+      "Energy & oil",
+      "Tariffs & trade",
+      "Consumer & retail",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-10-24-8e572b8c": {
+    "overview": "Justin Klein hosts the October 23, 2025 episode, covering market performance, caller questions on 529 plans, individual stocks (Penske Automotive, Micron, Kroger, Adobe, Rivian), and a focus segment on four strategies to anticipate stock trends: momentum, fundamental analysis, technical analysis, and mean reversion. He also discusses U.S. market exceptionalism versus international markets and JPMorgan's $1.5 trillion commitment to U.S. economic security sectors.",
+    "themes": [
+      "Semiconductors",
+      "AI & datacenters",
+      "Valuations",
+      "International markets",
+      "Retirement & planning",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-10-25-1eb96f7e": {
+    "overview": "Luke Guerrero hosts Friday's episode, covering market performance, earnings strength offsetting government shutdown data gaps, and a deep dive into securities-based lines of credit (SBLOCs). Callers ask about Booz Allen Hamilton, Newmont, Parsons, GDX gold miners ETF, and several other names. The show emphasizes staying invested and navigating a data-light environment with strong Q3 earnings.",
+    "themes": [
+      "Earnings",
+      "Gold & precious metals",
+      "Interest rates",
+      "Inflation",
+      "Fed policy",
+      "Energy & oil",
+      "Defense & aerospace",
+      "Dividends & income",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 15
+  },
+  "2025-10-28-89d7c1a4": {
+    "overview": "Justin Klein hosts the October 27, 2025 episode, focusing on generative AI applications in personal finance and budgeting. He fields caller questions on General Mills, Netflix, Star Surgical, and other names, while warning about the dangers of leveraged ETFs and discussing trade optimism with China.",
+    "themes": [
+      "AI & datacenters",
+      "Consumer & retail",
+      "Dividends & income",
+      "Tariffs & trade",
+      "Jobs & economy",
+      "Volatility & risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-10-29-2b0bd343": {
+    "overview": "Justin Klein hosts the October 29, 2025 episode, marking the 96th anniversary of Black Tuesday. He discusses Fed policy turning slightly hawkish, slowing income growth for younger Americans, and an $80 billion nuclear power deal. The main focus is global portfolio allocation lessons, emphasizing that investors are likely underweight foreign equities and should consider rebalancing. Callers ask about UPS, Centrus Energy, Toro, Opera, and CorePay.",
+    "themes": [
+      "Interest rates",
+      "Fed policy",
+      "International markets",
+      "Dividends & income",
+      "AI & datacenters",
+      "Energy & oil",
+      "Inflation",
+      "Jobs & economy",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 29
+  },
+  "2025-10-29-8b704263": {
+    "overview": "Host Luke Guerrero fields caller questions on insurance stocks (Progressive, Prudential, MetLife), oil majors (Exxon, Shell), high-flying AI names (Palantir), footwear (Deckers), gold miners (KGC vs. GDX), and international diversification (VXUS). He also discusses Amazon's AI-driven layoffs, market fragility driven by mega-cap swings and retail options trading, and the Fed's looming decision to end quantitative tightening amid liquidity strains.",
+    "themes": [
+      "AI & datacenters",
+      "Jobs & economy",
+      "Volatility & risk",
+      "Fed policy",
+      "Gold & precious metals",
+      "International markets",
+      "Energy & oil",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
   }
 }
