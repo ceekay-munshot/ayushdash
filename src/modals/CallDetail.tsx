@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Quote, ExternalLink, Headphones, Info, LineChart } from 'lucide-react';
 import type { NameRow } from '../types';
-import { toDateProgress, loadPrices, type Dataset, type PriceSeries } from '../lib/data';
+import { toDateProgress, loadPrices, isDirectionHit, type Dataset, type PriceSeries } from '../lib/data';
 import { Modal } from '../components/ui/Modal';
 import { Badge, MiniStat } from '../components/ui/Card';
 import { VerdictPill } from '../components/ui/VerdictPill';
@@ -34,6 +34,9 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
   const v = VERDICT[row.decision];
   const recap = row.mentionType === 'market_recap';
   const td = toDateProgress(row); // live "so far" return while a window is open
+  // Was the call right? (decision-aware, at the longest closed window)
+  const resultHz = perf?.p6m?.status === 'complete' ? 'p6m' : perf?.p3m?.status === 'complete' ? 'p3m' : null;
+  const resultHit = !recap && resultHz ? isDirectionHit(row, resultHz) : null;
 
   // Only COMPLETED windows get a bar — an open window has no real 3-/6-month number yet.
   const groups: GGroup[] = perf
@@ -125,6 +128,8 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
           {recap ? <Badge color="#94A3B8">market recap · not scored</Badge> : <VerdictPill decision={row.decision} />}
+          {resultHit === true && <Badge color={VERDICT.buy.color}>✓ right call</Badge>}
+          {resultHit === false && <Badge color={VERDICT.avoid.color}>✗ wrong call</Badge>}
           <Badge color={ASSET_COLOR[row.assetType]}>{ASSET_LABEL[row.assetType]}</Badge>
           {row.mentionType && <Badge color={SLATE}>{MENTION_LABEL[row.mentionType] ?? row.mentionType}</Badge>}
           {row.confidence != null && <Badge color={SLATE}>confidence {(row.confidence * 100).toFixed(0)}%</Badge>}

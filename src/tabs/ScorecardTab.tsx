@@ -171,11 +171,11 @@ export default function ScorecardTab({
       {/* best & worst */}
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         <Card>
-          <CardHeader icon={TrendingUp} title="Biggest wins" subtitle={`Best calls vs the market (${hMonths})`} accent={VERDICT.buy.color} />
+          <CardHeader icon={TrendingUp} title="Biggest wins" subtitle={`Most-right calls — a Buy that rose or an Avoid that fell (${hMonths})`} accent={VERDICT.buy.color} />
           <CallList calls={best} onOpenCall={onOpenCall} empty="No completed calls yet." />
         </Card>
         <Card>
-          <CardHeader icon={TrendingDown} title="Biggest misses" subtitle={`Worst calls vs the market (${hMonths})`} accent={VERDICT.avoid.color} />
+          <CardHeader icon={TrendingDown} title="Biggest misses" subtitle={`Most-wrong calls — a Buy that fell or an Avoid that rose (${hMonths})`} accent={VERDICT.avoid.color} />
           <CallList calls={worst} onOpenCall={onOpenCall} empty="No completed calls yet." />
         </Card>
       </div>
@@ -187,11 +187,13 @@ function CallList({ calls, onOpenCall, empty }: { calls: RankedCall[]; onOpenCal
   if (!calls.length) return <Empty label={empty} />;
   return (
     <div className="space-y-1">
-      {calls.map(({ row, leg }) => {
-        // Only plot windows that have actually closed (no to-date figure dressed up as +3/+6mo).
+      {calls.map(({ row, leg, edge }) => {
+        // Sparkline tracks the CALL's value (up = call getting more right): for an
+        // Avoid we flip the stock's return, so a falling stock = a rising good call.
+        const sign = row.decision === 'avoid' ? -1 : 1;
         const spark = [{ label: 'At mention', value: 0 }];
-        if (row.perf?.p3m?.status === 'complete') spark.push({ label: '+3 mo', value: row.perf.p3m.return });
-        if (row.perf?.p6m?.status === 'complete') spark.push({ label: '+6 mo', value: row.perf.p6m.return });
+        if (row.perf?.p3m?.status === 'complete') spark.push({ label: '+3 mo', value: sign * row.perf.p3m.return });
+        if (row.perf?.p6m?.status === 'complete') spark.push({ label: '+6 mo', value: sign * row.perf.p6m.return });
         return (
           <button
             key={row.nameId}
@@ -206,11 +208,11 @@ function CallList({ calls, onOpenCall, empty }: { calls: RankedCall[]; onOpenCal
               <div className="truncate text-[11px] text-fdc-grey">{row.company}</div>
             </div>
             <div className="h-10 flex-1 min-w-0">
-              <Sparkline points={spark} color={returnColor(leg.return)} height={40} format={(n) => signedPct(n)} />
+              <Sparkline points={spark} color={returnColor(edge)} height={40} format={(n) => signedPct(n)} />
             </div>
-            <div className="w-[88px] shrink-0 text-right">
-              <div className="tnum text-[13px] font-bold" style={{ color: returnColor(leg.alpha) }}>{signedPct(leg.alpha)}</div>
-              <div className="text-[10px] text-fdc-grey">vs market</div>
+            <div className="w-[92px] shrink-0 text-right">
+              <div className="tnum text-[13px] font-bold" style={{ color: returnColor(edge) }}>{signedPct(edge)}</div>
+              <div className="text-[10px] text-fdc-grey">stock {signedPct(leg.return)}</div>
             </div>
             <ArrowRight size={14} className="shrink-0 text-fdc-light" />
           </button>

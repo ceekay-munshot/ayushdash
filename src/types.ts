@@ -136,7 +136,8 @@ export interface RankedCall {
   assetType: AssetType;
   date: string;
   horizon: 'p3m' | 'p6m';
+  edge?: number; // decision-aware "how right": buy→return, avoid→−return
   return: number;
-  alpha: number;
+  alpha: number | null;
   benchmark: string | null;
 }

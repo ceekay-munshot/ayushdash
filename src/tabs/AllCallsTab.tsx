@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { ListChecks, Search, Download, Clock } from 'lucide-react';
 import type { NameRow, Decision, PerfLeg, AssetType } from '../types';
 import type { Dataset, Horizon } from '../lib/data';
-import { rollupByCompany, netVerdict, toDateProgress, type CompanyRoll } from '../lib/data';
+import { rollupByCompany, netVerdict, toDateProgress, isDirectionHit, type CompanyRoll } from '../lib/data';
 import { PageHeader, Card, Badge } from '../components/ui/Card';
 import { SubTabs } from '../components/ui/Tabs';
 import { Segmented, Toggle } from '../components/ui/Controls';
@@ -184,6 +184,7 @@ function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon:
     { key: 'company', header: 'Company', sortable: true, sortValue: (r) => r.company, width: 190, render: (r) => <span className="block max-w-[190px] truncate">{r.company}</span> },
     { key: 'asset', header: 'Type', render: (r) => <Badge color={ASSET_COLOR[r.assetType]}>{ASSET_SHORT[r.assetType]}</Badge> },
     { key: 'verdict', header: 'Verdict', sortable: true, sortValue: (r) => VERDICT_ORDER[r.decision], render: (r) => r.mentionType === 'market_recap' ? <Badge color="#94A3B8">recap</Badge> : <VerdictPill decision={r.decision} size="sm" /> },
+    { key: 'result', header: 'Call', headerHint: 'Was the call right at the selected horizon? Buy↑ or Avoid↓ = right', sortable: true, sortValue: (r) => { const h = isDirectionHit(r, horizon); return h == null ? -1 : h ? 1 : 0; }, render: (r) => <CallResult row={r} horizon={horizon} /> },
     { key: 'todate', header: 'To date', align: 'right', sortable: true, headerHint: 'Return since the call, so far (live)', sortValue: (r) => toDateProgress(r)?.return ?? -Infinity, heat: (r) => heatForReturn(toDateProgress(r)?.return, 20), render: (r) => <ToDateCell row={r} /> },
     { key: 'r3', header: mark('+3mo', 'p3m'), align: 'right', sortable: true, headerHint: 'Return 3 months after the call (— until the window closes)', sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? r.perf.p3m.return : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="return" /> },
     { key: 'a3', header: mark('+3mo vs mkt', 'p3m'), align: 'right', sortable: true, sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? (r.perf.p3m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="alpha" /> },
@@ -202,6 +203,18 @@ function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon:
       dense
     />
   );
+}
+
+// Decision-aware "was the call right?" at the selected horizon: a Buy is right
+// if the stock rose, an Avoid is right if it fell. "—" for neutral / recap /
+// not-yet-closed / unmatched.
+function CallResult({ row, horizon }: { row: NameRow; horizon: Horizon }) {
+  if (row.mentionType === 'market_recap') return <span className="text-fdc-light">—</span>;
+  const hit = isDirectionHit(row, horizon);
+  if (hit == null) return <span className="text-fdc-light">—</span>;
+  return hit
+    ? <Badge color={VERDICT.buy.color}>✓ right</Badge>
+    : <Badge color={VERDICT.avoid.color}>✗ wrong</Badge>;
 }
 
 // Overall maturity — independent of the horizon toggle (both columns are shown).

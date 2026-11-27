@@ -260,17 +260,22 @@ export interface RankedCall {
   row: NameRow;
   leg: PerfLeg;
   horizon: Horizon;
-  alpha: number;
+  edge: number; // decision-aware "how right the call was": buy→return, avoid→−return
+  alpha: number | null;
 }
+// Best/worst = how RIGHT the call was, direction-aware. A Buy is good when the
+// stock rose; an Avoid is good when it fell (so avoiding a crash is a WIN, and
+// avoiding a rocket is a MISS). Neutral calls have no direction → excluded.
 export function bestWorst(rows: NameRow[], h: Horizon, k = 5): { best: RankedCall[]; worst: RankedCall[] } {
   const scored: RankedCall[] = [];
   for (const r of rows) {
-    if (!isRealCall(r)) continue;
+    if (!isRealCall(r) || (r.decision !== 'buy' && r.decision !== 'avoid')) continue;
     const leg = legOf(r, h);
-    if (!r.resolved || !leg || leg.status !== 'complete' || leg.alpha == null) continue;
-    scored.push({ row: r, leg, horizon: h, alpha: leg.alpha });
+    if (!r.resolved || !leg || leg.status !== 'complete' || leg.return == null) continue;
+    const edge = r.decision === 'avoid' ? -leg.return : leg.return;
+    scored.push({ row: r, leg, horizon: h, edge, alpha: leg.alpha });
   }
-  const desc = [...scored].sort((a, b) => b.alpha - a.alpha);
+  const desc = [...scored].sort((a, b) => b.edge - a.edge);
   return { best: desc.slice(0, k), worst: desc.slice(-k).reverse() };
 }
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T07:04:18.706Z",
+  "generatedAt": "2026-11-27T07:15:31.135Z",
   "window": {
     "from": "2026-01-01",
     "to": "2026-11-27"
@@ -143,6 +143,78 @@
   "topCalls": {
     "best": [
       {
+        "nameId": "2026-02-10-435e27b6-n9",
+        "episodeId": "2026-02-10-435e27b6",
+        "ticker": "STX",
+        "company": "Seagate Technology (implied as SanDisk parent WDC)",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2026-02-10",
+        "horizon": "p6m",
+        "edge": 148.19,
+        "return": 148.19,
+        "alpha": 136.57,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2026-02-10-435e27b6-n8",
+        "episodeId": "2026-02-10-435e27b6",
+        "ticker": "MU",
+        "company": "Micron Technology",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2026-02-10",
+        "horizon": "p6m",
+        "edge": 144.29,
+        "return": 144.29,
+        "alpha": 132.67,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2026-02-12-8507d911-n3",
+        "episodeId": "2026-02-12-8507d911",
+        "ticker": "MU",
+        "company": "Micron Technology",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2026-02-12",
+        "horizon": "p6m",
+        "edge": 134.85,
+        "return": 134.85,
+        "alpha": 120.9,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2026-02-18-83fda98c-n9",
+        "episodeId": "2026-02-18-83fda98c",
+        "ticker": "AMD",
+        "company": "Advanced Micro Devices",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2026-02-18",
+        "horizon": "p6m",
+        "edge": 134.59,
+        "return": 134.59,
+        "alpha": 123.55,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2026-02-12-8507d911-n4",
+        "episodeId": "2026-02-12-8507d911",
+        "ticker": "INTC",
+        "company": "Intel",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2026-02-12",
+        "horizon": "p6m",
+        "edge": 120.52,
+        "return": 120.52,
+        "alpha": 106.57,
+        "benchmark": "^GSPC"
+      }
+    ],
+    "worst": [
+      {
         "nameId": "2026-04-11-e42972d5-n1",
         "episodeId": "2026-04-11-e42972d5",
         "ticker": "TEAM",
@@ -151,21 +223,9 @@
         "assetType": "stock",
         "date": "2026-04-11",
         "horizon": "p6m",
+        "edge": -263.52,
         "return": 263.52,
         "alpha": 248.99,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-04-09-130e7f67-n1",
-        "episodeId": "2026-04-09-130e7f67",
-        "ticker": "DELL",
-        "company": "Dell Technologies",
-        "decision": "neutral",
-        "assetType": "stock",
-        "date": "2026-04-09",
-        "horizon": "p6m",
-        "return": 224.5,
-        "alpha": 210.04,
         "benchmark": "^GSPC"
       },
       {
@@ -177,101 +237,51 @@
         "assetType": "stock",
         "date": "2026-03-31",
         "horizon": "p6m",
+        "edge": -215.32,
         "return": 215.32,
         "alpha": 198.12,
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2026-02-14-587027cc-n1",
-        "episodeId": "2026-02-14-587027cc",
-        "ticker": "SNDK",
-        "company": "SanDisk Corporation",
-        "decision": "neutral",
-        "assetType": "stock",
-        "date": "2026-02-14",
-        "horizon": "p6m",
-        "return": 185.18,
-        "alpha": 171.88,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-01-09-b6ce69a4-n7",
-        "episodeId": "2026-01-09-b6ce69a4",
+        "nameId": "2026-03-24-a1ac101b-n6",
+        "episodeId": "2026-03-24-a1ac101b",
         "ticker": "MU",
         "company": "Micron Technology",
-        "decision": "neutral",
-        "assetType": "stock",
-        "date": "2026-01-09",
-        "horizon": "p6m",
-        "return": 171.68,
-        "alpha": 163.8,
-        "benchmark": "^GSPC"
-      }
-    ],
-    "worst": [
-      {
-        "nameId": "2026-03-31-9a9ca16f-n12",
-        "episodeId": "2026-03-31-9a9ca16f",
-        "ticker": "VRRM",
-        "company": "Verra Mobility (VNT ticker mentioned)",
-        "decision": "neutral",
-        "assetType": "stock",
-        "date": "2026-03-31",
-        "horizon": "p6m",
-        "return": -78.31,
-        "alpha": -95.51,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-05-15-a3e687eb-n7",
-        "episodeId": "2026-05-15-a3e687eb",
-        "ticker": "TYGO",
-        "company": "Tigo Energy (solar)",
-        "decision": "avoid",
-        "assetType": "stock",
-        "date": "2026-05-15",
-        "horizon": "p6m",
-        "return": -85.8,
-        "alpha": -85.91,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-04-22-8015a036-n0",
-        "episodeId": "2026-04-22-8015a036",
-        "ticker": "CAR",
-        "company": "Avis Budget Group",
-        "decision": "avoid",
-        "assetType": "stock",
-        "date": "2026-04-22",
-        "horizon": "p6m",
-        "return": -77.13,
-        "alpha": -84.49,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-01-09-b6ce69a4-n12",
-        "episodeId": "2026-01-09-b6ce69a4",
-        "ticker": "ANEB",
-        "company": "Nebula Pharmaceuticals",
-        "decision": "avoid",
-        "assetType": "stock",
-        "date": "2026-01-09",
-        "horizon": "p6m",
-        "return": -70.53,
-        "alpha": -78.41,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-03-24-a1ac101b-n5",
-        "episodeId": "2026-03-24-a1ac101b",
-        "ticker": "HTZ",
-        "company": "Hertz",
         "decision": "avoid",
         "assetType": "stock",
         "date": "2026-03-24",
         "horizon": "p6m",
-        "return": -58.96,
-        "alpha": -76.5,
+        "edge": -171.15,
+        "return": 171.15,
+        "alpha": 153.61,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2026-02-05-33c1145d-n6",
+        "episodeId": "2026-02-05-33c1145d",
+        "ticker": "AMD",
+        "company": "AMD",
+        "decision": "avoid",
+        "assetType": "stock",
+        "date": "2026-02-05",
+        "horizon": "p6m",
+        "edge": -151.1,
+        "return": 151.1,
+        "alpha": 136.99,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2026-02-25-269c8e95-n6",
+        "episodeId": "2026-02-25-269c8e95",
+        "ticker": "CRWD",
+        "company": "CrowdStrike",
+        "decision": "avoid",
+        "assetType": "stock",
+        "date": "2026-02-25",
+        "horizon": "p6m",
+        "edge": -150.98,
+        "return": 150.98,
+        "alpha": 139.68,
         "benchmark": "^GSPC"
       }
     ]

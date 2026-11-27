@@ -70,25 +70,28 @@ function countBy(rows, field, keys) {
   return out;
 }
 
-// Best/worst complete calls by alpha (prefer p6m, fall back to p3m).
+// Best/worst = how RIGHT the call was, direction-aware (buy→return, avoid→−return;
+// so avoiding a crash is a win). Buy/Avoid only (neutral has no direction).
 function rankCalls(rows) {
   const scored = [];
   for (const r of rows) {
+    if (r.decision !== 'buy' && r.decision !== 'avoid') continue;
     let leg = r.perf?.p6m, horizon = 'p6m';
-    if (!leg || leg.status !== 'complete' || leg.alpha == null) {
+    if (!leg || leg.status !== 'complete' || leg.return == null) {
       leg = r.perf?.p3m; horizon = 'p3m';
     }
-    if (!leg || leg.status !== 'complete' || leg.alpha == null) continue;
+    if (!leg || leg.status !== 'complete' || leg.return == null) continue;
+    const edge = r.decision === 'avoid' ? -leg.return : leg.return;
     scored.push({
       nameId: r.nameId, episodeId: r.episodeId, ticker: r.ticker, company: r.company,
       decision: r.decision, assetType: r.assetType, date: r.date,
-      horizon, return: leg.return, alpha: leg.alpha, benchmark: r.perf.benchmark,
+      horizon, edge, return: leg.return, alpha: leg.alpha, benchmark: r.perf.benchmark,
     });
   }
-  const byAlphaDesc = [...scored].sort((a, b) => b.alpha - a.alpha);
+  const byEdgeDesc = [...scored].sort((a, b) => b.edge - a.edge);
   return {
-    best: byAlphaDesc.slice(0, 5),
-    worst: byAlphaDesc.slice(-5).reverse(),
+    best: byEdgeDesc.slice(0, 5),
+    worst: byEdgeDesc.slice(-5).reverse(),
   };
 }
 
