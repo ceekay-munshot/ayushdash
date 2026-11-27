@@ -175,6 +175,9 @@ function ToDateCell({ row }: { row: NameRow }) {
 }
 
 function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon: Horizon; onOpenCall: (n: NameRow) => void }) {
+  // Emphasise the header of the horizon selected by the global toggle.
+  const mark = (label: string, h: Horizon) =>
+    horizon === h ? <span className="border-b-2 border-white/70 pb-px">{label}</span> : <span className="opacity-70">{label}</span>;
   const cols: Column<NameRow>[] = [
     { key: 'date', header: 'Date', sortable: true, sortValue: (r) => r.date, render: (r) => <span className="whitespace-nowrap text-fdc-grey">{dateShort(r.date)}</span> },
     { key: 'ticker', header: 'Ticker', sortable: true, sortValue: (r) => r.ticker, render: (r) => <span className="tnum font-bold text-fdc-ink">{r.ticker || '—'}</span> },
@@ -182,11 +185,11 @@ function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon:
     { key: 'asset', header: 'Type', render: (r) => <Badge color={ASSET_COLOR[r.assetType]}>{ASSET_SHORT[r.assetType]}</Badge> },
     { key: 'verdict', header: 'Verdict', sortable: true, sortValue: (r) => VERDICT_ORDER[r.decision], render: (r) => r.mentionType === 'market_recap' ? <Badge color="#94A3B8">recap</Badge> : <VerdictPill decision={r.decision} size="sm" /> },
     { key: 'todate', header: 'To date', align: 'right', sortable: true, headerHint: 'Return since the call, so far (live)', sortValue: (r) => toDateProgress(r)?.return ?? -Infinity, heat: (r) => heatForReturn(toDateProgress(r)?.return, 20), render: (r) => <ToDateCell row={r} /> },
-    { key: 'r3', header: '+3mo', align: 'right', sortable: true, headerHint: 'Return 3 months after the call (— until the window closes)', sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? r.perf.p3m.return : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="return" /> },
-    { key: 'a3', header: '+3mo vs mkt', align: 'right', sortable: true, sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? (r.perf.p3m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="alpha" /> },
-    { key: 'r6', header: '+6mo', align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? r.perf.p6m.return : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="return" /> },
-    { key: 'a6', header: '+6mo vs mkt', align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? (r.perf.p6m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="alpha" /> },
-    { key: 'status', header: 'Status', render: (r) => renderStatus(r, horizon) },
+    { key: 'r3', header: mark('+3mo', 'p3m'), align: 'right', sortable: true, headerHint: 'Return 3 months after the call (— until the window closes)', sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? r.perf.p3m.return : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="return" /> },
+    { key: 'a3', header: mark('+3mo vs mkt', 'p3m'), align: 'right', sortable: true, sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? (r.perf.p3m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="alpha" /> },
+    { key: 'r6', header: mark('+6mo', 'p6m'), align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? r.perf.p6m.return : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="return" /> },
+    { key: 'a6', header: mark('+6mo vs mkt', 'p6m'), align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? (r.perf.p6m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="alpha" /> },
+    { key: 'status', header: 'Status', render: (r) => renderStatus(r) },
   ];
   return (
     <Table
@@ -201,11 +204,11 @@ function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon:
   );
 }
 
-function renderStatus(r: NameRow, horizon: Horizon) {
-  if (!r.resolved) return <Badge color="#94A3B8">unmatched ticker</Badge>;
-  const leg = r.perf?.[horizon];
-  if (!leg) return <span className="text-fdc-light">—</span>;
-  return leg.status === 'complete'
+// Overall maturity — independent of the horizon toggle (both columns are shown).
+function renderStatus(r: NameRow) {
+  if (!r.resolved) return <Badge color="#94A3B8">unmatched</Badge>;
+  const done = r.perf?.p3m?.status === 'complete' && r.perf?.p6m?.status === 'complete';
+  return done
     ? <Badge color={VERDICT.buy.color}>complete</Badge>
     : <Badge color="#F59E0B"><Clock size={10} /> maturing</Badge>;
 }

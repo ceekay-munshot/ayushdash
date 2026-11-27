@@ -73,6 +73,18 @@ export async function loadTranscript(id: string): Promise<Transcript | null> {
   return t;
 }
 
+// 2-year weekly price history, lazy-loaded per symbol for the call-detail chart.
+export interface PriceSeries { symbol: string; name: string; closes: Record<string, number>; generatedAt?: string }
+export const safeSymbol = (s: string) => s.replace(/[^A-Za-z0-9._-]/g, '_');
+const priceCache = new Map<string, PriceSeries | null>();
+export async function loadPrices(symbol: string): Promise<PriceSeries | null> {
+  const key = safeSymbol(symbol);
+  if (priceCache.has(key)) return priceCache.get(key)!;
+  const s = await getJSON<PriceSeries | null>(`prices/${key}.json`, null);
+  priceCache.set(key, s);
+  return s;
+}
+
 // ---- windows ---------------------------------------------------------------
 function todayISO() { return new Date().toISOString().slice(0, 10); }
 function addDaysISO(iso: string, d: number) {
@@ -373,9 +385,12 @@ export function toneSeries(
     .map(([month, vals]) => ({ month, value: round2(avg(vals)), episodes: vals.length }));
 }
 
-/** Count of calls per episode id (from names). */
+/** Count of real calls per episode id (recap mentions excluded). */
 export function callsByEpisode(names: NameRow[]): Map<string, number> {
   const m = new Map<string, number>();
-  for (const n of names) m.set(n.episodeId, (m.get(n.episodeId) ?? 0) + 1);
+  for (const n of names) {
+    if (isRecap(n)) continue;
+    m.set(n.episodeId, (m.get(n.episodeId) ?? 0) + 1);
+  }
   return m;
 }

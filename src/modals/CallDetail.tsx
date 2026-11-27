@@ -1,10 +1,12 @@
-import { Quote, ExternalLink, Headphones, Info } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Quote, ExternalLink, Headphones, Info, LineChart } from 'lucide-react';
 import type { NameRow } from '../types';
-import { toDateProgress, type Dataset } from '../lib/data';
+import { toDateProgress, loadPrices, type Dataset, type PriceSeries } from '../lib/data';
 import { Modal } from '../components/ui/Modal';
 import { Badge, MiniStat } from '../components/ui/Card';
 import { VerdictPill } from '../components/ui/VerdictPill';
 import { GroupedBars, type GGroup } from '../components/charts/GroupedBars';
+import { PriceHistory } from '../components/charts/PriceHistory';
 import { VERDICT, ASSET_COLOR, ASSET_LABEL, returnColor, benchLabel } from '../lib/brand';
 import { signedPct, usd, dateLabel } from '../lib/format';
 
@@ -14,6 +16,18 @@ const MENTION_LABEL: Record<string, string> = {
 };
 
 export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: Dataset; onClose: () => void }) {
+  const [stock, setStock] = useState<PriceSeries | null>(null);
+  const [benchSeries, setBenchSeries] = useState<PriceSeries | null>(null);
+  useEffect(() => {
+    setStock(null); setBenchSeries(null);
+    const sym = row?.perf?.symbol;
+    if (!sym) return;
+    let alive = true;
+    loadPrices(sym).then((s) => { if (alive) setStock(s); });
+    if (row?.perf?.benchmark) loadPrices(row.perf.benchmark).then((b) => { if (alive) setBenchSeries(b); });
+    return () => { alive = false; };
+  }, [row?.nameId]); // eslint-disable-line react-hooks/exhaustive-deps
+
   if (!row) return null;
   const ep = data.episodes.find((e) => e.id === row.episodeId);
   const perf = row.perf;
@@ -92,6 +106,26 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
         {/* performance */}
         {perf ? (
           <div className="rounded-xl border border-black/[0.06] p-3.5">
+            {stock && Object.keys(stock.closes).length > 1 && (
+              <div className="mb-3">
+                <div className="mb-1.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-fdc-grey">
+                  <LineChart size={13} /> 2-year price · {benchLabel(perf.benchmark) !== 'the market' ? `vs ${benchLabel(perf.benchmark)}` : 'price'}
+                </div>
+                <PriceHistory
+                  closes={stock.closes}
+                  bench={benchSeries?.closes ?? null}
+                  benchName={benchLabel(perf.benchmark)}
+                  ticker={row.ticker}
+                  mentionDate={row.date}
+                  priceAtMention={perf.priceAtMention}
+                  decision={row.decision}
+                  markers={[
+                    ...(perf.p3m?.status === 'complete' ? [{ date: perf.p3m.date, label: '+3m' }] : []),
+                    ...(perf.p6m?.status === 'complete' ? [{ date: perf.p6m.date, label: '+6m' }] : []),
+                  ]}
+                />
+              </div>
+            )}
             <div className="mb-3 grid grid-cols-3 gap-2">
               <MiniStat label="Price at mention" value={usd(perf.priceAtMention)} color={SLATE} sub={dateLabel(perf.priceDate)} />
               {horizonStat('p3m', `+3mo vs ${benchLabel(perf.benchmark)}`)}

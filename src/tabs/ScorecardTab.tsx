@@ -175,13 +175,10 @@ function CallList({ calls, onOpenCall, empty }: { calls: RankedCall[]; onOpenCal
   return (
     <div className="space-y-1">
       {calls.map(({ row, leg }) => {
-        const p3 = row.perf?.p3m?.return ?? 0;
-        const p6 = row.perf?.p6m?.return ?? 0;
-        const spark = [
-          { label: 'At mention', value: 0 },
-          { label: '+3 mo', value: p3 },
-          { label: '+6 mo', value: p6 },
-        ];
+        // Only plot windows that have actually closed (no to-date figure dressed up as +3/+6mo).
+        const spark = [{ label: 'At mention', value: 0 }];
+        if (row.perf?.p3m?.status === 'complete') spark.push({ label: '+3 mo', value: row.perf.p3m.return });
+        if (row.perf?.p6m?.status === 'complete') spark.push({ label: '+6 mo', value: row.perf.p6m.return });
         return (
           <button
             key={row.nameId}

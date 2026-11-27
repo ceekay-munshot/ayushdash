@@ -52,6 +52,9 @@ jobs:
       - name: Enrich performance (refresh all)
         run: node scripts/enrich-performance.mjs
 
+      - name: Fetch price history (Yahoo, stale only)
+        run: node scripts/fetch-prices.mjs
+
       - name: Build scorecard
         run: node scripts/build-scorecard.mjs
 

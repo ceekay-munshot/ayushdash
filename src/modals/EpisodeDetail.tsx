@@ -90,7 +90,10 @@ export function EpisodeDetail({ episode, data, onClose }: { episode: Episode | n
         {/* summary */}
         <div className="flex flex-wrap items-center gap-2">
           {summary ? <Badge color={TONE_COLOR[summary.tone]}>{TONE_LABEL[summary.tone]}</Badge> : null}
-          <Badge color="#6366F1">{calls.length} {calls.length === 1 ? 'call' : 'calls'}</Badge>
+          {(() => {
+            const real = calls.filter((c) => c.mentionType !== 'market_recap').length;
+            return <Badge color="#6366F1">{real} {real === 1 ? 'call' : 'calls'}</Badge>;
+          })()}
           {episode.audioUrl && (
             <a href={episode.audioUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-[12.5px] font-semibold text-fdc-green hover:underline">
               <Headphones size={13} /> Listen
@@ -122,7 +125,7 @@ export function EpisodeDetail({ episode, data, onClose }: { episode: Episode | n
                   {calls.map((c) => (
                     <tr key={c.nameId} className="border-b border-black/[0.04] last:border-0 align-top">
                       <td className="whitespace-nowrap px-3 py-2 font-bold text-fdc-ink tnum">{c.ticker}</td>
-                      <td className="px-2 py-2"><VerdictPill decision={c.decision} size="sm" /></td>
+                      <td className="px-2 py-2">{c.mentionType === 'market_recap' ? <Badge color="#94A3B8">recap</Badge> : <VerdictPill decision={c.decision} size="sm" />}</td>
                       <td className="px-3 py-2 text-fdc-slate">{c.quote ? `“${c.quote}”` : <span className="text-fdc-grey">{c.reasoning}</span>}</td>
                     </tr>
                   ))}
