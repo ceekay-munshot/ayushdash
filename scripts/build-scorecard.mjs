@@ -20,11 +20,12 @@ const round2 = (n) => (n == null ? null : Number(n.toFixed(2)));
 const mean = (arr) => (arr.length ? round2(arr.reduce((a, b) => a + b, 0) / arr.length) : null);
 const pctRate = (num, den) => (den ? round2((num / den) * 100) : null);
 
-// Build a stats cell for a set of rows at one horizon.
-function cell(rows, horizon, basis) {
+// Build a stats cell for a set of rows at one horizon. Computes two hit rates:
+// DIRECTION (buy went up / avoid fell) and BEAT-MARKET (beat/lagged benchmark).
+function cell(rows, horizon) {
   let complete = 0, inProgress = 0;
   const returns = [], alphas = [];
-  let wins = 0, winDen = 0;
+  let dirWins = 0, dirN = 0, beatWins = 0, beatN = 0;
 
   for (const r of rows) {
     const leg = r.perf?.[horizon];
@@ -33,11 +34,17 @@ function cell(rows, horizon, basis) {
     complete++;
     if (leg.return != null) returns.push(leg.return);
     if (leg.alpha != null) alphas.push(leg.alpha);
+    if (r.decision !== 'buy' && r.decision !== 'avoid') continue;
 
-    if (basis === 'negative_return') {
-      if (leg.return != null) { winDen++; if (leg.return < 0) wins++; }
-    } else { // positive_alpha
-      if (leg.alpha != null) { winDen++; if (leg.alpha > 0) wins++; }
+    // direction — did the stock move the way they implied?
+    if (leg.return != null) {
+      dirN++; const up = leg.return > 0; if (r.decision === 'buy' ? up : !up) dirWins++;
+    }
+    // beat the market — alpha sign, raw-return fallback with no benchmark
+    const hasBench = leg.benchReturn != null && leg.alpha != null;
+    const metric = hasBench ? leg.alpha : leg.return;
+    if (metric != null) {
+      beatN++; const good = r.decision === 'buy' ? metric > 0 : metric < 0; if (good) beatWins++;
     }
   }
 
@@ -46,14 +53,14 @@ function cell(rows, horizon, basis) {
     inProgress,
     avgReturn: mean(returns),
     avgAlpha: mean(alphas),
-    winRate: pctRate(wins, winDen),
-    winRateBasis: basis,
+    dirHits: dirWins, dirN, dirRate: pctRate(dirWins, dirN),
+    beatHits: beatWins, beatN, beatRate: pctRate(beatWins, beatN),
   };
 }
 
-function perfBlock(rows, basis) {
+function perfBlock(rows) {
   const out = {};
-  for (const h of HORIZONS) out[h] = cell(rows, h, basis);
+  for (const h of HORIZONS) out[h] = cell(rows, h);
   return out;
 }
 
@@ -122,10 +129,10 @@ async function main() {
     byDecision: countBy(real, 'decision', DECISIONS),
     byAssetType: countBy(real, 'assetType', ASSET_TYPES),
     performance: {
-      overall: perfBlock(resolved, 'positive_alpha'),
-      buy: perfBlock(byDecisionRows.buy, 'positive_alpha'),
-      neutral: perfBlock(byDecisionRows.neutral, 'positive_alpha'),
-      avoid: perfBlock(byDecisionRows.avoid, 'negative_return'),
+      overall: perfBlock(resolved),
+      buy: perfBlock(byDecisionRows.buy),
+      neutral: perfBlock(byDecisionRows.neutral),
+      avoid: perfBlock(byDecisionRows.avoid),
     },
     topCalls: rankCalls(resolved),
   };

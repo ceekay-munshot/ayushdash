@@ -8,7 +8,7 @@ import { VerdictPill } from '../components/ui/VerdictPill';
 import { GroupedBars, type GGroup } from '../components/charts/GroupedBars';
 import { HBars } from '../components/charts/Bars';
 import { Sparkline } from '../components/charts/Sparkline';
-import { VERDICT, returnColor } from '../lib/brand';
+import { VERDICT, returnColor, shade } from '../lib/brand';
 import { signedPct, pct } from '../lib/format';
 
 const SLATE = '#64748B';
@@ -55,17 +55,24 @@ export default function ScorecardTab({
     };
   });
 
-  // hit-rate chart (buy + avoid only)
+  // "Were they right?" — two measures per bucket: DIRECTION (went the right
+  // way) and BEAT THE MARKET (vs the benchmark).
   const hitData = [
-    scores.buy.hitRate != null && {
-      key: 'buy', label: 'Buy → beat market', value: scores.buy.hitRate, color: VERDICT.buy.color,
-      sublabel: `${scores.buy.hits}/${scores.buy.decided} calls`,
-      valueLabel: pct(scores.buy.hitRate, 0),
+    scores.buy.dirRate != null && {
+      key: 'buy-dir', label: 'Buy · went up', value: scores.buy.dirRate, color: VERDICT.buy.color,
+      sublabel: `${scores.buy.dirHits}/${scores.buy.dirN} rose`, valueLabel: pct(scores.buy.dirRate, 0),
     },
-    scores.avoid.hitRate != null && {
-      key: 'avoid', label: 'Avoid → was right', value: scores.avoid.hitRate, color: VERDICT.avoid.color,
-      sublabel: `${scores.avoid.hits}/${scores.avoid.decided} calls`,
-      valueLabel: pct(scores.avoid.hitRate, 0),
+    scores.buy.beatRate != null && {
+      key: 'buy-beat', label: 'Buy · beat market', value: scores.buy.beatRate, color: shade(VERDICT.buy.color, 0.4),
+      sublabel: `${scores.buy.beatHits}/${scores.buy.beatN} beat S&P`, valueLabel: pct(scores.buy.beatRate, 0),
+    },
+    scores.avoid.dirRate != null && {
+      key: 'avoid-dir', label: 'Avoid · fell', value: scores.avoid.dirRate, color: VERDICT.avoid.color,
+      sublabel: `${scores.avoid.dirHits}/${scores.avoid.dirN} fell`, valueLabel: pct(scores.avoid.dirRate, 0),
+    },
+    scores.avoid.beatRate != null && {
+      key: 'avoid-beat', label: 'Avoid · lagged', value: scores.avoid.beatRate, color: shade(VERDICT.avoid.color, 0.4),
+      sublabel: `${scores.avoid.beatHits}/${scores.avoid.beatN} lagged`, valueLabel: pct(scores.avoid.beatRate, 0),
     },
   ].filter(Boolean) as { key: string; label: string; value: number; color: string; sublabel: string; valueLabel: string }[];
 
@@ -79,14 +86,20 @@ export default function ScorecardTab({
         <div className="relative p-5 sm:p-6">
           {hasData ? (
             <p className="max-w-3xl text-[17px] font-semibold leading-relaxed text-fdc-ink sm:text-[19px]">
-              Their <span className="text-verdict-buy-dark">Buy</span> calls returned{' '}
+              Their <span className="text-verdict-buy-dark">Buy</span> calls averaged{' '}
               <span className="tnum" style={{ color: returnColor(scores.buy.avgReturn) }}>{signedPct(scores.buy.avgReturn)}</span>{' '}
-              on average after {hMonths}
-              {scores.buy.hitRate != null && (
-                <> and beat the market <span className="tnum text-verdict-buy-dark">{pct(scores.buy.hitRate, 0)}</span> of the time</>
+              after {hMonths}
+              {scores.buy.dirRate != null && (
+                <> — <span className="tnum text-verdict-buy-dark">up {pct(scores.buy.dirRate, 0)}</span> of the time</>
+              )}
+              {scores.buy.beatRate != null && (
+                <> (<span className="tnum">{pct(scores.buy.beatRate, 0)}</span> beat the market)</>
               )}.{' '}
-              Their <span className="text-verdict-avoid-dark">Avoid</span> calls returned{' '}
-              <span className="tnum" style={{ color: returnColor(scores.avoid.avgReturn) }}>{signedPct(scores.avoid.avgReturn)}</span>.
+              Their <span className="text-verdict-avoid-dark">Avoid</span> calls averaged{' '}
+              <span className="tnum" style={{ color: returnColor(scores.avoid.avgReturn) }}>{signedPct(scores.avoid.avgReturn)}</span>
+              {scores.avoid.dirRate != null && (
+                <> — <span className="tnum text-verdict-avoid-dark">down {pct(scores.avoid.dirRate, 0)}</span> of the time</>
+              )}.
             </p>
           ) : (
             <p className="max-w-3xl text-[16px] font-medium leading-relaxed text-fdc-slate">
@@ -112,10 +125,10 @@ export default function ScorecardTab({
           sub={scores.avoid.avgAlpha != null ? `${signedPct(scores.avoid.avgAlpha)} vs the market` : 'vs market: —'}
         />
         <MiniStat
-          label="Buy hit rate"
-          value={scores.buy.hitRate != null ? pct(scores.buy.hitRate, 0) : '—'}
+          label="Buy calls that went up"
+          value={scores.buy.dirRate != null ? pct(scores.buy.dirRate, 0) : '—'}
           color={VERDICT.buy.dark}
-          sub="how often a Buy beat the market"
+          sub={scores.buy.beatRate != null ? `${pct(scores.buy.beatRate, 0)} beat the market` : 'direction hit rate'}
         />
       </div>
 
@@ -146,11 +159,11 @@ export default function ScorecardTab({
           <CardHeader
             icon={Target}
             title="Were they right?"
-            subtitle="Share of calls that worked out"
+            subtitle="Did the stock go the right way, and did it beat the market?"
             accent={VERDICT.neutral.dark}
           />
           {hitData.length ? (
-            <HBars data={hitData} format={(n) => pct(n, 0)} maxValue={100} labelWidth={118} barSize={30} />
+            <HBars data={hitData} format={(n) => pct(n, 0)} maxValue={100} labelWidth={132} barSize={22} />
           ) : <Empty />}
         </Card>
       </div>

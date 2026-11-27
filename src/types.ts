@@ -100,8 +100,12 @@ export interface PerfCell {
   inProgress: number;
   avgReturn: number | null;
   avgAlpha: number | null;
-  winRate: number | null;
-  winRateBasis: 'positive_alpha' | 'negative_return';
+  dirHits: number;
+  dirN: number;
+  dirRate: number | null; // direction: buy↑ / avoid↓
+  beatHits: number;
+  beatN: number;
+  beatRate: number | null; // beat/lagged the market
 }
 
 export interface Scorecard {

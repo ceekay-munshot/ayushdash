@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-26T17:27:52.549Z",
+  "generatedAt": "2026-11-27T07:04:18.706Z",
   "window": {
     "from": "2026-01-01",
-    "to": "2026-11-26"
+    "to": "2026-11-27"
   },
   "coverage": {
     "episodes": 233,
@@ -41,16 +41,24 @@
         "inProgress": 159,
         "avgReturn": 4.87,
         "avgAlpha": 0.64,
-        "winRate": 44.8,
-        "winRateBasis": "positive_alpha"
+        "dirHits": 502,
+        "dirN": 1062,
+        "dirRate": 47.27,
+        "beatHits": 499,
+        "beatN": 1062,
+        "beatRate": 46.99
       },
       "p6m": {
         "n": 1084,
         "inProgress": 900,
         "avgReturn": 6.6,
         "avgAlpha": -1.42,
-        "winRate": 38.87,
-        "winRateBasis": "positive_alpha"
+        "dirHits": 311,
+        "dirN": 663,
+        "dirRate": 46.91,
+        "beatHits": 281,
+        "beatN": 663,
+        "beatRate": 42.38
       }
     },
     "buy": {
@@ -59,16 +67,24 @@
         "inProgress": 56,
         "avgReturn": 4.14,
         "avgAlpha": 0.75,
-        "winRate": 44.49,
-        "winRateBasis": "positive_alpha"
+        "dirHits": 315,
+        "dirN": 594,
+        "dirRate": 53.03,
+        "beatHits": 257,
+        "beatN": 594,
+        "beatRate": 43.27
       },
       "p6m": {
         "n": 374,
         "inProgress": 276,
         "avgReturn": 3.61,
         "avgAlpha": -3.16,
-        "winRate": 35.56,
-        "winRateBasis": "positive_alpha"
+        "dirHits": 192,
+        "dirN": 374,
+        "dirRate": 51.34,
+        "beatHits": 122,
+        "beatN": 374,
+        "beatRate": 32.62
       }
     },
     "neutral": {
@@ -77,16 +93,24 @@
         "inProgress": 74,
         "avgReturn": 4.7,
         "avgAlpha": 0.32,
-        "winRate": 45.88,
-        "winRateBasis": "positive_alpha"
+        "dirHits": 0,
+        "dirN": 0,
+        "dirRate": null,
+        "beatHits": 0,
+        "beatN": 0,
+        "beatRate": null
       },
       "p6m": {
         "n": 421,
         "inProgress": 416,
         "avgReturn": 6.89,
         "avgAlpha": -1.67,
-        "winRate": 40.72,
-        "winRateBasis": "positive_alpha"
+        "dirHits": 0,
+        "dirN": 0,
+        "dirRate": null,
+        "beatHits": 0,
+        "beatN": 0,
+        "beatRate": null
       }
     },
     "avoid": {
@@ -95,16 +119,24 @@
         "inProgress": 29,
         "avgReturn": 6.06,
         "avgAlpha": 1,
-        "winRate": 39.96,
-        "winRateBasis": "negative_return"
+        "dirHits": 187,
+        "dirN": 468,
+        "dirRate": 39.96,
+        "beatHits": 242,
+        "beatN": 468,
+        "beatRate": 51.71
       },
       "p6m": {
         "n": 289,
         "inProgress": 208,
         "avgReturn": 10.04,
         "avgAlpha": 0.85,
-        "winRate": 41.18,
-        "winRateBasis": "negative_return"
+        "dirHits": 119,
+        "dirN": 289,
+        "dirRate": 41.18,
+        "beatHits": 159,
+        "beatN": 289,
+        "beatRate": 55.02
       }
     }
   },

@@ -151,13 +151,24 @@ export const legOf = (n: NameRow, h: Horizon): PerfLeg | null | undefined => n.p
 export const hasBench = (n: NameRow, leg: PerfLeg | null | undefined) =>
   !!n.perf?.benchmark && leg?.benchReturn != null && leg?.alpha != null;
 
-/** Did this call "work out" at the horizon? null = undecided (neutral / incomplete). */
-export function isHit(n: NameRow, h: Horizon): boolean | null {
+/** DIRECTION: did the stock move the way the call implied? buy→up, avoid→down.
+ *  The plain, intuitive measure. null for neutral / not-yet-closed. */
+export function isDirectionHit(n: NameRow, h: Horizon): boolean | null {
+  const leg = legOf(n, h);
+  if (!leg || leg.status !== 'complete' || leg.return == null) return null;
+  if (n.decision === 'buy') return leg.return > 0;
+  if (n.decision === 'avoid') return leg.return < 0;
+  return null;
+}
+
+/** BEAT THE MARKET: did the call beat its benchmark? buy→alpha>0, avoid→alpha<0.
+ *  Falls back to raw-return sign when there's no benchmark (commodities). */
+export function isBeatMarketHit(n: NameRow, h: Horizon): boolean | null {
   const leg = legOf(n, h);
   if (!leg || leg.status !== 'complete') return null;
   const bench = hasBench(n, leg);
-  if (n.decision === 'buy') return bench ? (leg.alpha as number) > 0 : leg.return > 0;
-  if (n.decision === 'avoid') return bench ? (leg.alpha as number) < 0 : leg.return < 0;
+  if (n.decision === 'buy') return bench ? (leg.alpha as number) > 0 : leg.return != null ? leg.return > 0 : null;
+  if (n.decision === 'avoid') return bench ? (leg.alpha as number) < 0 : leg.return != null ? leg.return < 0 : null;
   return null;
 }
 
@@ -186,10 +197,17 @@ export interface BucketStat {
   avgReturn: number | null;
   avgBench: number | null;
   avgAlpha: number | null;
-  hits: number;
-  decided: number;
-  hitRate: number | null; // % (buy/avoid only)
+  // DIRECTION: stock moved the way they implied (buy↑ / avoid↓)
+  dirHits: number;
+  dirN: number;
+  dirRate: number | null; // %
+  // BEAT THE MARKET: beat/lagged the benchmark
+  beatHits: number;
+  beatN: number;
+  beatRate: number | null; // %
 }
+
+const rate = (hits: number, n: number) => (n ? Math.round((hits / n) * 1000) / 10 : null);
 
 function statFor(rows: NameRow[], decision: Decision | 'overall', h: Horizon): BucketStat {
   // Performance math is ALWAYS over real calls — recap mentions never count.
@@ -197,7 +215,7 @@ function statFor(rows: NameRow[], decision: Decision | 'overall', h: Horizon): B
   const inBucket = decision === 'overall' ? real : real.filter((r) => r.decision === decision);
   const resolved = inBucket.filter((r) => r.resolved && r.perf);
   const returns: number[] = [], benches: number[] = [], alphas: number[] = [];
-  let complete = 0, inProgress = 0, hits = 0, decided = 0;
+  let complete = 0, inProgress = 0, dirHits = 0, dirN = 0, beatHits = 0, beatN = 0;
   for (const r of resolved) {
     const leg = legOf(r, h);
     if (!leg) continue;
@@ -206,8 +224,8 @@ function statFor(rows: NameRow[], decision: Decision | 'overall', h: Horizon): B
     returns.push(leg.return);
     if (leg.benchReturn != null) benches.push(leg.benchReturn);
     if (leg.alpha != null) alphas.push(leg.alpha);
-    const hit = isHit(r, h);
-    if (hit != null) { decided++; if (hit) hits++; }
+    const dh = isDirectionHit(r, h); if (dh != null) { dirN++; if (dh) dirHits++; }
+    const bh = isBeatMarketHit(r, h); if (bh != null) { beatN++; if (bh) beatHits++; }
   }
   return {
     decision,
@@ -217,9 +235,8 @@ function statFor(rows: NameRow[], decision: Decision | 'overall', h: Horizon): B
     avgReturn: round2(avg(returns)),
     avgBench: round2(avg(benches)),
     avgAlpha: round2(avg(alphas)),
-    hits,
-    decided,
-    hitRate: decided ? Math.round((hits / decided) * 1000) / 10 : null,
+    dirHits, dirN, dirRate: rate(dirHits, dirN),
+    beatHits, beatN, beatRate: rate(beatHits, beatN),
   };
 }
 
