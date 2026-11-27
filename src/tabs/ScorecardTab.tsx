@@ -86,20 +86,14 @@ export default function ScorecardTab({
         <div className="relative p-5 sm:p-6">
           {hasData ? (
             <p className="max-w-3xl text-[17px] font-semibold leading-relaxed text-fdc-ink sm:text-[19px]">
-              Their <span className="text-verdict-buy-dark">Buy</span> calls averaged{' '}
-              <span className="tnum" style={{ color: returnColor(scores.buy.avgReturn) }}>{signedPct(scores.buy.avgReturn)}</span>{' '}
-              after {hMonths}
-              {scores.buy.dirRate != null && (
-                <> — <span className="tnum text-verdict-buy-dark">up {pct(scores.buy.dirRate, 0)}</span> of the time</>
-              )}
-              {scores.buy.beatRate != null && (
-                <> (<span className="tnum">{pct(scores.buy.beatRate, 0)}</span> beat the market)</>
+              Over the next {hMonths}, when the hosts said{' '}
+              <span className="text-verdict-buy-dark">Buy</span>, the stock went{' '}
+              <span className="tnum text-verdict-buy-dark">up {pct(scores.buy.dirRate, 0)} of the time</span>
+              {scores.buy.avgReturn != null && (
+                <> (<span className="tnum" style={{ color: returnColor(scores.buy.avgReturn) }}>{signedPct(scores.buy.avgReturn)}</span> on average)</>
               )}.{' '}
-              Their <span className="text-verdict-avoid-dark">Avoid</span> calls averaged{' '}
-              <span className="tnum" style={{ color: returnColor(scores.avoid.avgReturn) }}>{signedPct(scores.avoid.avgReturn)}</span>
-              {scores.avoid.dirRate != null && (
-                <> — <span className="tnum text-verdict-avoid-dark">down {pct(scores.avoid.dirRate, 0)}</span> of the time</>
-              )}.
+              When they said <span className="text-verdict-avoid-dark">Avoid</span>, it went{' '}
+              <span className="tnum text-verdict-avoid-dark">down {pct(scores.avoid.dirRate, 0)} of the time</span>.
             </p>
           ) : (
             <p className="max-w-3xl text-[16px] font-medium leading-relaxed text-fdc-slate">
