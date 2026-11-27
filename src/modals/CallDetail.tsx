@@ -69,6 +69,51 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
     );
   };
 
+  // "To date" bar — the live return (stock vs market) from the loaded price
+  // series, valid even past +6m or before +3m. Appears once prices load.
+  const round2 = (n: number) => Math.round(n * 100) / 100;
+  const latestOf = (s: PriceSeries | null) => {
+    if (!s) return null;
+    const ds = Object.keys(s.closes).sort();
+    return ds.length ? { date: ds[ds.length - 1], price: s.closes[ds[ds.length - 1]] } : null;
+  };
+  const anchorOf = (s: PriceSeries | null, onIso: string) => {
+    if (!s) return null;
+    let val: number | null = null;
+    for (const d of Object.keys(s.closes).sort()) { if (d <= onIso) val = s.closes[d]; else break; }
+    return val;
+  };
+  let toDateGroup: GGroup | null = null;
+  if (perf) {
+    const latest = latestOf(stock);
+    if (latest) {
+      const ret = round2((latest.price / perf.priceAtMention - 1) * 100);
+      let benchRet: number | null = null;
+      if (perf.benchmark && benchSeries) {
+        const banchor = anchorOf(benchSeries, row.date);
+        const blatest = latestOf(benchSeries);
+        if (banchor && blatest) benchRet = round2((blatest.price / banchor - 1) * 100);
+      }
+      const diff = benchRet == null ? null : round2(ret - benchRet);
+      const days = Math.round((Date.parse(`${latest.date}T00:00:00Z`) - Date.parse(`${row.date}T00:00:00Z`)) / 86400000);
+      toDateGroup = {
+        key: 'todate', label: 'To date',
+        note: `${days} days since the call`,
+        bars: [
+          { seriesKey: 'call', label: row.ticker, value: ret, color: v.color },
+          { seriesKey: 'mkt', label: benchLabel(perf.benchmark), value: benchRet, color: SLATE },
+        ],
+        tipRows: [
+          { label: row.ticker, value: signedPct(ret), color: v.color },
+          { label: benchLabel(perf.benchmark), value: benchRet == null ? '—' : signedPct(benchRet), color: SLATE },
+          { label: 'Difference', value: diff == null ? '—' : signedPct(diff) },
+          { label: 'Days since call', value: String(days) },
+        ],
+      };
+    }
+  }
+  const barGroups = toDateGroup ? [...groups, toDateGroup] : groups;
+
   return (
     <Modal
       open={!!row}
@@ -142,9 +187,9 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
                 <span className="text-fdc-grey">· {td.days < 91 ? '3-month' : '6-month'} window not closed yet</span>
               </div>
             )}
-            {groups.length > 0 && (
+            {barGroups.length > 0 && (
               <GroupedBars
-                groups={groups}
+                groups={barGroups}
                 format={(n) => signedPct(n, 1)}
                 barSize={16}
                 labelWidth={78}
