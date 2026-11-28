@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Trophy, ListChecks, Compass, Headphones, AlertTriangle, Loader2 } from 'lucide-react';
 import type { Episode, NameRow } from './types';
 import {
-  useAppData, filterNames, filterEpisodes, windowRange, isRecap,
+  useAppData, filterNames, filterEpisodes, windowRange, isRecap, H_LABEL,
   type AssetClass, type WindowKey, type Horizon,
 } from './lib/data';
 import { ASSET_OPTIONS } from './lib/data';
@@ -29,38 +29,48 @@ export default function App() {
   const [tab, setTab] = useState<TabKey>('scorecard');
   const [assetClass, setAssetClass] = useState<AssetClass>('all');
   const [windowKey, setWindowKey] = useState<WindowKey>('all');
+  const [customRange, setCustomRange] = useState<{ from: string; to: string }>({ from: '', to: '' });
   const [horizon, setHorizon] = useState<Horizon>('p6m');
   const [realCallsOnly, setRealCallsOnly] = useState(true);
   const [callOpen, setCallOpen] = useState<NameRow | null>(null);
   const [epOpen, setEpOpen] = useState<Episode | null>(null);
 
-  const controls: GlobalControls = {
-    assetClass, setAssetClass, windowKey, setWindowKey, horizon, setHorizon, realCallsOnly, setRealCallsOnly,
-  };
-
   const meta = state.status === 'ready' ? state.data.meta : null;
 
+  // Seed the custom range with the full data span the first time metadata loads.
+  useEffect(() => {
+    if (meta?.window && !customRange.from && !customRange.to) {
+      setCustomRange({ from: meta.window.from, to: meta.window.to });
+    }
+  }, [meta, customRange.from, customRange.to]);
+
+  const controls: GlobalControls = {
+    assetClass, setAssetClass, windowKey, setWindowKey,
+    customRange, setCustomRange, dataSpan: meta?.window ?? null,
+    horizon, setHorizon, realCallsOnly, setRealCallsOnly,
+  };
+
+  const range = useMemo(() => windowRange(windowKey, meta, customRange), [windowKey, meta, customRange]);
+
   const rows = useMemo(
-    () => (state.status === 'ready' ? filterNames(state.data.names, assetClass, windowKey, meta, !realCallsOnly) : []),
-    [state, assetClass, windowKey, meta, realCallsOnly]
+    () => (state.status === 'ready' ? filterNames(state.data.names, assetClass, range, !realCallsOnly) : []),
+    [state, assetClass, range, realCallsOnly]
   );
   const recapCount = useMemo(
     () => (state.status === 'ready'
-      ? filterNames(state.data.names, assetClass, windowKey, meta, true).filter(isRecap).length
+      ? filterNames(state.data.names, assetClass, range, true).filter(isRecap).length
       : 0),
-    [state, assetClass, windowKey, meta]
+    [state, assetClass, range]
   );
   const episodes = useMemo(
-    () => (state.status === 'ready' ? filterEpisodes(state.data.episodes, windowKey, meta) : []),
-    [state, windowKey, meta]
+    () => (state.status === 'ready' ? filterEpisodes(state.data.episodes, range) : []),
+    [state, range]
   );
 
   const ctx = useMemo(() => {
-    const win = windowRange(windowKey, meta).label;
     const asset = ASSET_OPTIONS.find((o) => o.value === assetClass)?.label ?? 'All';
-    const h = horizon === 'p3m' ? '+3 months' : '+6 months';
-    return `${win} · ${asset} · ${h}`;
-  }, [windowKey, assetClass, horizon, meta]);
+    return `${range.label} · ${asset} · ${H_LABEL[horizon]}`;
+  }, [range, assetClass, horizon]);
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">

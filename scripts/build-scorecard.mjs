@@ -14,7 +14,7 @@ import {
 
 const DECISIONS = ['buy', 'neutral', 'avoid'];
 const ASSET_TYPES = ['stock', 'etf', 'crypto', 'commodity', 'index', 'other'];
-const HORIZONS = ['p3m', 'p6m'];
+const HORIZONS = ['p3m', 'p6m', 'p9m', 'p12m'];
 
 const round2 = (n) => (n == null ? null : Number(n.toFixed(2)));
 const mean = (arr) => (arr.length ? round2(arr.reduce((a, b) => a + b, 0) / arr.length) : null);
@@ -76,11 +76,13 @@ function rankCalls(rows) {
   const scored = [];
   for (const r of rows) {
     if (r.decision !== 'buy' && r.decision !== 'avoid') continue;
-    let leg = r.perf?.p6m, horizon = 'p6m';
-    if (!leg || leg.status !== 'complete' || leg.return == null) {
-      leg = r.perf?.p3m; horizon = 'p3m';
+    // Rank on the LONGEST matured window available (fall back to shorter ones).
+    let leg = null, horizon = null;
+    for (const h of ['p12m', 'p9m', 'p6m', 'p3m']) {
+      const l = r.perf?.[h];
+      if (l && l.status === 'complete' && l.return != null) { leg = l; horizon = h; break; }
     }
-    if (!leg || leg.status !== 'complete' || leg.return == null) continue;
+    if (!leg) continue;
     const edge = r.decision === 'avoid' ? -leg.return : leg.return;
     scored.push({
       nameId: r.nameId, episodeId: r.episodeId, ticker: r.ticker, company: r.company,

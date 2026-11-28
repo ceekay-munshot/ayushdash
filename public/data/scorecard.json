@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-27T11:59:12.945Z",
+  "generatedAt": "2026-11-28T08:33:33.503Z",
   "window": {
     "from": "2025-07-01",
-    "to": "2026-11-27"
+    "to": "2026-11-28"
   },
   "coverage": {
     "episodes": 365,
@@ -40,7 +40,7 @@
         "n": 2205,
         "inProgress": 102,
         "avgReturn": 5.01,
-        "avgAlpha": 1.38,
+        "avgAlpha": 1.37,
         "dirHits": 770,
         "dirN": 1465,
         "dirRate": 52.56,
@@ -59,6 +59,30 @@
         "beatHits": 594,
         "beatN": 1139,
         "beatRate": 52.15
+      },
+      "p9m": {
+        "n": 1231,
+        "inProgress": 1076,
+        "avgReturn": 10.25,
+        "avgAlpha": -0.33,
+        "dirHits": 465,
+        "dirN": 809,
+        "dirRate": 57.48,
+        "beatHits": 432,
+        "beatN": 809,
+        "beatRate": 53.4
+      },
+      "p12m": {
+        "n": 689,
+        "inProgress": 1618,
+        "avgReturn": 13.37,
+        "avgAlpha": -1.29,
+        "dirHits": 283,
+        "dirN": 443,
+        "dirRate": 63.88,
+        "beatHits": 253,
+        "beatN": 443,
+        "beatRate": 57.11
       }
     },
     "buy": {
@@ -85,13 +109,37 @@
         "beatHits": 275,
         "beatN": 582,
         "beatRate": 47.25
+      },
+      "p9m": {
+        "n": 407,
+        "inProgress": 409,
+        "avgReturn": 12.31,
+        "avgAlpha": 3.47,
+        "dirHits": 267,
+        "dirN": 407,
+        "dirRate": 65.6,
+        "beatHits": 194,
+        "beatN": 407,
+        "beatRate": 47.67
+      },
+      "p12m": {
+        "n": 213,
+        "inProgress": 603,
+        "avgReturn": 21.22,
+        "avgAlpha": 6.32,
+        "dirHits": 166,
+        "dirN": 213,
+        "dirRate": 77.93,
+        "beatHits": 117,
+        "beatN": 213,
+        "beatRate": 54.93
       }
     },
     "neutral": {
       "p3m": {
         "n": 740,
         "inProgress": 32,
-        "avgReturn": 5.57,
+        "avgReturn": 5.58,
         "avgAlpha": 2.02,
         "dirHits": 0,
         "dirN": 0,
@@ -105,6 +153,30 @@
         "inProgress": 205,
         "avgReturn": 10.06,
         "avgAlpha": 1.88,
+        "dirHits": 0,
+        "dirN": 0,
+        "dirRate": null,
+        "beatHits": 0,
+        "beatN": 0,
+        "beatRate": null
+      },
+      "p9m": {
+        "n": 422,
+        "inProgress": 350,
+        "avgReturn": 11.33,
+        "avgAlpha": -0.32,
+        "dirHits": 0,
+        "dirN": 0,
+        "dirRate": null,
+        "beatHits": 0,
+        "beatN": 0,
+        "beatRate": null
+      },
+      "p12m": {
+        "n": 246,
+        "inProgress": 526,
+        "avgReturn": 14.67,
+        "avgAlpha": 0.26,
         "dirHits": 0,
         "dirN": 0,
         "dirRate": null,
@@ -129,7 +201,7 @@
       "p6m": {
         "n": 557,
         "inProgress": 162,
-        "avgReturn": 5.89,
+        "avgReturn": 5.9,
         "avgAlpha": -1.6,
         "dirHits": 260,
         "dirN": 557,
@@ -137,11 +209,91 @@
         "beatHits": 319,
         "beatN": 557,
         "beatRate": 57.27
+      },
+      "p9m": {
+        "n": 402,
+        "inProgress": 317,
+        "avgReturn": 7.02,
+        "avgAlpha": -3.68,
+        "dirHits": 198,
+        "dirN": 402,
+        "dirRate": 49.25,
+        "beatHits": 238,
+        "beatN": 402,
+        "beatRate": 59.2
+      },
+      "p12m": {
+        "n": 230,
+        "inProgress": 489,
+        "avgReturn": 4.7,
+        "avgAlpha": -9.35,
+        "dirHits": 117,
+        "dirN": 230,
+        "dirRate": 50.87,
+        "beatHits": 136,
+        "beatN": 230,
+        "beatRate": 59.13
       }
     }
   },
   "topCalls": {
     "best": [
+      {
+        "nameId": "2025-09-18-f82245f3-n4",
+        "episodeId": "2025-09-18-f82245f3",
+        "ticker": "ARREF",
+        "company": "Amerigo Resources",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2025-09-18",
+        "horizon": "p12m",
+        "edge": 301.91,
+        "return": 301.91,
+        "alpha": 286.55,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2025-09-27-8bf2e8b1-n19",
+        "episodeId": "2025-09-27-8bf2e8b1",
+        "ticker": "INTC",
+        "company": "Intel",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2025-09-27",
+        "horizon": "p12m",
+        "edge": 226.85,
+        "return": 226.85,
+        "alpha": 211.2,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2025-10-21-0c8e6ffd-n11",
+        "episodeId": "2025-10-21-0c8e6ffd",
+        "ticker": "ILMN",
+        "company": "Illumina",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2025-10-21",
+        "horizon": "p12m",
+        "edge": 185.83,
+        "return": 185.83,
+        "alpha": 170.66,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2025-10-03-f29c27a6-n4",
+        "episodeId": "2025-10-03-f29c27a6",
+        "ticker": "AMAT",
+        "company": "Applied Materials",
+        "decision": "buy",
+        "assetType": "stock",
+        "date": "2025-10-03",
+        "horizon": "p12m",
+        "edge": 150.67,
+        "return": 150.67,
+        "alpha": 134.91,
+        "benchmark": "^GSPC"
+      },
       {
         "nameId": "2025-08-09-47447588-n0",
         "episodeId": "2025-08-09-47447588",
@@ -150,70 +302,42 @@
         "decision": "buy",
         "assetType": "stock",
         "date": "2025-08-09",
-        "horizon": "p6m",
-        "edge": 183.73,
-        "return": 183.73,
-        "alpha": 174.73,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-02-10-435e27b6-n20",
-        "episodeId": "2026-02-10-435e27b6",
-        "ticker": "SNDK",
-        "company": "SanDisk (Western Digital)",
-        "decision": "buy",
-        "assetType": "stock",
-        "date": "2026-02-10",
-        "horizon": "p6m",
-        "edge": 148.19,
-        "return": 148.19,
-        "alpha": 136.57,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-02-10-435e27b6-n21",
-        "episodeId": "2026-02-10-435e27b6",
-        "ticker": "MU",
-        "company": "Micron Technology",
-        "decision": "buy",
-        "assetType": "stock",
-        "date": "2026-02-10",
-        "horizon": "p6m",
-        "edge": 144.29,
-        "return": 144.29,
-        "alpha": 132.67,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2025-11-25-88d438ac-n19",
-        "episodeId": "2025-11-25-88d438ac",
-        "ticker": "TER",
-        "company": "Teradyne",
-        "decision": "buy",
-        "assetType": "stock",
-        "date": "2025-11-25",
-        "horizon": "p6m",
-        "edge": 124.33,
-        "return": 124.33,
-        "alpha": 113.18,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-02-07-af4bb5b9-n1",
-        "episodeId": "2026-02-07-af4bb5b9",
-        "ticker": "MU",
-        "company": "Micron Technology",
-        "decision": "buy",
-        "assetType": "stock",
-        "date": "2026-02-07",
-        "horizon": "p6m",
-        "edge": 118.27,
-        "return": 118.27,
-        "alpha": 106.43,
+        "horizon": "p12m",
+        "edge": 145.73,
+        "return": 145.73,
+        "alpha": 124.39,
         "benchmark": "^GSPC"
       }
     ],
     "worst": [
+      {
+        "nameId": "2025-07-25-b15b702f-n16",
+        "episodeId": "2025-07-25-b15b702f",
+        "ticker": "INTC",
+        "company": "Intel",
+        "decision": "avoid",
+        "assetType": "stock",
+        "date": "2025-07-25",
+        "horizon": "p12m",
+        "edge": -342.85,
+        "return": 342.85,
+        "alpha": 326.81,
+        "benchmark": "^GSPC"
+      },
+      {
+        "nameId": "2025-09-27-8bf2e8b1-n18",
+        "episodeId": "2025-09-27-8bf2e8b1",
+        "ticker": "AMD",
+        "company": "Advanced Micro Devices",
+        "decision": "avoid",
+        "assetType": "stock",
+        "date": "2025-09-27",
+        "horizon": "p12m",
+        "edge": -281.21,
+        "return": 281.21,
+        "alpha": 265.56,
+        "benchmark": "^GSPC"
+      },
       {
         "nameId": "2026-04-11-e42972d5-n6",
         "episodeId": "2026-04-11-e42972d5",
@@ -229,17 +353,17 @@
         "benchmark": "^GSPC"
       },
       {
-        "nameId": "2025-10-03-f29c27a6-n2",
-        "episodeId": "2025-10-03-f29c27a6",
-        "ticker": "PSRHF",
-        "company": "Pulsar Helium",
+        "nameId": "2026-01-07-bdf6c678-n5",
+        "episodeId": "2026-01-07-bdf6c678",
+        "ticker": "HPE",
+        "company": "Hewlett Packard Enterprise",
         "decision": "avoid",
         "assetType": "stock",
-        "date": "2025-10-03",
-        "horizon": "p6m",
-        "edge": -260.69,
-        "return": 260.69,
-        "alpha": 262.24,
+        "date": "2026-01-07",
+        "horizon": "p9m",
+        "edge": -220.32,
+        "return": 220.32,
+        "alpha": 208.12,
         "benchmark": "^GSPC"
       },
       {
@@ -254,34 +378,6 @@
         "edge": -215.32,
         "return": 215.32,
         "alpha": 198.12,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2025-12-05-4ee68909-n2",
-        "episodeId": "2025-12-05-4ee68909",
-        "ticker": "STRL",
-        "company": "Sterling Infrastructure",
-        "decision": "avoid",
-        "assetType": "stock",
-        "date": "2025-12-05",
-        "horizon": "p6m",
-        "edge": -174.33,
-        "return": 174.33,
-        "alpha": 166.54,
-        "benchmark": "^GSPC"
-      },
-      {
-        "nameId": "2026-03-24-a1ac101b-n6",
-        "episodeId": "2026-03-24-a1ac101b",
-        "ticker": "MU",
-        "company": "Micron Technology",
-        "decision": "avoid",
-        "assetType": "stock",
-        "date": "2026-03-24",
-        "horizon": "p6m",
-        "edge": -171.15,
-        "return": 171.15,
-        "alpha": 153.61,
         "benchmark": "^GSPC"
       }
     ]

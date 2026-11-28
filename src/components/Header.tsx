@@ -10,6 +10,9 @@ export interface GlobalControls {
   setAssetClass: (v: AssetClass) => void;
   windowKey: WindowKey;
   setWindowKey: (v: WindowKey) => void;
+  customRange: { from: string; to: string };
+  setCustomRange: (v: { from: string; to: string }) => void;
+  dataSpan: { from: string; to: string } | null;
   horizon: Horizon;
   setHorizon: (v: Horizon) => void;
   realCallsOnly: boolean;
@@ -23,8 +26,10 @@ const ASSET_SEG = ASSET_OPTIONS.map((o) => ({
 }));
 
 const HORIZON_SEG = [
-  { value: 'p3m' as Horizon, label: '+3 months' },
-  { value: 'p6m' as Horizon, label: '+6 months' },
+  { value: 'p3m' as Horizon, label: '+3mo' },
+  { value: 'p6m' as Horizon, label: '+6mo' },
+  { value: 'p9m' as Horizon, label: '+9mo' },
+  { value: 'p12m' as Horizon, label: '+12mo' },
 ];
 
 export function Header({ meta, controls }: { meta?: Metadata | null; controls: GlobalControls }) {
@@ -56,7 +61,26 @@ export function Header({ meta, controls }: { meta?: Metadata | null; controls: G
             <Segmented value={controls.assetClass} options={ASSET_SEG} onChange={controls.setAssetClass} />
           </Control>
           <Control label="Window">
-            <Dropdown value={controls.windowKey} options={WINDOW_OPTIONS} onChange={controls.setWindowKey} width={200} />
+            <div className="flex items-center gap-2">
+              <Dropdown value={controls.windowKey} options={WINDOW_OPTIONS} onChange={controls.setWindowKey} width={168} />
+              {controls.windowKey === 'custom' && (
+                <div className="flex items-center gap-1.5">
+                  <DateInput
+                    value={controls.customRange.from}
+                    min={controls.dataSpan?.from}
+                    max={controls.customRange.to || controls.dataSpan?.to}
+                    onChange={(from) => controls.setCustomRange({ ...controls.customRange, from })}
+                  />
+                  <span className="text-[12px] font-semibold text-fdc-grey">→</span>
+                  <DateInput
+                    value={controls.customRange.to}
+                    min={controls.customRange.from || controls.dataSpan?.from}
+                    max={controls.dataSpan?.to}
+                    onChange={(to) => controls.setCustomRange({ ...controls.customRange, to })}
+                  />
+                </div>
+              )}
+            </div>
           </Control>
           <Control label="Performance horizon">
             <Segmented value={controls.horizon} options={HORIZON_SEG} onChange={controls.setHorizon} />
@@ -82,5 +106,20 @@ function Control({ label, children }: { label: string; children: React.ReactNode
       <div className="mb-1 text-[10.5px] font-semibold uppercase tracking-wide text-fdc-grey">{label}</div>
       {children}
     </div>
+  );
+}
+
+function DateInput({
+  value, min, max, onChange,
+}: { value: string; min?: string; max?: string; onChange: (v: string) => void }) {
+  return (
+    <input
+      type="date"
+      value={value}
+      min={min}
+      max={max}
+      onChange={(e) => onChange(e.target.value)}
+      className="h-[34px] rounded-xl border border-black/10 bg-white px-2.5 text-[12.5px] font-medium text-fdc-ink shadow-sm outline-none focus:border-fdc-green/50"
+    />
   );
 }

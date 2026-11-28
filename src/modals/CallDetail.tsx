@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Quote, ExternalLink, Headphones, Info, LineChart } from 'lucide-react';
 import type { NameRow } from '../types';
-import { toDateProgress, loadPrices, isDirectionHit, type Dataset, type PriceSeries } from '../lib/data';
+import { toDateProgress, loadPrices, isDirectionHit, type Dataset, type PriceSeries, type Horizon } from '../lib/data';
 import { Modal } from '../components/ui/Modal';
 import { Badge, MiniStat } from '../components/ui/Card';
 import { VerdictPill } from '../components/ui/VerdictPill';
@@ -35,18 +35,19 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
   const recap = row.mentionType === 'market_recap';
   const td = toDateProgress(row); // live "so far" return while a window is open
   // Was the call right? (decision-aware, at the longest closed window)
-  const resultHz = perf?.p6m?.status === 'complete' ? 'p6m' : perf?.p3m?.status === 'complete' ? 'p3m' : null;
+  const resultHz = (['p12m', 'p9m', 'p6m', 'p3m'] as const).find((h) => perf?.[h]?.status === 'complete') ?? null;
   const resultHit = !recap && resultHz ? isDirectionHit(row, resultHz) : null;
 
   // Only COMPLETED windows get a bar — an open window has no real 3-/6-month number yet.
+  const H_BAR_LABEL = { p3m: '+3 months', p6m: '+6 months', p9m: '+9 months', p12m: '+12 months' } as const;
   const groups: GGroup[] = perf
-    ? (['p3m', 'p6m'] as const)
+    ? (['p3m', 'p6m', 'p9m', 'p12m'] as const)
         .filter((h) => perf[h]?.status === 'complete')
         .map((h) => {
           const leg = perf[h]!;
           return {
             key: h,
-            label: h === 'p3m' ? '+3 months' : '+6 months',
+            label: H_BAR_LABEL[h],
             bars: [
               { seriesKey: 'call', label: row.ticker, value: leg.return, color: v.color },
               { seriesKey: 'mkt', label: benchLabel(perf.benchmark), value: leg.benchReturn, color: SLATE },
@@ -59,7 +60,7 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
           };
         })
     : [];
-  const horizonStat = (h: 'p3m' | 'p6m', label: string) => {
+  const horizonStat = (h: Horizon, label: string) => {
     const leg = perf?.[h];
     const complete = leg?.status === 'complete';
     return (
@@ -172,14 +173,18 @@ export function CallDetail({ row, data, onClose }: { row: NameRow | null; data: 
                   markers={[
                     ...(perf.p3m?.status === 'complete' ? [{ date: perf.p3m.date, label: '+3m' }] : []),
                     ...(perf.p6m?.status === 'complete' ? [{ date: perf.p6m.date, label: '+6m' }] : []),
+                    ...(perf.p9m?.status === 'complete' ? [{ date: perf.p9m.date, label: '+9m' }] : []),
+                    ...(perf.p12m?.status === 'complete' ? [{ date: perf.p12m.date, label: '+12m' }] : []),
                   ]}
                 />
               </div>
             )}
-            <div className="mb-3 grid grid-cols-3 gap-2">
+            <div className="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
               <MiniStat label="Price at mention" value={usd(perf.priceAtMention)} color={SLATE} sub={dateLabel(perf.priceDate)} />
               {horizonStat('p3m', `+3mo vs ${benchLabel(perf.benchmark)}`)}
               {horizonStat('p6m', `+6mo vs ${benchLabel(perf.benchmark)}`)}
+              {horizonStat('p9m', `+9mo vs ${benchLabel(perf.benchmark)}`)}
+              {horizonStat('p12m', `+12mo vs ${benchLabel(perf.benchmark)}`)}
             </div>
             {td && (
               <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-fdc-offwhite px-3 py-2 text-[12.5px]">

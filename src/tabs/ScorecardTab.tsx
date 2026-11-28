@@ -21,7 +21,7 @@ export default function ScorecardTab({
 }) {
   const scores = useMemo(() => computeScores(rows, horizon), [rows, horizon]);
   const { best, worst } = useMemo(() => bestWorst(rows, horizon, 5), [rows, horizon]);
-  const hMonths = horizon === 'p3m' ? '3 months' : '6 months';
+  const hMonths = ({ p3m: '3 months', p6m: '6 months', p9m: '9 months', p12m: '12 months' } as const)[horizon];
 
   // Benchmark label follows the selected asset class; alpha is always per-call.
   const marketLabel =
@@ -188,6 +188,8 @@ function CallList({ calls, onOpenCall, empty }: { calls: RankedCall[]; onOpenCal
         const spark = [{ label: 'At mention', value: 0 }];
         if (row.perf?.p3m?.status === 'complete') spark.push({ label: '+3 mo', value: sign * row.perf.p3m.return });
         if (row.perf?.p6m?.status === 'complete') spark.push({ label: '+6 mo', value: sign * row.perf.p6m.return });
+        if (row.perf?.p9m?.status === 'complete') spark.push({ label: '+9 mo', value: sign * row.perf.p9m.return });
+        if (row.perf?.p12m?.status === 'complete') spark.push({ label: '+12 mo', value: sign * row.perf.p12m.return });
         return (
           <button
             key={row.nameId}

@@ -65,6 +65,9 @@ jobs:
       - name: Enrich performance (Yahoo)
         run: node scripts/enrich-performance.mjs
 
+      - name: Enrich sectors (Yahoo)
+        run: node scripts/enrich-sectors.mjs
+
       - name: Fetch price history (Yahoo)
         run: node scripts/fetch-prices.mjs
 

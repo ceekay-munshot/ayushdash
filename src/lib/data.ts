@@ -8,9 +8,17 @@ import type {
 
 const BASE = import.meta.env.BASE_URL;
 
-export type Horizon = 'p3m' | 'p6m';
-export type WindowKey = 'all' | 'y2025h2' | 'study' | 'last3';
+export type Horizon = 'p3m' | 'p6m' | 'p9m' | 'p12m';
+export type WindowKey = 'all' | 'y2025h2' | 'study' | 'last3' | 'custom';
 export type AssetClass = 'all' | AssetType;
+
+export const HORIZONS: Horizon[] = ['p3m', 'p6m', 'p9m', 'p12m'];
+export const H_LABEL: Record<Horizon, string> = {
+  p3m: '+3 months', p6m: '+6 months', p9m: '+9 months', p12m: '+12 months',
+};
+export const H_SHORT: Record<Horizon, string> = {
+  p3m: '+3mo', p6m: '+6mo', p9m: '+9mo', p12m: '+12mo',
+};
 
 export interface Dataset {
   episodes: Episode[];
@@ -93,12 +101,27 @@ function addDaysISO(iso: string, d: number) {
   return dt.toISOString().slice(0, 10);
 }
 
-export function windowRange(w: WindowKey, meta: Metadata | null): { from: string; to: string; label: string } {
+export interface Range { from: string; to: string; label: string }
+
+// Resolve the selected window to a concrete date range + label. `custom` carries
+// the user's From/To when windowKey === 'custom'.
+export function windowRange(
+  w: WindowKey,
+  meta: Metadata | null,
+  custom?: { from: string; to: string } | null
+): Range {
   const to = meta?.window?.to ?? todayISO();
-  const from = meta?.window?.from ?? '2026-01-01';
+  const from = meta?.window?.from ?? '2025-07-01';
   if (w === 'y2025h2') return { from: '2025-07-01', to: '2025-12-31', label: 'Jul–Dec 2025' };
   if (w === 'study') return { from: '2026-01-01', to: '2026-06-30', label: 'Jan–Jun 2026 study' };
   if (w === 'last3') return { from: addDaysISO(todayISO(), -92), to: todayISO(), label: 'Last 3 months' };
+  if (w === 'custom') {
+    const cf = custom?.from || from;
+    const ct = custom?.to || to;
+    // Guard against an inverted range (swap if From is after To).
+    const [lo, hi] = cf <= ct ? [cf, ct] : [ct, cf];
+    return { from: lo, to: hi, label: `${lo} → ${hi}` };
+  }
   return { from, to, label: 'All time' };
 }
 
@@ -107,7 +130,15 @@ export const WINDOW_OPTIONS: { value: WindowKey; label: string }[] = [
   { value: 'y2025h2', label: '2025 (Jul–Dec)' },
   { value: 'study', label: 'Study: Jan–Jun 2026' },
   { value: 'last3', label: 'Last 3 months' },
+  { value: 'custom', label: 'Custom range…' },
 ];
+
+/** Distinct sectors present in a set of rows (sorted) — for the sector filter. */
+export function sectorOptions(rows: NameRow[]): string[] {
+  const set = new Set<string>();
+  for (const r of rows) if (r.sector) set.add(r.sector);
+  return [...set].sort((a, b) => a.localeCompare(b));
+}
 
 export const ASSET_OPTIONS: { value: AssetClass; label: string }[] = [
   { value: 'all', label: 'All' },
@@ -126,11 +157,10 @@ export const isRecap = (r: NameRow) => r.mentionType === 'market_recap';
 export function filterNames(
   names: NameRow[],
   assetClass: AssetClass,
-  w: WindowKey,
-  meta: Metadata | null,
+  range: { from: string; to: string },
   includeRecap = false
 ): NameRow[] {
-  const { from, to } = windowRange(w, meta);
+  const { from, to } = range;
   return names.filter((n) => {
     if (!includeRecap && isRecap(n)) return false;
     if (n.date < from || n.date > to) return false;
@@ -141,10 +171,9 @@ export function filterNames(
 
 export function filterEpisodes(
   episodes: Episode[],
-  w: WindowKey,
-  meta: Metadata | null
+  range: { from: string; to: string }
 ): Episode[] {
-  const { from, to } = windowRange(w, meta);
+  const { from, to } = range;
   return episodes.filter((e) => e.date >= from && e.date <= to);
 }
 
@@ -179,8 +208,11 @@ export function isBeatMarketHit(n: NameRow, h: Horizon): boolean | null {
  *  how many days have elapsed since the mention. null once fully matured. */
 export interface ToDate { return: number; alpha: number | null; days: number; benchmark: string | null }
 export function toDateProgress(r: NameRow): ToDate | null {
-  const p6 = r.perf?.p6m, p3 = r.perf?.p3m;
-  const leg = p6?.status === 'in_progress' ? p6 : p3?.status === 'in_progress' ? p3 : null;
+  // The live "so far" figure comes from the longest window still open — every
+  // in-progress leg is priced at the latest close, so they all give the same
+  // number. Null once every window (through +12m) has matured.
+  const legs = [r.perf?.p12m, r.perf?.p9m, r.perf?.p6m, r.perf?.p3m];
+  const leg = legs.find((l) => l?.status === 'in_progress') ?? null;
   if (!leg) return null;
   const days = Math.round(
     (Date.parse(`${leg.date}T00:00:00Z`) - Date.parse(`${r.date}T00:00:00Z`)) / 86400000
@@ -285,6 +317,7 @@ export interface CompanyRoll {
   ticker: string;
   company: string;
   assetType: AssetType;
+  sector: string | null;
   mentions: number;
   buy: number;
   neutral: number;
@@ -319,6 +352,7 @@ export function rollupByCompany(rows: NameRow[], h: Horizon): CompanyRoll[] {
       ticker,
       company: latest.company || ticker,
       assetType: latest.assetType,
+      sector: latest.sector ?? null,
       mentions: rs.length,
       buy: rs.filter((r) => r.decision === 'buy').length,
       neutral: rs.filter((r) => r.decision === 'neutral').length,

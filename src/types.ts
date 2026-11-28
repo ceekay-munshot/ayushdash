@@ -32,7 +32,7 @@ export interface Transcript {
 
 export interface PerfLeg {
   date: string; // trading day actually used
-  targetDate: string; // mentionDate + 91/183 days
+  targetDate: string; // mentionDate + 91/183/274/365 days
   price: number;
   return: number; // % vs priceAtMention
   benchReturn: number | null; // % over the same two dates
@@ -47,6 +47,8 @@ export interface Perf {
   priceDate: string;
   p3m: PerfLeg | null;
   p6m: PerfLeg | null;
+  p9m: PerfLeg | null;
+  p12m: PerfLeg | null;
 }
 
 export interface NameRow {
@@ -64,6 +66,8 @@ export interface NameRow {
   context: string;
   perf?: Perf | null;
   resolved?: boolean;
+  sector?: string | null; // GICS-style sector (stocks); fund/asset-class label otherwise
+  industry?: string | null;
 }
 
 export interface EpisodeSummary {
@@ -123,7 +127,7 @@ export interface Scorecard {
   };
   byDecision: Record<Decision, number>;
   byAssetType: Record<AssetType, number>;
-  performance: Record<'overall' | Decision, { p3m: PerfCell; p6m: PerfCell }>;
+  performance: Record<'overall' | Decision, Record<'p3m' | 'p6m' | 'p9m' | 'p12m', PerfCell>>;
   topCalls: { best: RankedCall[]; worst: RankedCall[] };
 }
 
@@ -135,7 +139,7 @@ export interface RankedCall {
   decision: Decision;
   assetType: AssetType;
   date: string;
-  horizon: 'p3m' | 'p6m';
+  horizon: 'p3m' | 'p6m' | 'p9m' | 'p12m';
   edge?: number; // decision-aware "how right": buy→return, avoid→−return
   return: number;
   alpha: number | null;

@@ -1,11 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ListChecks, Search, Download, Clock } from 'lucide-react';
 import type { NameRow, Decision, PerfLeg, AssetType } from '../types';
 import type { Dataset, Horizon } from '../lib/data';
-import { rollupByCompany, netVerdict, toDateProgress, isDirectionHit, type CompanyRoll } from '../lib/data';
+import { rollupByCompany, netVerdict, toDateProgress, isDirectionHit, sectorOptions, H_LABEL, H_SHORT, type CompanyRoll } from '../lib/data';
 import { PageHeader, Card, Badge } from '../components/ui/Card';
 import { SubTabs } from '../components/ui/Tabs';
-import { Segmented, Toggle } from '../components/ui/Controls';
+import { Segmented, Toggle, Dropdown } from '../components/ui/Controls';
 import { Table, type Column } from '../components/ui/Table';
 import { VerdictPill } from '../components/ui/VerdictPill';
 import { ASSET_COLOR, VERDICT, returnColor, heatForReturn } from '../lib/brand';
@@ -29,18 +29,26 @@ export default function AllCallsTab({
 }) {
   const [sub, setSub] = useState<Sub>('mention');
   const [vf, setVf] = useState<VFilter>('all');
+  const [sector, setSector] = useState<string>('all');
   const [q, setQ] = useState('');
   const [hideLow, setHideLow] = useState(false);
+
+  const sectors = useMemo(() => sectorOptions(rows), [rows]);
+  // If the active sector filter falls out of the current window, reset it.
+  useEffect(() => {
+    if (sector !== 'all' && !sectors.includes(sector)) setSector('all');
+  }, [sectors, sector]);
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return rows.filter((r) => {
       if (vf !== 'all' && r.decision !== vf) return false;
+      if (sector !== 'all' && r.sector !== sector) return false;
       if (hideLow && (r.confidence ?? 1) < 0.4) return false;
       if (needle && !(`${r.ticker} ${r.company}`.toLowerCase().includes(needle))) return false;
       return true;
     });
-  }, [rows, vf, q, hideLow]);
+  }, [rows, vf, sector, q, hideLow]);
 
   const companies = useMemo(() => rollupByCompany(filtered, horizon), [filtered, horizon]);
 
@@ -49,13 +57,18 @@ export default function AllCallsTab({
       void exportToExcel(
         filtered.map((r) => {
           const td = toDateProgress(r);
-          const done = (h: 'p3m' | 'p6m') => (r.perf?.[h]?.status === 'complete');
+          const done = (h: Horizon) => (r.perf?.[h]?.status === 'complete');
+          const ret = (h: Horizon) => (done(h) ? r.perf![h]!.return : '');
+          const alpha = (h: Horizon) => (done(h) ? (r.perf![h]!.alpha ?? '') : '');
           return {
-            Date: r.date, Ticker: r.ticker, Company: r.company, Asset: ASSET_SHORT[r.assetType],
+            Date: r.date, Ticker: r.ticker, Company: r.company,
+            Sector: r.sector ?? '', Industry: r.industry ?? '', Asset: ASSET_SHORT[r.assetType],
             Verdict: r.decision, Confidence: r.confidence,
             'To date %': td?.return ?? '', 'Days so far': td?.days ?? '',
-            '+3mo return %': done('p3m') ? r.perf!.p3m!.return : '', '+3mo vs market %': done('p3m') ? (r.perf!.p3m!.alpha ?? '') : '',
-            '+6mo return %': done('p6m') ? r.perf!.p6m!.return : '', '+6mo vs market %': done('p6m') ? (r.perf!.p6m!.alpha ?? '') : '',
+            '+3mo return %': ret('p3m'), '+3mo vs market %': alpha('p3m'),
+            '+6mo return %': ret('p6m'), '+6mo vs market %': alpha('p6m'),
+            '+9mo return %': ret('p9m'), '+9mo vs market %': alpha('p9m'),
+            '+12mo return %': ret('p12m'), '+12mo vs market %': alpha('p12m'),
             Status: r.resolved ? (r.perf?.[horizon]?.status ?? 'n/a') : 'unmatched', Reasoning: r.reasoning,
           };
         }),
@@ -64,7 +77,7 @@ export default function AllCallsTab({
     } else {
       void exportToExcel(
         companies.map((c) => ({
-          Ticker: c.ticker, Company: c.company, Asset: ASSET_SHORT[c.assetType], Mentions: c.mentions,
+          Ticker: c.ticker, Company: c.company, Sector: c.sector ?? '', Asset: ASSET_SHORT[c.assetType], Mentions: c.mentions,
           Buy: c.buy, Neutral: c.neutral, Avoid: c.avoid, 'Latest verdict': c.latestDecision,
           'Avg return %': c.avgReturn ?? '', 'Avg vs market %': c.avgAlpha ?? '',
         })),
@@ -107,6 +120,14 @@ export default function AllCallsTab({
             onChange={(v) => setVf(v as VFilter)}
             size="sm"
           />
+          {sectors.length > 0 && (
+            <Dropdown
+              value={sector}
+              options={[{ value: 'all', label: 'All sectors' }, ...sectors.map((s) => ({ value: s, label: s }))]}
+              onChange={setSector}
+              width={150}
+            />
+          )}
           <div className="relative">
             <Search size={14} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-fdc-grey" />
             <input
@@ -133,7 +154,7 @@ export default function AllCallsTab({
       </Card>
       <p className="px-1 text-[11.5px] text-fdc-grey">
         {sub === 'mention' ? `${filtered.length} ${realCallsOnly ? 'calls' : 'rows'}` : `${companies.length} companies`} · <span className="font-medium text-fdc-slate">To date</span> = return so far (<Clock size={11} className="inline" /> live);
-        <span className="font-medium text-fdc-slate"> +3mo/+6mo</span> show “—” until that window closes · green = gain / beat market, red = loss / lagged · click a row for detail.
+        <span className="font-medium text-fdc-slate"> +3/6/9/12mo</span> show “—” until that window closes · green = gain, red = loss · click a row for detail.
         {realCallsOnly && recapCount > 0 && (
           <> · <span className="font-medium text-fdc-slate">{recapCount} market-recap mention{recapCount === 1 ? '' : 's'} hidden</span> (toggle “Real calls only” off to show)</>
         )}
@@ -178,18 +199,23 @@ function MentionTable({ rows, horizon, onOpenCall }: { rows: NameRow[]; horizon:
   // Emphasise the header of the horizon selected by the global toggle.
   const mark = (label: string, h: Horizon) =>
     horizon === h ? <span className="border-b-2 border-white/70 pb-px">{label}</span> : <span className="opacity-70">{label}</span>;
+  const retCol = (h: Horizon): Column<NameRow> => ({
+    key: `ret_${h}`, header: mark(H_SHORT[h], h), align: 'right', sortable: true,
+    headerHint: `Raw return ${H_LABEL[h].replace('+', '')} after the call — “—” until that window closes`,
+    sortValue: (r) => (r.perf?.[h]?.status === 'complete' ? r.perf![h]!.return : -Infinity),
+    heat: (r) => (r.perf?.[h]?.status === 'complete' ? heatForReturn(r.perf![h]!.return, 20) : null),
+    render: (r) => <Ret leg={r.perf?.[h]} kind="return" />,
+  });
   const cols: Column<NameRow>[] = [
     { key: 'date', header: 'Date', sortable: true, sortValue: (r) => r.date, render: (r) => <span className="whitespace-nowrap text-fdc-grey">{dateShort(r.date)}</span> },
     { key: 'ticker', header: 'Ticker', sortable: true, sortValue: (r) => r.ticker, render: (r) => <span className="tnum font-bold text-fdc-ink">{r.ticker || '—'}</span> },
-    { key: 'company', header: 'Company', sortable: true, sortValue: (r) => r.company, width: 190, render: (r) => <span className="block max-w-[190px] truncate">{r.company}</span> },
+    { key: 'company', header: 'Company', sortable: true, sortValue: (r) => r.company, width: 180, render: (r) => <span className="block max-w-[180px] truncate">{r.company}</span> },
+    { key: 'sector', header: 'Sector', sortable: true, sortValue: (r) => r.sector || '~', width: 124, render: (r) => r.sector ? <span className="block max-w-[124px] truncate text-[12px] text-fdc-slate" title={r.industry || undefined}>{r.sector}</span> : <span className="text-fdc-light">—</span> },
     { key: 'asset', header: 'Type', render: (r) => <Badge color={ASSET_COLOR[r.assetType]}>{ASSET_SHORT[r.assetType]}</Badge> },
     { key: 'verdict', header: 'Verdict', sortable: true, sortValue: (r) => VERDICT_ORDER[r.decision], render: (r) => r.mentionType === 'market_recap' ? <Badge color="#94A3B8">recap</Badge> : <VerdictPill decision={r.decision} size="sm" /> },
     { key: 'result', header: 'Call', headerHint: 'Was the call right at the selected horizon? Buy↑ or Avoid↓ = right', sortable: true, sortValue: (r) => { const h = isDirectionHit(r, horizon); return h == null ? -1 : h ? 1 : 0; }, render: (r) => <CallResult row={r} horizon={horizon} /> },
     { key: 'todate', header: 'To date', align: 'right', sortable: true, headerHint: 'Return since the call, so far (live)', sortValue: (r) => toDateProgress(r)?.return ?? -Infinity, heat: (r) => heatForReturn(toDateProgress(r)?.return, 20), render: (r) => <ToDateCell row={r} /> },
-    { key: 'r3', header: mark('+3mo', 'p3m'), align: 'right', sortable: true, headerHint: 'Return 3 months after the call (— until the window closes)', sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? r.perf.p3m.return : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="return" /> },
-    { key: 'a3', header: mark('+3mo vs mkt', 'p3m'), align: 'right', sortable: true, sortValue: (r) => (r.perf?.p3m?.status === 'complete' ? (r.perf.p3m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p3m?.status === 'complete' ? heatForReturn(r.perf.p3m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p3m} kind="alpha" /> },
-    { key: 'r6', header: mark('+6mo', 'p6m'), align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? r.perf.p6m.return : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.return, 20) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="return" /> },
-    { key: 'a6', header: mark('+6mo vs mkt', 'p6m'), align: 'right', sortable: true, sortValue: (r) => (r.perf?.p6m?.status === 'complete' ? (r.perf.p6m.alpha ?? -Infinity) : -Infinity), heat: (r) => r.perf?.p6m?.status === 'complete' ? heatForReturn(r.perf.p6m.alpha, 15) : null, render: (r) => <Ret leg={r.perf?.p6m} kind="alpha" /> },
+    retCol('p3m'), retCol('p6m'), retCol('p9m'), retCol('p12m'),
     { key: 'status', header: 'Status', render: (r) => renderStatus(r) },
   ];
   return (
@@ -230,7 +256,8 @@ function CompanyTable({ rows, horizon, onPick }: { rows: CompanyRoll[]; horizon:
   void horizon;
   const cols: Column<CompanyRoll>[] = [
     { key: 'ticker', header: 'Ticker', sortable: true, sortValue: (r) => r.ticker, render: (r) => <span className="tnum font-bold text-fdc-ink">{r.ticker}</span> },
-    { key: 'company', header: 'Company', sortable: true, sortValue: (r) => r.company, width: 200, render: (r) => <span className="block max-w-[200px] truncate">{r.company}</span> },
+    { key: 'company', header: 'Company', sortable: true, sortValue: (r) => r.company, width: 190, render: (r) => <span className="block max-w-[190px] truncate">{r.company}</span> },
+    { key: 'sector', header: 'Sector', sortable: true, sortValue: (r) => r.sector || '~', width: 120, render: (r) => r.sector ? <span className="block max-w-[120px] truncate text-[12px] text-fdc-slate">{r.sector}</span> : <span className="text-fdc-light">—</span> },
     { key: 'mentions', header: 'Mentions', align: 'right', sortable: true, sortValue: (r) => r.mentions, render: (r) => <span className="tnum font-semibold">{r.mentions}</span> },
     { key: 'split', header: 'Bull / bear', width: 150, render: (r) => <BullBear c={r} /> },
     { key: 'latest', header: 'Latest', render: (r) => <VerdictPill decision={r.latestDecision} size="sm" /> },

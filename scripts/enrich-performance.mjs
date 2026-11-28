@@ -19,6 +19,8 @@ const BENCH_NAMES = { '^GSPC': 'S&P 500', 'BTC-USD': 'Bitcoin (USD)' };
 const HORIZONS = [
   { key: 'p3m', days: 91 },
   { key: 'p6m', days: 183 },
+  { key: 'p9m', days: 274 },
+  { key: 'p12m', days: 365 },
 ];
 
 const OVERRIDES = await readJSON(resolve(ROOT, 'scripts/lib/ticker-overrides.json'), { bySymbol: {}, byCompany: {}, trusted: [] });
