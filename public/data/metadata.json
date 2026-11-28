@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-27T22:09:15.098Z",
+  "generatedAt": "2026-11-27T11:59:12.945Z",
   "window": {
-    "from": "2026-01-01",
+    "from": "2025-07-01",
     "to": "2026-11-27"
   },
-  "episodeCount": 234,
-  "nameCount": 3654,
+  "episodeCount": 365,
+  "nameCount": 5865,
   "source": "InvestTalk podcast (RedCircle RSS)"
 }

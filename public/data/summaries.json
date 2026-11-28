@@ -2714,5 +2714,1800 @@
     ],
     "tone": "mixed",
     "nameCount": 12
+  },
+  "2025-07-03-d9174210": {
+    "overview": "Justin Klein hosts the July 2, 2025 episode, covering weak ADP jobs data (−33k vs. +115k expected), the hidden risks of passive investing's market dominance, and several caller questions on individual stocks. The show emphasizes how cap-weighted passive funds distort price discovery and concentrate capital in mega-cap names, while also previewing key economic data due July 3 (ISM services, non-farm payrolls).",
+    "themes": [
+      "Jobs & economy",
+      "Valuations",
+      "Retirement & planning",
+      "AI & datacenters"
+    ],
+    "tone": "mixed",
+    "nameCount": 11
+  },
+  "2025-07-04-a966fc18": {
+    "overview": "Justin Klein hosts a July 3, 2025 episode focused on the U.S. dollar's worst start in 50 years (down ~11% in H1 2025) and its implications for investors. He reviews mixed economic data—headline jobs beat expectations but underlying indicators (ADP, ISM services employment) show weakness—and discusses UBS survey findings on central bank concerns about Fed independence and U.S. rule of law. Callers ask about Innovative Industrial Properties (IIPR), Murphy USA (MUSA), Flowers Foods (FLO), Steel Dynamics (STLD), and closed-end funds.",
+    "themes": [
+      "Interest rates",
+      "Inflation",
+      "Jobs & economy",
+      "Fed policy",
+      "International markets",
+      "Gold & precious metals",
+      "Crypto",
+      "Housing & REITs",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-07-08-547edfb7": {
+    "overview": "Luke Guerrero hosts Monday's episode, covering tariff impacts on housing, new tariffs on Japan and South Korea, and a range of caller questions on mining, REITs, closed-end funds, and payment stocks. The market closed lower with the S&P and Nasdaq retreating from record highs. Luke emphasizes the ripple effects of 50% steel/aluminum tariffs on home prices and construction costs, and discusses the administration's expanding tariff announcements.",
+    "themes": [
+      "Tariffs & trade",
+      "Housing & REITs",
+      "Commodities",
+      "Dividends & income",
+      "Valuations",
+      "International markets"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-07-09-7e64028a": {
+    "overview": "Justin Klein hosts the July 8, 2025 episode, focusing on the 'big, beautiful bill' and its limited tax relief for Social Security recipients, industrial companies pivoting to AI data centers, and skepticism around Trump's tariff deadlines. Callers ask about WMS, direct indexing, a Bitcoin-proxy stock, and junior gold miner PPTA.",
+    "themes": [
+      "Taxes",
+      "AI & datacenters",
+      "Tariffs & trade",
+      "Gold & precious metals",
+      "Crypto",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 27
+  },
+  "2025-07-10-7215f09d": {
+    "overview": "Justin Klein hosts this episode, focusing on nuclear energy's revival driven by AI and data center power demands. He also discusses private equity risks, immigration's economic impact, and answers caller questions on bond funds, food companies, utilities, and housing stocks. The tone is cautiously optimistic on nuclear but mixed overall given tariff and labor market concerns.",
+    "themes": [
+      "AI & datacenters",
+      "Energy & oil",
+      "Interest rates",
+      "Inflation",
+      "Housing & REITs",
+      "Immigration & labor",
+      "Tariffs & trade",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 27
+  },
+  "2025-07-12-b0f4655f": {
+    "overview": "Luke Guerrero hosts Friday's episode, covering market performance, tariff threats, fiscal deficit concerns, and a wide range of caller questions on individual stocks and ETFs. The S&P and Nasdaq snapped winning streaks amid renewed tariff announcements (35% on Canada, 50% on Brazil) and rising long-end Treasury yields. Luke emphasizes the importance of forward-looking investing and warns about the risks of narrow, leveraged ETFs.",
+    "themes": [
+      "Tariffs & trade",
+      "Interest rates",
+      "Inflation",
+      "Volatility & risk",
+      "Semiconductors",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Housing & REITs",
+      "Commodities",
+      "Taxes",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-07-15-117a9eee": {
+    "overview": "Monday, July 15, 2025 episode of InvestTalk. Host Justin Klein discusses Trump's threat of 25% tariffs on Apple iPhones not made in the U.S., reviews Google's 2013 failed attempt to manufacture smartphones domestically, and previews the upcoming earnings season with muted expectations. Callers ask about medical device ETF IHI, Caterpillar, DoorDash (via voicemail), Copart vs. RB Global, and Aeva Technologies.",
+    "themes": [
+      "Tariffs & trade",
+      "Earnings",
+      "AI & datacenters",
+      "Healthcare",
+      "Commodities",
+      "Crypto",
+      "EVs & autos"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-07-16-6a8487d7": {
+    "overview": "Justin Klein hosts the July 15, 2025 episode, focusing on the differences between good debt and bad debt. The market had a rough day with banks and pharma names down sharply, while NVIDIA and semiconductors held up. Klein also discusses regional banks as better economic indicators than megabanks, the concept of 'Dutch disease' and whether the U.S. suffers from it, and answers caller questions on FPI, DoorDash, Opera, and Casey's General Stores.",
+    "themes": [
+      "Banks & financials",
+      "Earnings",
+      "Inflation",
+      "Interest rates",
+      "Valuations",
+      "Retirement & planning",
+      "Taxes",
+      "Energy & oil",
+      "Semiconductors"
+    ],
+    "tone": "mixed",
+    "nameCount": 25
+  },
+  "2025-07-17-bca8f596": {
+    "overview": "Luke Guerrero hosts a Wednesday episode focused on REITs as a potential value opportunity for income-focused investors. The show covers PPI data showing mixed signals—flat headline but tariff-driven cost pressures in goods—and addresses caller questions on Bath & Body Works, Mexico ETFs, HPE, Myers Industries, NVR Homes, and several REITs. The White House briefly roiled markets with rumors of firing Fed Chair Powell, later walked back.",
+    "themes": [
+      "Interest rates",
+      "Inflation",
+      "Housing & REITs",
+      "Tariffs & trade",
+      "Dividends & income",
+      "Consumer & retail",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-07-18-fc82c60a": {
+    "overview": "Justin Klein hosts the July 17, 2025 episode, covering caller questions on individual stocks and introducing the 'Coast FIRE' concept—a more flexible approach to financial independence that involves scaling back work rather than full early retirement. The show also touches on tariffs, immigration policy, and the Big Mac Index as a measure of currency valuation.",
+    "themes": [
+      "Retirement & planning",
+      "Dividends & income",
+      "Valuations",
+      "Tariffs & trade",
+      "International markets",
+      "Healthcare",
+      "Crypto"
+    ],
+    "tone": "mixed",
+    "nameCount": 13
+  },
+  "2025-07-19-70f5fbcd": {
+    "overview": "Luke Guerrero hosts Friday's episode, covering caller questions on nuclear energy, REITs, cybersecurity, and dividend stocks. The show emphasizes the three biggest misconceptions about dividend investing and warns about the risks of political interference with Federal Reserve independence.",
+    "themes": [
+      "Dividends & income",
+      "Fed policy",
+      "Crypto",
+      "Cybersecurity",
+      "Housing & REITs",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-07-22-3ff3c6ca": {
+    "overview": "Justin Klein hosts the July 21, 2025 episode, focusing on budgeting philosophies (50/30/20, pay-yourself-first, zero-based, envelope methods) and reviewing earnings season dynamics. Callers ask about individual stocks including GLOB, UPS, Quantum Scape, and Open Door. Klein notes the market rolled over late in the session and warns that stretched valuations are causing muted reactions to positive earnings.",
+    "themes": [
+      "Earnings",
+      "Valuations",
+      "Consumer & retail",
+      "Retirement & planning",
+      "Crypto"
+    ],
+    "tone": "mixed",
+    "nameCount": 13
+  },
+  "2025-07-23-52f3c272": {
+    "overview": "Justin Klein and Luke Guerrero discuss the newly passed GENIUS Act regulating stablecoins, analyze several caller questions on individual stocks (Kinder Morgan, Nvidia, Ralph Lauren, Centene), and review how businesses worldwide are reacting to tariffs. The hosts express skepticism about stablecoins as payment methods and caution on high-valuation names.",
+    "themes": [
+      "Crypto",
+      "Tariffs & trade",
+      "Earnings",
+      "Energy & oil",
+      "Semiconductors",
+      "AI & datacenters",
+      "Healthcare",
+      "Consumer & retail",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 28
+  },
+  "2025-07-24-239d6a0d": {
+    "overview": "Luke Guerrero hosts Wednesday's episode, focusing heavily on housing market warning signs and their potential drag on the broader economy. He fields caller questions on tax-exempt bond ETFs, insurance stocks, and energy names, while reviewing Brady Corporation, Finvolution Group, Kingstone Companies, Coterra Energy, and PIMCO Dynamic Income Fund. The show also discusses the push for 24/7 stock trading and its risks.",
+    "themes": [
+      "Housing & REITs",
+      "Interest rates",
+      "Energy & oil",
+      "Dividends & income",
+      "Bonds & fixed income",
+      "Taxes",
+      "Volatility & risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-07-25-b15b702f": {
+    "overview": "Justin Klein hosts a Thursday edition of InvestTalk, opening with a market recap showing modest gains (S&P +0.07%, NASDAQ +0.18%, Dow -0.07%). He answers caller questions on Jacobs Solutions, AutoZone, energy sector allocation, and Rheinmetall, and discusses relative valuation methods, private equity concerns, and electricity demand trends.",
+    "themes": [
+      "Valuations",
+      "Defense & aerospace",
+      "Energy & oil",
+      "AI & datacenters",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 26
+  },
+  "2025-07-26-83bdfe2f": {
+    "overview": "Luke Guerrero hosts a Friday episode focused on tax optimization strategies, covering six signs of overpaying taxes. The show also addresses caller questions on individual stocks including Leggett & Platt, Micro Strategy, ZIM Integrated Shipping, Zebra Technologies, and discusses tariff impacts on corporate profits and inflation. Market sentiment remains positive with fresh S&P and NASDAQ record closes.",
+    "themes": [
+      "Taxes",
+      "Tariffs & trade",
+      "Earnings",
+      "Valuations",
+      "Crypto",
+      "International markets",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-07-29-580be495": {
+    "overview": "Monday, July 28, 2025 episode focused on downsizing for retirement, with discussions on Tech Resources earnings disappointment, Lululemon's technical weakness, and a tentative EU trade deal. Hosts Justin Klein and Luke Guerrero answered caller questions on Tech Resources, Lululemon, TGS (Argentina LNG), and Papa John's, plus a YouTube comment on UnitedHealth.",
+    "themes": [
+      "Retirement & planning",
+      "Energy & oil",
+      "Taxes",
+      "International markets",
+      "Earnings",
+      "Tariffs & trade",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 21
+  },
+  "2025-07-30-b1bca039": {
+    "overview": "Luke Guerrero hosts a July 30, 2025 episode focused on dividend reinvestment strategies, covering seven key considerations including tax implications, fractional shares, and retirement income. The show also addresses meme-stock resurgence, crypto lending risks, and answers caller questions on AMD, Light & Wonder, Adobe, and biotech names.",
+    "themes": [
+      "Dividends & income",
+      "Retirement & planning",
+      "Taxes",
+      "Crypto",
+      "Semiconductors",
+      "AI & datacenters",
+      "Volatility & risk",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 26
+  },
+  "2025-07-31-b0f63f10": {
+    "overview": "Luke Guerrero hosts a Fed Wednesday episode, covering the FOMC decision (hold at 4.25–4.50%, two dissents), Q2 GDP data (3% headline masked by import drop and front-running), and a deep dive into behavioral finance—how psychology and biases shape investor decisions. Callers ask about California Water Services, Kinsale Capital, Sanofi, and IAU gold trust; Luke also reviews T. Rowe Price Health Sciences Fund and Fiscal Note.",
+    "themes": [
+      "Fed policy",
+      "Behavioral finance",
+      "Tariffs & trade",
+      "Earnings",
+      "Gold & precious metals",
+      "Healthcare",
+      "Banks & financials",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-08-01-e4ce46eb": {
+    "overview": "This episode of InvestTalk, hosted by Justin Klein on July 31, 2025, focused on building and maintaining good credit scores, with market commentary on tech earnings (Microsoft, Meta) and a broad sell-off beneath the surface. Callers asked about Allison Transmission, Qualcomm, Heineken, Agnico Eagle, and portfolio allocation strategies. Klein also discussed Las Vegas tourism weakness as an economic indicator and the importance of personalized financial advice over cookie-cutter rules.",
+    "themes": [
+      "Earnings",
+      "Semiconductors",
+      "Consumer & retail",
+      "Gold & precious metals",
+      "International markets",
+      "Retirement & planning",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-08-02-35dc15c9": {
+    "overview": "Friday, August 1, 2025 episode. The S&P fell 1.6%, Nasdaq down 2.25%, driven by a weak July jobs report (only 73k jobs added vs. expectations, unemployment at 4.24%) and downward revisions to prior months. Amazon and Apple earnings disappointed. The hosts discuss retirement delays, housing market weakness, and cover-call strategies. Callers ask about FICO, Cheniere Energy, and Accenture.",
+    "themes": [
+      "Jobs & economy",
+      "Interest rates",
+      "Fed policy",
+      "Retirement & planning",
+      "Housing & REITs",
+      "AI & datacenters",
+      "Tariffs & trade",
+      "Inflation",
+      "Valuations"
+    ],
+    "tone": "bearish",
+    "nameCount": 30
+  },
+  "2025-08-06-3a92adec": {
+    "overview": "Justin Klein hosts the August 5, 2025 episode, covering a stagflationary economic environment with weak ISM services data and labor market softness. The main focus is on Big Tech's massive capital spending to power AI data centers through nuclear, renewable, and on-site energy solutions. Klein also discusses tariff impacts, municipal bonds, and answers caller questions on Qualcomm, Palantir, One Oak, and Sterling Infrastructure.",
+    "themes": [
+      "AI & datacenters",
+      "Energy & oil",
+      "Interest rates",
+      "Inflation",
+      "Tariffs & trade",
+      "Bonds & fixed income",
+      "Jobs & economy",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-08-07-7ae890de": {
+    "overview": "In this August 6, 2025 episode, host Justin Klein discusses why emergency funds should not be invested in risky assets, reviews Q2 corporate earnings showing profit-growth deceleration outside mega-cap tech, and addresses caller questions on healthcare ETFs, payment processors, and retailers facing tariff headwinds. Klein emphasizes the importance of matching asset duration to liability timing and warns that the economic expansion is in late innings.",
+    "themes": [
+      "Healthcare",
+      "Earnings",
+      "Tariffs & trade",
+      "Dividends & income",
+      "Volatility & risk",
+      "Valuations",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-08-08-dd5e6fee": {
+    "overview": "Luke Guerrero hosts this episode, covering a caller question on General Dynamics, discussing whether Millennials can catch up to Boomer wealth, and answering questions on ConocoPhillips, CVS, American Express, dividend reinvestment, and gold taxation. The show also touches on the end of the de minimis tariff exemption and a new fear-based investing framework.",
+    "themes": [
+      "Defense & aerospace",
+      "Retirement & planning",
+      "Dividends & income",
+      "Energy & oil",
+      "Healthcare",
+      "Banks & financials",
+      "Tariffs & trade",
+      "Taxes",
+      "Gold & precious metals"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-08-09-47447588": {
+    "overview": "Justin Klein hosts the Friday, August 8, 2025 edition of InvestTalk, focusing on Social Security's future, forecasting accuracy, and manufacturing sector health. The show features caller questions on gold miners, auto parts retailers, high-yield bonds, and value ETFs, plus commentary on small modular reactor stocks and GLP-1 drug makers.",
+    "themes": [
+      "Gold & precious metals",
+      "Social Security & retirement",
+      "Forecasting & market outlook",
+      "Bonds & fixed income",
+      "Valuations",
+      "Energy & oil"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-08-11-1b1290ca": {
+    "overview": "Justin Klein opens the August 11, 2025 episode with a focus on the U.S. dollar's recent decline and whether collapse fears are overblown. He addresses caller questions on Chipotle, Lincoln Electric, and AbbVie, discusses recession indicators including weak restaurant spending and immigration-driven labor supply constraints, and reviews the day's modest market pullback.",
+    "themes": [
+      "Inflation",
+      "Interest rates",
+      "Jobs & economy",
+      "Consumer & retail",
+      "Tariffs & trade",
+      "Recession risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-08-13-45c3199c": {
+    "overview": "Justin Klein hosts the August 12, 2025 episode, covering ex-dividend date mechanics, a mixed CPI report that showed core inflation accelerating to 3.1% annualized, and concerns about the new BLS head potentially moving jobs data to quarterly releases. The show featured caller questions on tobacco, HVAC, retail, biotech, and crypto, with Klein emphasizing capital discipline in dividend stocks and warning of elevated valuations in AI-related infrastructure plays.",
+    "themes": [
+      "Dividends & income",
+      "Inflation",
+      "AI & datacenters",
+      "Crypto",
+      "Valuations",
+      "Jobs & economy"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-08-14-c465a14f": {
+    "overview": "Justin Klein discusses recession-proof investments, inflation concerns, and labor market data. He fields caller questions on Gilead Sciences, Joby Aviation, Capstone Copper, and copper/silver miner ETFs. The episode also covers the PPI inflation surprise, the BLS controversy, and the shift toward state-run capitalism in the U.S.",
+    "themes": [
+      "Inflation",
+      "Jobs & economy",
+      "Commodities",
+      "Gold & precious metals",
+      "Healthcare",
+      "Volatility & risk",
+      "Fed policy"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-08-14-e3801140": {
+    "overview": "Luke Guerrero hosts solo on August 14, 2025, covering a mix of market commentary, listener questions, and educational segments. The episode focuses on emerging risks in tokenized private-company shares (SpaceX, OpenAI), the opacity of private equity accounting as it enters 401(k) plans, and a variety of caller questions on energy, REITs, cannabis, and pharma names. The market closed higher with small caps and equal-weight S&P leading, while big tech lagged.",
+    "themes": [
+      "Crypto",
+      "Energy & oil",
+      "Housing & REITs",
+      "Healthcare",
+      "Retirement & planning",
+      "Valuations",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-08-16-6cf785a5": {
+    "overview": "Luke Guerrero hosts Friday's episode, discussing the shift from cost-driven globalization to strategic interdependence focused on supply-chain resilience and geopolitics. He fields caller questions on Fiserv, Adobe, eBay, Cardinal Health, and others, while reviewing tariff impacts, housing-market weakness in Sunbelt cities, and retail sales data. Markets closed mixed with small-cap strength.",
+    "themes": [
+      "Tariffs & trade",
+      "International markets",
+      "Housing & REITs",
+      "Inflation",
+      "Interest rates",
+      "Consumer & retail",
+      "Semiconductors",
+      "AI & datacenters"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-08-19-0b93065f": {
+    "overview": "Host Justin Klein discusses why frequent trading hurts returns, previews the upcoming Jackson Hole symposium and Fed rate-cut expectations, and reviews credit-market conditions. Callers ask about EQT, Deckers, DoorDash, Blackstone, and cash-balance plans.",
+    "themes": [
+      "Fed policy",
+      "Interest rates",
+      "Energy & oil",
+      "Housing & REITs",
+      "Retirement & planning",
+      "Valuations",
+      "Crypto",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 11
+  },
+  "2025-08-20-23838906": {
+    "overview": "Justin Klein discusses a notable market rotation on August 19, 2025, where large-cap growth and AI-related stocks sold off sharply while value sectors (REITs, utilities, consumer staples) rallied. He explores the outperformance of international value stocks year-to-date, signs of an AI sentiment shift (ChatGPT-5 disappointment, CoreWeave guidance miss), and the uncertain impact of Fed rate cuts on longer-term borrowing costs.",
+    "themes": [
+      "AI & datacenters",
+      "Valuations",
+      "International markets",
+      "Interest rates",
+      "Fed policy",
+      "Housing & REITs",
+      "Volatility & risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-08-21-5351baf7": {
+    "overview": "Luke Guerrero hosts the August 20, 2025 episode, covering a wide range of caller questions on individual stocks and utilities, a deep dive into new student loan repayment policies under Trump's budget bill, and warnings about AI-enabled cybercrime. The market saw mixed action with the S&P posting its fourth straight decline, while retail earnings painted a mixed picture of consumer resilience.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Consumer & retail",
+      "Cyber security",
+      "Housing & REITs",
+      "Dividends & income",
+      "Tariffs & trade",
+      "Student loan policy"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-08-21-987a8715": {
+    "overview": "This 'Best of Caller Questions' compilation covers a wide range of personal finance and investment topics, including bond strategies, portfolio allocation, debt management, retirement accounts (401(k), Roth IRA, 403(b)), real estate co-ops, value vs. growth investing, and international exposure. Hosts Justin Klein and Luke Guerrero answer caller questions on specific stocks and broader market themes, with a notable discussion on the struggling young consumer (18–24 year-olds) facing job scarcity and rising student loan payments.",
+    "themes": [
+      "Bonds & fixed income",
+      "Retirement & planning",
+      "Valuations",
+      "Consumer & retail",
+      "Interest rates",
+      "International markets",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-08-23-1849a306": {
+    "overview": "Luke Guerrero hosts the August 22, 2025 episode, covering a strong market rally driven by dovish Fed signals from Jackson Hole. The main focus is on wages falling behind inflation, leaving workers struggling. Callers ask about PayPal, a 351 exchange, Broadcom, Exelixis, Trane Technologies, and Costco.",
+    "themes": [
+      "Fed policy",
+      "Inflation",
+      "Wages & employment",
+      "AI & datacenters",
+      "Semiconductors",
+      "Earnings",
+      "Valuations",
+      "Consumer & retail",
+      "Healthcare",
+      "Tariffs & trade"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-08-25-93a84b4f": {
+    "overview": "Justin Klein hosts the August 25, 2025 episode, covering market action, caller questions, and a focus point on 12 ways to boost passive income. The show discusses Super Micro Computer's accounting issues, UPS's valuation, and the labor market's 'curious' state as described by Fed Chair Powell at Jackson Hole. Klein also addresses stagflation risks, Bitcoin's weakness as a liquidity signal, and the impact of slowing immigration on hiring.",
+    "themes": [
+      "AI & datacenters",
+      "Dividends & income",
+      "Housing & REITs",
+      "Crypto",
+      "Jobs & economy",
+      "Inflation",
+      "Fed policy",
+      "Tariffs & trade",
+      "Volatility & risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 18
+  },
+  "2025-08-27-a06b9e91": {
+    "overview": "Justin Klein hosts the August 26, 2025 episode, focusing on labor market weakness and immigration's economic impact. He fields caller questions on Campbell's Soup, Nike, Duolingo, Robinhood, and earnings data sources, and discusses a White House meeting on a critical Arizona copper project.",
+    "themes": [
+      "Jobs & economy",
+      "AI & datacenters",
+      "Immigration",
+      "Commodities",
+      "Crypto"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-08-28-847b44fb": {
+    "overview": "Luke Guerrero hosts a Wednesday episode covering market action, caller questions on individual stocks (Crocs, Adobe, Taiwan Semi, Matson), and ETFs (Guillermo's PAIE). The show emphasizes retirement planning for those with 30 years to save, discusses the resilience of enterprise software against AI disruption, and reviews tariff impacts on shipping and logistics names.",
+    "themes": [
+      "Retirement & planning",
+      "AI & datacenters",
+      "Semiconductors",
+      "Tariffs & trade",
+      "Valuations",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-08-29-f119feaa": {
+    "overview": "Luke Guerrero hosts this Thursday episode, covering Universal Music Group, Disney, Nvidia earnings, and Tetra Tech. The main focus point addresses multi-generational real estate wealth transfer strategies. Callers ask about low-risk ETFs, Warby Parker, and healthcare names Veeva Systems vs. Regeneron. Luke also discusses the blurring line between investing and gambling.",
+    "themes": [
+      "AI & datacenters",
+      "Healthcare",
+      "Retirement & planning",
+      "Taxes",
+      "Earnings",
+      "Valuations",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-08-30-11a20dc6": {
+    "overview": "This Best of Caller Questions compilation episode features hosts Luke Guerrero and Justin Klein answering a wide range of listener questions on topics including thematic ETFs, private equity, dividend sustainability, cash allocation strategies, precious metals, retirement planning, and technical analysis. The hosts provide educational guidance on portfolio construction, risk management, and investment decision-making across various asset classes.",
+    "themes": [
+      "Dividends & income",
+      "Retirement & planning",
+      "Gold & precious metals",
+      "ETF",
+      "Volatility & risk",
+      "Taxes",
+      "International markets"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-09-01-afb1ef74": {
+    "overview": "This Labor Day 2025 special is a 'Best of Caller Questions' compilation featuring hosts Justin Klein and Luke Guerrero answering a wide range of listener questions. Topics include recession preparation, cash allocation, dividend reinvestment, retirement account rollovers, bond investing, options education, and tax-loss harvesting. The hosts emphasize diversification, sector rotation, and understanding individual financial goals rather than making blanket market calls.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Volatility & risk",
+      "Dividends & income",
+      "Bonds & fixed income",
+      "Interest rates",
+      "Gold & precious metals",
+      "Housing & REITs"
+    ],
+    "tone": "neutral",
+    "nameCount": 8
+  },
+  "2025-09-03-859736bb": {
+    "overview": "Luke Guerrero hosts the September 2, 2025 episode, covering a risk-off market day with the Dow down 55 bps, S&P 500 down 69 bps, and Nasdaq down 82 bps. The main focus is on how an anticipated Fed rate cut in September could impact borrowing costs, savings yields, and mortgage rates. Callers ask about Amperous Technologies (AMPX), Yield Max Ultra (ULTY), Evercore (EVR), Oneok (OKE), Equity Lifestyle Properties (ELS), and Carrier Global (CARR). Luke also discusses consumer spending data, tariff pressures, and the structural challenges facing various sectors.",
+    "themes": [
+      "Interest rates",
+      "Fed policy",
+      "Inflation",
+      "Energy & oil",
+      "Housing & REITs",
+      "Consumer & retail",
+      "Tariffs & trade",
+      "Earnings",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 9
+  },
+  "2025-09-04-28662549": {
+    "overview": "Justin Klein discusses Generation X's unique retirement challenges, including late adoption of 401(k)s, multiple financial crises, and rising debt. He reviews several caller questions on Dell, GE Vernova, Kava, Sweetgreen, and apartment REIT Avalon Bay, while also exploring how AI shopping agents may disrupt online retail and advertising platforms.",
+    "themes": [
+      "Retirement & planning",
+      "AI & datacenters",
+      "Housing & REITs",
+      "Valuations",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 28
+  },
+  "2025-09-05-e8d5be33": {
+    "overview": "Host Justin Klein covers the September 4, 2025 market session, focusing on gold investing strategies for beginners, fund flow patterns, and the labor market. The show features caller questions on One Main Financial, Alexandria Real Estate, Applied Digital, and Target, plus a discussion of how massive fund inflows often precede underperformance.",
+    "themes": [
+      "Gold & precious metals",
+      "Interest rates",
+      "Jobs & economy",
+      "Valuations",
+      "Consumer & retail",
+      "Housing & REITs",
+      "Crypto",
+      "ETF flows and investor behavior"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-09-06-23c5e2b0": {
+    "overview": "Luke Guerrero hosts Friday's episode, covering the August jobs report (only 22,000 jobs added, unemployment at 4.3%), identity theft prevention, and several caller questions. Markets were mixed with the S&P 500 down 32 bps and gold hitting another record high. The weak jobs report has the market pricing in a 100% chance of a 50 bps Fed cut in September.",
+    "themes": [
+      "Jobs & economy",
+      "Fed policy",
+      "Interest rates",
+      "Gold & precious metals",
+      "AI & datacenters",
+      "Consumer & retail",
+      "Healthcare",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 11
+  },
+  "2025-09-09-7d17af8d": {
+    "overview": "Justin Klein hosts the September 8, 2025 episode, focusing on AI's broader economic impact beyond the Mag 7 and hyperscalers. He discusses market stability, the credit cycle, and warns about excessive speculation in crypto treasury companies and Gen Z chasing unsustainable yields. Callers ask about Argentine gas, Chinese insurance, buying stocks for kids, and covered-call strategies on gold miners.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Gold & precious metals",
+      "Valuations",
+      "International markets",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-09-10-de225461": {
+    "overview": "Luke Guerrero hosts solo, covering a busy September market session with mixed breadth. The show features caller questions on Argan (AGX), Zoom (ZM), Digital Realty Trust (DLR), MSC Industrial (MSM), and Stride (LRN), plus a YouTube question on gold allocation. The main focus point debates whether a small crypto allocation (1–5%) belongs in retirement accounts, weighing AI-driven tailwinds against volatility and regulatory risk.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Retirement & planning",
+      "Housing & REITs",
+      "Jobs & economy",
+      "Interest rates",
+      "Commodities",
+      "Volatility & risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 15
+  },
+  "2025-09-11-12ab8c96": {
+    "overview": "Host Luke Guerrero fields caller questions on Disney, eBay, Toast, Quonix, and several other names, while discussing the 2026 Social Security COLA, copper demand driven by AI and defense, and the risks of AI-driven market concentration. The show blends individual stock analysis with macro themes around inflation, industrial metals, and bubble concerns.",
+    "themes": [
+      "AI & datacenters",
+      "Inflation",
+      "Commodities",
+      "Retirement & planning",
+      "Valuations",
+      "Defense & aerospace",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-09-12-03abe256": {
+    "overview": "This 'Best of Caller Questions' compilation covers a wide range of personal finance and investment topics, including bonds, retirement accounts (401k, 403b, Roth IRA), real estate (co-ops), portfolio allocation, debt management, and specific questions about value vs. growth investing, fractional shares, and preferred dividends. The hosts also discuss the challenges facing younger consumers (Gen Z and Millennials) in the current economic environment.",
+    "themes": [
+      "Bonds & fixed income",
+      "Retirement & planning",
+      "Taxes",
+      "Dividends & income",
+      "Valuations",
+      "Consumer & retail",
+      "Housing & REITs",
+      "Jobs & economy"
+    ],
+    "tone": "mixed",
+    "nameCount": 8
+  },
+  "2025-09-12-6b24e667": {
+    "overview": "This 'Best of Caller Questions' compilation episode features a wide range of listener inquiries covering portfolio strategy, retirement accounts, tax planning, bonds, options education, and sector allocation. Hosts Justin Klein and Luke Guerrero provide guidance on recession preparation, cash allocation, dividend reinvestment, Roth conversions, and financial ratios, emphasizing diversification and risk management.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Bonds & fixed income",
+      "Dividends & income",
+      "Volatility & risk",
+      "Gold & precious metals",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 5
+  },
+  "2025-09-16-012a0d3d": {
+    "overview": "Host Justin Klein covers the September 16, 2025 market session (S&P +0.5%, NASDAQ +1%, driven by Tesla and Google) and digs into a New York Fed report showing AI is reducing hiring but not causing mass layoffs—firms are retraining workers instead. He fields caller questions on Chipotle, Lululemon, Sprouts Farmers Market, and portfolio allocation, and discusses the 'Render Hot' trade betting on economic resurgence despite tariff-driven job losses in manufacturing and wholesale.",
+    "themes": [
+      "AI & datacenters",
+      "Jobs & economy",
+      "Tariffs & trade",
+      "Consumer & retail",
+      "Healthcare",
+      "Valuations",
+      "Interest rates"
+    ],
+    "tone": "mixed",
+    "nameCount": 33
+  },
+  "2025-09-18-f82245f3": {
+    "overview": "Justin Klein hosts the September 18, 2025 episode, covering market activity following the Fed's rate cut, answering caller questions on individual stocks (Rocket Lab, Navitas, British American Tobacco, Powell Industries), and discussing 401(k) strategy in light of a White House executive order on private investments. Klein emphasizes that consistent saving far outweighs incremental return gains from alternative assets. He also analyzes gold's rally as a signal of fiscal and geopolitical risk.",
+    "themes": [
+      "Interest rates",
+      "Fed policy",
+      "Retirement & planning",
+      "Gold & precious metals",
+      "AI & datacenters",
+      "Semiconductors",
+      "Volatility & risk",
+      "Savings & compounding"
+    ],
+    "tone": "mixed",
+    "nameCount": 12
+  },
+  "2025-09-20-181bed9f": {
+    "overview": "Luke Guerrero hosts Friday's episode, focusing on mortgage refinancing tax strategies in 2025 following the Fed's recent rate cut. The show covers market performance, caller questions on individual stocks and ETFs, and discusses the disconnect between Fed rate cuts and mortgage rates. Markets hit fresh record highs with the S&P, Nasdaq, and Dow all positive.",
+    "themes": [
+      "Interest rates",
+      "Fed policy",
+      "Taxes",
+      "Gold & precious metals",
+      "AI & datacenters",
+      "Commodities",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 7
+  },
+  "2025-09-23-23884df0": {
+    "overview": "Luke Guerrero hosts Monday's show, covering market records, caller questions on robotics, gold miners, and retirement accounts, and a main focus on the retirement generation gap between Baby Boomers and Gen X. Markets hit fresh highs with the S&P, Nasdaq, and Dow extending Friday's record closes, driven by M&A activity, AI momentum, and Fed easing expectations.",
+    "themes": [
+      "Retirement & planning",
+      "AI & datacenters",
+      "Gold & precious metals",
+      "Interest rates",
+      "Fed policy",
+      "Valuations",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 13
+  },
+  "2025-09-24-d7d016ac": {
+    "overview": "Luke Guerrero hosts Tuesday's episode, covering market rotation away from big tech, Fed Chair Powell's speech on rates, and a deep dive into over-diversification risks. Callers ask about logistics, cybersecurity, gold miners, and energy ETFs. The show emphasizes disciplined portfolio construction and tax-efficient selling strategies.",
+    "themes": [
+      "AI & datacenters",
+      "Diversification & portfolio construction",
+      "Taxes",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Cybersecurity",
+      "Fed policy",
+      "Interest rates",
+      "International markets"
+    ],
+    "tone": "mixed",
+    "nameCount": 15
+  },
+  "2025-09-25-d0004010": {
+    "overview": "Luke Guerrero hosts this September 24, 2025 episode, covering Trump's new $100,000 H-1B visa fee and its potential impact on U.S. innovation and competitiveness. The show also discusses rising margin debt levels, crypto treasury companies launching buybacks, and answers caller questions on a range of individual stocks and ETFs.",
+    "themes": [
+      "Tariffs & trade",
+      "AI & datacenters",
+      "Crypto",
+      "Bonds & fixed income",
+      "Retirement & planning",
+      "Valuations",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 23
+  },
+  "2025-09-26-8153098f": {
+    "overview": "Host Luke Guerrero fields caller questions on cannabis, precious metals, crypto ETFs, energy, payments, financials, and firearms. He also discusses blue-chip stocks, auto-sector warning signs, and regulatory pressure on utilities. The show emphasizes diversification and caution around overvalued or struggling names.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Dividends & income",
+      "Valuations",
+      "Earnings",
+      "Interest rates",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 30
+  },
+  "2025-09-27-8bf2e8b1": {
+    "overview": "Friday, September 26, 2025 edition of InvestTalk. Host Justin Klein covers market action, a bounce-back day with S&P and Nasdaq up ~0.6% and 0.4% respectively. Core PCE inflation came in at 2.91% year-over-year, slightly above expectations. The main focus point explores whether $2 million is enough to retire comfortably, covering factors like retirement age, spending habits, life expectancy, and withdrawal strategies. Klein also discusses the erosion of government bonds as safe havens, with corporate bonds in some countries now yielding less than sovereign debt, driving investors toward precious metals.",
+    "themes": [
+      "Inflation",
+      "Retirement & planning",
+      "Gold & precious metals",
+      "Bonds & fixed income",
+      "AI & datacenters",
+      "Volatility & risk",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-09-30-52a37212": {
+    "overview": "Justin Klein hosts the September 29, 2025 episode, focusing on the sunk cost fallacy and its impact on investment decisions. The show covers caller questions on Fox Factory, Diamondback Energy, Target, and Centene, plus a deep dive into AI infrastructure spending and Manhattan commercial-to-residential real estate conversions. Klein warns that AI data center capex resembles the 1990s fiber-optic bubble and may not generate returns to justify the spending.",
+    "themes": [
+      "AI & datacenters",
+      "Housing & REITs",
+      "Energy & oil",
+      "Consumer & retail",
+      "Healthcare",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-10-01-da1b53cc": {
+    "overview": "Luke Guerrero hosts the September 30, 2025 episode, marking the end of Q3. The show focuses on 'shrinkflation'—how manufacturers secretly reduce product sizes while keeping prices stable, creating hidden inflation. Luke fields caller questions on Universal Technical Institute, American Bitcoin, KBR, Modine Manufacturing, Vertiv Holdings, and Dalradian Silver. He also discusses the looming government shutdown, hot credit markets, and MLP tax treatment in Roth IRAs.",
+    "themes": [
+      "Inflation",
+      "AI & datacenters",
+      "Defense & aerospace",
+      "Crypto",
+      "Jobs & economy",
+      "Retirement & planning",
+      "Commodities",
+      "Interest rates"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-10-02-f7982848": {
+    "overview": "Justin Klein opens Q4 2025 with a focus on the new Secure Act 2.0 Roth catch-up rule for high earners starting in 2026, reviews market performance amid mixed economic data (weak ADP payrolls, ISM manufacturing below 50), and answers caller questions on HVAC/data-center plays, Bitcoin proxies, oil services, RFID tech, and pharma. He also discusses the risks of alternative investments and Yale's $3B sale of private holdings.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Healthcare",
+      "Jobs & economy",
+      "Retirement & planning",
+      "Taxes",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 30
+  },
+  "2025-10-03-f29c27a6": {
+    "overview": "Luke Guerrero hosts a caller-driven episode covering a wide range of individual stock questions, from construction materials to Chinese tech, insurance, and semiconductors. The main educational segment explores the risks and rewards of precious metals IRAs, emphasizing high fees, liquidity constraints, and the lack of income generation. The episode also touches on the cooling corporate Bitcoin treasury trend and rising competition in the single-family rental market.",
+    "themes": [
+      "AI & datacenters",
+      "Semiconductors",
+      "Crypto",
+      "Housing & REITs",
+      "Retirement & planning",
+      "Valuations",
+      "International markets",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 11
+  },
+  "2025-10-04-4c284aed": {
+    "overview": "Justin Klein hosts the October 3, 2025 episode, discussing the government shutdown's minimal market impact, reviewing caller questions on individual stocks (Perdocio Education, Schneider Electric, Nutrient), and highlighting 18 U.S. cities/states that don't tax 401(k) or pension income. He also warns that AI stocks are in a bubble driven by unsustainable CapEx spending with negative ROI, predicting an eventual bust similar to the late-1990s telecom bubble.",
+    "themes": [
+      "Retirement & planning",
+      "AI & datacenters",
+      "Taxes",
+      "Valuations",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 21
+  },
+  "2025-10-08-5e939234": {
+    "overview": "Luke Guerrero hosts this episode, focusing on regional economic weakness, with 22 U.S. states potentially in recession-like conditions according to Moody's economist Mark Zandi. The show covers a range of caller questions on individual stocks and ETFs, discusses emerging market strength, and touches on gold's record highs. Market performance was mixed, with tech underperforming and small caps pulling back.",
+    "themes": [
+      "Jobs & economy",
+      "Tariffs & trade",
+      "International markets",
+      "AI & datacenters",
+      "Banks & financials",
+      "Gold & precious metals",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-10-09-230b783f": {
+    "overview": "Justin Klein hosts the October 8, 2025 episode, opening with a caller question on uranium miner Dentists & Mines, then diving into a main focus on systemic risks in AI—specifically OpenAI's interlocking deals with AMD, Nvidia, Oracle, and CoreWeave. He also discusses Social Security timing, levered ETFs, and answers listener questions on Gevo, Sprouts Farmers Market, Valtara Platinum, fixed income strategy, and Novo Nordisk.",
+    "themes": [
+      "AI & datacenters",
+      "Commodities",
+      "Gold & precious metals",
+      "Healthcare",
+      "Retirement & planning",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-10-10-8a3f60af": {
+    "overview": "Justin Klein hosts the October 9, 2025 episode, focusing on mortgage rates and the housing market outlook. He fields caller questions on covered-call ETFs, Starbucks, mining stocks, and data sources, while cautioning against leveraged single-stock ETFs and discussing gold's rally amid geopolitical and monetary instability.",
+    "themes": [
+      "Housing & REITs",
+      "Gold & precious metals",
+      "Interest rates",
+      "Fed policy",
+      "Volatility & risk",
+      "Dividends & income",
+      "AI & datacenters",
+      "Commodities"
+    ],
+    "tone": "mixed",
+    "nameCount": 11
+  },
+  "2025-10-11-7a9c291e": {
+    "overview": "Luke Guerrero hosts Friday's show (October 10, 2025) as markets plunge on renewed U.S.-China trade tensions. President Trump announced 100% tariffs on Chinese exports and sweeping export controls, triggering the S&P 500's worst day since April. The episode explores AI's copper demand, the fiscal year 2025 budget, and rising auto-loan defaults, while fielding caller questions on Carlisle Group, ADM, Freeport-McMoRan, Verizon, and utilities.",
+    "themes": [
+      "AI & datacenters",
+      "Tariffs & trade",
+      "Commodities",
+      "Interest rates",
+      "Volatility & risk",
+      "Energy & oil",
+      "Dividends & income",
+      "Retirement & planning"
+    ],
+    "tone": "bearish",
+    "nameCount": 13
+  },
+  "2025-10-14-5112cf43": {
+    "overview": "Justin Klein hosts the October 13, 2025 episode, focusing on dividend-stock pitfalls and fielding caller questions on individual names. Markets bounced back after Friday's tariff-driven sell-off, with the White House walking back fears of escalating China tariffs. Klein also discusses tariff pass-through to consumers, Gen Z's preference for stocks over homeownership, and the government shutdown's muted market impact.",
+    "themes": [
+      "Tariffs & trade",
+      "Dividends & income",
+      "Housing & REITs",
+      "Valuations",
+      "Retirement & planning",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-10-15-80db7e9c": {
+    "overview": "This 'Best of Caller Questions' compilation episode features a wide range of listener inquiries on portfolio strategy, retirement accounts, bonds, options, dividends, and tax planning. Hosts Justin Klein and Luke Guerrero provide guidance on recession preparation, cash allocation, sector rotation, Roth conversions, and financial ratios. No specific stock calls are made; the episode is entirely educational and strategic in nature.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Bonds & fixed income",
+      "Volatility & risk",
+      "Dividends & income",
+      "Valuations"
+    ],
+    "tone": "neutral",
+    "nameCount": 7
+  },
+  "2025-10-15-c313412d": {
+    "overview": "Justin Klein hosts the October 14, 2025 episode, focusing on retirement cost-of-living analysis across U.S. states, particularly Florida, Arizona, and other Sunbelt destinations. The show also covers caller questions on AutoZone, Exxon Mobil, BlackRock, and Enersys, while discussing the disconnect between strong GDP growth (~4%) and a weakening labor market, and the impact of tariffs on smaller businesses.",
+    "themes": [
+      "Retirement & planning",
+      "Tariffs & trade",
+      "Jobs & economy",
+      "Energy & oil",
+      "Volatility & risk",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-10-17-acd062d9": {
+    "overview": "Justin Klein hosts the October 16, 2025 episode, focusing on rising market volatility, regional bank earnings, and a deep dive into reverse mortgages as a home-buying tool for retirees. Callers ask about QXO, IIPR, Berkshire Hathaway, and portfolio diversification. Klein warns that liquidity dynamics are shifting and the market may be entering a topping process.",
+    "themes": [
+      "Volatility & risk",
+      "Banks & financials",
+      "Housing & REITs",
+      "Retirement & planning",
+      "Valuations",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 31
+  },
+  "2025-10-18-9ff4f9a3": {
+    "overview": "Luke Guerrero hosts Friday's episode, addressing the ongoing government shutdown and its minimal historical impact on markets. He fields caller questions on Neptune Insurance (IPO), Coloplast (Danish MedTech), Games Workshop (tabletop gaming), Sanofi (biopharma), UPS (logistics), Kenon Holdings (Israeli utility), and several coal/mining names. The show emphasizes sticking to long-term plans despite political noise and notes rising liquidity stress as banks tap the Fed's repo facility.",
+    "themes": [
+      "Interest rates",
+      "Fed policy",
+      "Volatility & risk",
+      "Commodities",
+      "Energy & oil",
+      "Healthcare",
+      "International markets"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-10-21-0c8e6ffd": {
+    "overview": "Monday, October 20, 2025 episode. Justin Klein fields caller questions on individual stocks (Pool Corp, Murphy USA, AT&T, Illumina, TransAlta) and discusses silver with a live caller. The main focus is on how blockchain-based asset tokenization will revolutionize global finance by making real-world assets programmable, fractionalized, and accessible worldwide. Klein also covers why gold and equities are rising together (liquidity and geopolitical risk), and highlights a study linking financial literacy to lower loan defaults and stronger GDP growth.",
+    "themes": [
+      "Crypto",
+      "Gold & precious metals",
+      "Commodities",
+      "Earnings",
+      "International markets",
+      "Jobs & economy"
+    ],
+    "tone": "mixed",
+    "nameCount": 18
+  },
+  "2025-10-22-ac7f6a70": {
+    "overview": "Luke Guerrero hosts this Tuesday episode, covering a range of caller questions on individual stocks and ETFs, with a main focus on when and how to change financial advisors. The show also touches on consumer earnings trends, AI infrastructure spending concerns, and gold's sharp pullback after a record rally.",
+    "themes": [
+      "AI & datacenters",
+      "Healthcare",
+      "Commodities",
+      "Consumer & retail",
+      "Valuations",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 21
+  },
+  "2025-10-23-d5b7260f": {
+    "overview": "Justin Klein hosts the October 22, 2025 episode, focusing on gold's parabolic rally driven by Chinese central bank buying and the Shanghai Gold Exchange expansion. The show covers caller questions on biotech, Brazil ETFs, luxury goods trends, and various individual stocks. Klein discusses liquidity concerns, upcoming Fed meetings, and the Trump-Xi trade talks.",
+    "themes": [
+      "Gold & precious metals",
+      "Crypto",
+      "International markets",
+      "AI & datacenters",
+      "Energy & oil",
+      "Tariffs & trade",
+      "Consumer & retail",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-10-24-8e572b8c": {
+    "overview": "Justin Klein hosts the October 23, 2025 episode, covering market performance, caller questions on 529 plans, individual stocks (Penske Automotive, Micron, Kroger, Adobe, Rivian), and a focus segment on four strategies to anticipate stock trends: momentum, fundamental analysis, technical analysis, and mean reversion. He also discusses U.S. market exceptionalism versus international markets and JPMorgan's $1.5 trillion commitment to U.S. economic security sectors.",
+    "themes": [
+      "Semiconductors",
+      "AI & datacenters",
+      "Valuations",
+      "International markets",
+      "Retirement & planning",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-10-25-1eb96f7e": {
+    "overview": "Luke Guerrero hosts Friday's episode, covering market performance, earnings strength offsetting government shutdown data gaps, and a deep dive into securities-based lines of credit (SBLOCs). Callers ask about Booz Allen Hamilton, Newmont, Parsons, GDX gold miners ETF, and several other names. The show emphasizes staying invested and navigating a data-light environment with strong Q3 earnings.",
+    "themes": [
+      "Earnings",
+      "Gold & precious metals",
+      "Interest rates",
+      "Inflation",
+      "Fed policy",
+      "Energy & oil",
+      "Defense & aerospace",
+      "Dividends & income",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 15
+  },
+  "2025-10-28-89d7c1a4": {
+    "overview": "Justin Klein hosts the October 27, 2025 episode, focusing on generative AI applications in personal finance and budgeting. He fields caller questions on General Mills, Netflix, Star Surgical, and other names, while warning about the dangers of leveraged ETFs and discussing trade optimism with China.",
+    "themes": [
+      "AI & datacenters",
+      "Consumer & retail",
+      "Dividends & income",
+      "Tariffs & trade",
+      "Jobs & economy",
+      "Volatility & risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-10-29-2b0bd343": {
+    "overview": "Justin Klein hosts the October 29, 2025 episode, marking the 96th anniversary of Black Tuesday. He discusses Fed policy turning slightly hawkish, slowing income growth for younger Americans, and an $80 billion nuclear power deal. The main focus is global portfolio allocation lessons, emphasizing that investors are likely underweight foreign equities and should consider rebalancing. Callers ask about UPS, Centrus Energy, Toro, Opera, and CorePay.",
+    "themes": [
+      "Interest rates",
+      "Fed policy",
+      "International markets",
+      "Dividends & income",
+      "AI & datacenters",
+      "Energy & oil",
+      "Inflation",
+      "Jobs & economy",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 29
+  },
+  "2025-10-29-8b704263": {
+    "overview": "Host Luke Guerrero fields caller questions on insurance stocks (Progressive, Prudential, MetLife), oil majors (Exxon, Shell), high-flying AI names (Palantir), footwear (Deckers), gold miners (KGC vs. GDX), and international diversification (VXUS). He also discusses Amazon's AI-driven layoffs, market fragility driven by mega-cap swings and retail options trading, and the Fed's looming decision to end quantitative tightening amid liquidity strains.",
+    "themes": [
+      "AI & datacenters",
+      "Jobs & economy",
+      "Volatility & risk",
+      "Fed policy",
+      "Gold & precious metals",
+      "International markets",
+      "Energy & oil",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-10-31-d93c3cce": {
+    "overview": "Justin Klein hosts the October 30, 2025 episode, focusing on demographic challenges (falling birth rates), AI's impact on junior workers, and market weakness driven by Big Tech earnings misses and a hawkish Fed. He fields caller questions on packaged food stocks (Campbell's, General Mills), REITs (Alexandria Real Estate), commodities (gold, uranium), and biotech (AbbVie vs. Vertex).",
+    "themes": [
+      "AI & datacenters",
+      "Demographics & birth rates",
+      "Earnings",
+      "Fed policy",
+      "Gold & precious metals",
+      "Healthcare",
+      "Housing & REITs",
+      "Interest rates",
+      "Valuations",
+      "Volatility & risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 23
+  },
+  "2025-11-01-c79f91b5": {
+    "overview": "Luke Guerrero hosts a Friday episode covering October's close and the start of Q4. The show features caller questions on Fiserv, Qualcomm, and Rio Tinto, discusses the 'guardrails' retirement spending strategy versus the 4% rule, and examines whether retirees should hold 100% equities. Market commentary notes solid weekly gains and strong Q3 earnings, particularly from Amazon.",
+    "themes": [
+      "Retirement & planning",
+      "Earnings",
+      "AI & datacenters",
+      "Semiconductors",
+      "Housing & REITs",
+      "Commodities",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 13
+  },
+  "2025-11-04-beecbea0": {
+    "overview": "Host Justin Klein covers a Monday session where tech names rallied on OpenAI's $38 billion Amazon deal, but market breadth was poor. He discusses emergency savings strategies, analyzes the recent 'junk rally' driven by short covering and high-beta names, and warns that sentiment indicators and Bitcoin weakness suggest the market is running on fumes and may be setting up for a 5–10% pullback.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Semiconductors",
+      "Volatility & risk",
+      "Retirement & planning",
+      "Valuations",
+      "Consumer & retail"
+    ],
+    "tone": "mixed",
+    "nameCount": 27
+  },
+  "2025-11-05-e4f41cec": {
+    "overview": "Justin Klein hosts the November 4th, 2025 episode, focusing on market volatility driven by disappointing reactions to tech earnings (Palantir, AMD) and signs of liquidity drying up. The main educational segment covers how to roll over an old 401(k) into an IRA, a process relevant to the $2 trillion sitting in forgotten accounts. Callers ask about small-cap tech, silver miners, the Atlanta Braves stock, a pet healthcare company, and more.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Retirement & planning",
+      "Volatility & risk",
+      "Earnings",
+      "Gold & precious metals",
+      "Healthcare"
+    ],
+    "tone": "bearish",
+    "nameCount": 24
+  },
+  "2025-11-06-4efc9b99": {
+    "overview": "Host Luke Guerrero covers the November 5, 2025 market session, focusing on housing market forecasts for 2026, Supreme Court skepticism over presidential tariff authority, and AI's potential threat to online advertising. The show features multiple caller questions on retail, insurance, energy, and consumer stocks, with mixed verdicts.",
+    "themes": [
+      "Housing & REITs",
+      "Tariffs & trade",
+      "AI & datacenters",
+      "Interest rates",
+      "Energy & oil",
+      "Consumer & retail",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-11-07-30f05948": {
+    "overview": "Justin Klein hosts the November 6, 2025 episode, focusing on market volatility, gold's enduring role in portfolios, and housing affordability. The show features caller questions on thematic ETFs, industrials, Lululemon, and healthcare stocks, alongside discussions of liquidity tightening, AI-name pullbacks, and the outperformance of international equities.",
+    "themes": [
+      "AI & datacenters",
+      "Volatility & risk",
+      "Gold & precious metals",
+      "Crypto",
+      "Housing & REITs",
+      "International markets",
+      "Semiconductors",
+      "Healthcare",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-11-08-61b1cbdb": {
+    "overview": "Luke Guerrero hosts a Friday episode focused on the surge in rare earth and critical minerals stocks, driven by U.S.-China competition and the global energy transition. The show covers market performance, caller questions on Kimberly-Clark, eBay, Taiwan Semiconductor, DraftKings, and Murphy USA, plus discussions on 457 retirement plans and portfolio diversification. Policy uncertainty, Fed concerns, and AI risks are also highlighted.",
+    "themes": [
+      "AI & datacenters",
+      "Semiconductors",
+      "Commodities",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Crypto",
+      "Consumer & retail",
+      "Retirement & planning",
+      "Valuations",
+      "International markets",
+      "Fed policy",
+      "Tariffs & trade"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-11-11-e09f76e7": {
+    "overview": "Monday, November 10, 2025 episode hosted by Justin Klein. The show opened with a market recap (NASDAQ +2%, S&P +1.5%, Dow <1%) on optimism around a government reopening. Callers asked about fundamental analysis for ETF holdings (VOLT), F5 Networks after a security breach, entry-point strategy, the Trade Desk (TTD), and Telecom Indonesia (TLK). Klein also answered YouTube questions on Mueller Industries (MLI), OPFI, Barclays (BCS), and Roku (ROKU). The main focus was estate planning for real estate, with additional segments on the one-year post-Trump-election market reaction and the threat of AI/LLMs to the online ad model (Google, Meta).",
+    "themes": [
+      "AI & datacenters",
+      "Semiconductors",
+      "Crypto",
+      "Dividends & income",
+      "International markets",
+      "Retirement & planning",
+      "Taxes",
+      "Earnings",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 16
+  },
+  "2025-11-12-3297f33b": {
+    "overview": "Luke Guerrero hosts a Tuesday episode focused on value investing principles, walking through how to identify undervalued stocks using fundamentals, margins of safety, and intrinsic value. The show fields multiple caller questions on individual names and touches on labor market softness, AI capex concerns spilling into bond markets, and a weak seasonal hiring outlook.",
+    "themes": [
+      "AI & datacenters",
+      "Value investing",
+      "Jobs & economy",
+      "Bonds & fixed income",
+      "Dividends & income",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 19
+  },
+  "2025-11-13-3bc48320": {
+    "overview": "Host Luke Guerrero fields caller questions on silver, Procter & Gamble, Mueller Industries, small-cap ETFs, gold exposure, and Leggett & Platt. The main focus point examines the proposed 50-year mortgage as a housing affordability tool, arguing it masks the real problem: a shortage of new home construction. Additional segments cover life insurers' growing exposure to illiquid private credit and the IEA's revised outlook showing fossil fuel demand rising for 25 more years.",
+    "themes": [
+      "Housing & REITs",
+      "Gold & precious metals",
+      "Energy & oil",
+      "Dividends & income",
+      "Valuations",
+      "AI & datacenters"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-11-14-2d98c9e6": {
+    "overview": "In this November 14, 2025 episode, host Justin Klein discusses a broad market sell-off driven by weakness in AI and tech names, with the NASDAQ down over 2%. The show explores why baby boomers lag in adopting ETFs versus mutual funds, reviews several caller questions on banks, healthcare, and robotics, and warns about concentration risk in the S&P 500 and insurers' exposure to illiquid private credit.",
+    "themes": [
+      "AI & datacenters",
+      "ETFs",
+      "Healthcare",
+      "Taxes",
+      "Bonds & fixed income",
+      "Valuations",
+      "Retirement & planning"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-11-15-a729bcf0": {
+    "overview": "This November 14, 2025 episode of InvestTalk, hosted by Luke Guerrero, focused heavily on caller questions about individual stocks and a detailed educational segment on annuities. The show covered a range of names from energy to materials to IT consulting, with mixed verdicts. Luke also discussed market structure, retail dip-buying behavior, and China's opaque gold purchases.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Gold & precious metals",
+      "Energy & oil",
+      "Volatility & risk",
+      "AI & datacenters"
+    ],
+    "tone": "mixed",
+    "nameCount": 12
+  },
+  "2025-11-18-243a8176": {
+    "overview": "Monday, November 17, 2025 episode hosted by Justin Klein. The show opened with a negative market recap (NASDAQ and S&P down ~1%, small caps down over 2%). Klein answered caller questions on Tyson Foods, Roku, Weight Watchers, Amdocs, and Fannie Mae, and discussed the risks of stock-based compensation (using Tesla's trillion-dollar Elon Musk pay package as an example), the importance of flexible retirement withdrawal strategies, and shifting attitudes toward social media.",
+    "themes": [
+      "Retirement & planning",
+      "Valuations",
+      "Consumer & retail",
+      "AI & datacenters",
+      "Crypto",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-11-19-238301a1": {
+    "overview": "Justin Klein hosts the November 18, 2025 episode, focusing on forgotten 401(k) accounts and how they can drain long-term wealth. The show covers caller questions on individual stocks, discusses market weakness driven by large-cap tech and AI skepticism, and touches on China's bond issuance and geopolitical shifts. The main theme is retirement planning and the importance of consolidating old 401(k)s into IRAs.",
+    "themes": [
+      "Retirement & planning",
+      "AI & datacenters",
+      "Semiconductors",
+      "International markets",
+      "Bonds & fixed income",
+      "Consumer & retail",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-11-20-db56aee5": {
+    "overview": "Host Justin Klein tackles a Wednesday show focused on portfolio concentration risk, particularly the Magnificent Seven's dominance in major indices. He fields caller questions on Federal Agricultural Mortgage (AGM), Old Dominion Freight (ODFL), Roku (ROKU), iShares Top 20 ETF (TOPT), Micron (MU), Rolls-Royce (RYCEY), and discusses the crypto leverage unwind and housing supply issues.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Housing & REITs",
+      "Valuations",
+      "Tariffs & trade",
+      "Taxes",
+      "Diversification & concentration risk"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-11-21-c8ca1b55": {
+    "overview": "Luke Guerrero hosts a caller-driven episode tackling individual stock questions and comparing high-yield savings accounts versus Treasury bills for cash management. The show features live and voicemail questions on energy, tech, healthcare, and consumer names, alongside discussion of delayed September jobs data and stress in investment-grade corporate bonds.",
+    "themes": [
+      "Energy & oil",
+      "Consumer & retail",
+      "Healthcare",
+      "Banks & financials",
+      "Interest rates",
+      "Jobs & economy",
+      "AI & datacenters",
+      "Bonds & fixed income",
+      "Retirement & planning",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-11-22-ec376668": {
+    "overview": "This November 22, 2025 episode of InvestTalk, hosted by Luke Guerrero, focused on the classic investing dilemma of dollar-cost averaging versus lump-sum investing. The show featured multiple caller questions on individual stocks and ETFs, including Cameco (CCJ), Chipotle (CMG), Spotify leveraged ETF (SPLG), cryptocurrency, and drone manufacturer Red Cat Holdings (RCAT). Luke also discussed market volatility, private equity trends, and the risks of claiming Social Security early to invest in stocks.",
+    "themes": [
+      "Retirement & planning",
+      "Crypto",
+      "Volatility & risk",
+      "AI & datacenters",
+      "Energy & oil",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 21
+  },
+  "2025-11-25-88d438ac": {
+    "overview": "Justin Klein hosts the November 24, 2025 episode, focusing on the safe-haven debate between gold and Bitcoin, plus a range of caller questions on REITs, utilities, and tech names. The show also covers private credit risks (Blue Owl's failed merger), bond issuance draining liquidity, and the AI infrastructure debt wave.",
+    "themes": [
+      "Gold & precious metals",
+      "Crypto",
+      "AI & datacenters",
+      "Interest rates",
+      "Bonds & fixed income",
+      "Volatility & risk",
+      "Housing & REITs",
+      "Energy & oil",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-11-26-b87ebb35": {
+    "overview": "Justin Klein hosts the November 25, 2025 episode, focusing on rising odds of a December Fed rate cut driven by dovish commentary from multiple Fed officials. He discusses Black Friday retail forecasts, Michael Burry's warnings on AI infrastructure spending, and answers caller questions on Albertsons, NICE Systems, Stride (LRN), ServiceNow, and options trading fees.",
+    "themes": [
+      "Fed policy",
+      "Interest rates",
+      "AI & datacenters",
+      "Consumer & retail",
+      "Taxes",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 22
+  },
+  "2025-11-27-a5d1f802": {
+    "overview": "Luke Guerrero hosts the pre-Thanksgiving episode, covering Warren Buffett's record $382 billion cash pile, the Fed's repo facility stress-testing, AI's impact on retail, and a variety of caller questions on REITs, biotech, insurance, and mining stocks. The show emphasizes patience, discipline, and readiness in the current market environment.",
+    "themes": [
+      "Dividends & income",
+      "Housing & REITs",
+      "AI & datacenters",
+      "Interest rates",
+      "Fed policy",
+      "Gold & precious metals",
+      "Banks & financials",
+      "Healthcare",
+      "Volatility & risk",
+      "Retirement & planning",
+      "Taxes"
+    ],
+    "tone": "mixed",
+    "nameCount": 20
+  },
+  "2025-11-28-a1d54f3e": {
+    "overview": "This Thanksgiving Day special is a 'best of' compilation featuring caller questions on a wide range of topics: Roth IRA conversions, 401(k) plans and private equity access, small-cap stock valuation, Fed rate cuts, relative strength indicators, ETF strategies for young investors, silver and precious metals, and options education. The hosts provide general guidance on retirement planning, tax strategy, and investment fundamentals.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Fed policy",
+      "Interest rates",
+      "Gold & precious metals",
+      "Valuations",
+      "AI & datacenters"
+    ],
+    "tone": "neutral",
+    "nameCount": 15
+  },
+  "2025-11-29-f602c4a2": {
+    "overview": "This Black Friday 'Best of Caller Questions' compilation features hosts Justin Klein and Luke Guerrero answering a wide range of listener questions on topics from AI stocks and bonds to cryptocurrency, oil, tax strategies, and portfolio management. The hosts provide cautious views on AI infrastructure spending, warn about derivative income ETFs, and discuss market timing, valuations, and liquidity dynamics.",
+    "themes": [
+      "AI & datacenters",
+      "Crypto",
+      "Bonds & fixed income",
+      "Energy & oil",
+      "Retirement & planning",
+      "Taxes",
+      "Volatility & risk",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 25
+  },
+  "2025-12-02-16afc19b": {
+    "overview": "Justin Klein hosts the December 2nd, 2025 episode, covering market weakness driven by Bank of Japan rate-hike concerns, Black Friday retail data, and a contracting ISM manufacturing index. The main focus is on Health Savings Accounts (HSAs) as an underutilized retirement tool, with discussion of auto industry headwinds and emerging-market credit quality surpassing the U.S.",
+    "themes": [
+      "Interest rates",
+      "Retirement & planning",
+      "Consumer & retail",
+      "Jobs & economy",
+      "International markets",
+      "Tariffs & trade",
+      "EVs & autos",
+      "Bonds & fixed income"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-12-03-29d919e0": {
+    "overview": "Justin Klein hosts the December 2nd, 2025 episode, focusing on divergent commodity markets—energy and food easing while strategic metals (copper, rare earths) face high demand and supply constraints. He also covers pipelines, Japanese bond rates, Cyber Monday, and answers caller questions on Techno Glass, international ETFs, Netflix, covered-call ETFs, and retail stocks (Target vs. Walmart).",
+    "themes": [
+      "Commodities",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Dividends & income",
+      "International markets",
+      "Valuations",
+      "Retail & consumer"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-12-04-0a4a98ed": {
+    "overview": "Luke Guerrero hosts this December 3, 2025 episode, focusing on whether the S&P 500's historically high Shiller P/E ratio (38.9, near 2000 peak levels) is justified or signals a bubble. The show covers multiple caller questions on individual stocks, discusses copper supply constraints and AI-driven demand, and touches on Vanguard's new 401(k) annuity options. Market action was positive across the board, with small caps leading.",
+    "themes": [
+      "Valuations",
+      "AI & datacenters",
+      "Commodities",
+      "Retirement & planning",
+      "International markets"
+    ],
+    "tone": "mixed",
+    "nameCount": 14
+  },
+  "2025-12-05-4ee68909": {
+    "overview": "Justin Klein hosts the December 4, 2025 episode, covering a range of caller questions on individual stocks and broader themes. The show opens with market commentary on jobless claims and Fed rate-cut expectations, then dives into questions on Novo Nordisk, Dow Chemical, Rio Tinto, and others. Justin emphasizes the structural shift toward U.S. manufacturing reshoring, warns about risks in private credit markets (BlackRock's troubled loans), and discusses the inflationary environment driven by supply-chain changes and automation. He also fields questions on safe-haven assets in an era of currency devaluation and crowdfunding investment platforms.",
+    "themes": [
+      "AI & datacenters",
+      "Inflation",
+      "Commodities",
+      "Healthcare",
+      "Energy & oil",
+      "Retirement & planning",
+      "Valuations",
+      "Jobs & economy",
+      "Tariffs & trade",
+      "Dividends & income"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-12-06-3de65c77": {
+    "overview": "Luke Guerrero hosts a Friday episode covering market performance, listener questions on individual stocks and ETFs, and a deep dive into how Big Tech's massive bond issuance to fund AI data centers is reshaping the investment-grade credit market. The show also touches on target-date fund complexity, mega-merger risks, and year-end tax planning.",
+    "themes": [
+      "AI & datacenters",
+      "Bonds & fixed income",
+      "Semiconductors",
+      "Crypto",
+      "Retirement & planning",
+      "Taxes",
+      "Valuations",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 18
+  },
+  "2025-12-09-9c3b5f76": {
+    "overview": "Luke Guerrero hosts a Monday episode covering market action, merger activity, and a focus on U.S. dollar volatility forecasts for 2026. Callers ask about Warner Brothers Discovery amid hostile takeover bids, medical device stocks Stryker and Intuitive Surgical, RFID tech firm Impinj, and the U.S. Global Jets ETF. Luke also discusses AI-driven shopping disruption and consumer sentiment diverging from spending data.",
+    "themes": [
+      "AI & datacenters",
+      "Volatility & risk",
+      "Interest rates",
+      "Fed policy",
+      "Consumer & retail",
+      "Healthcare",
+      "Tariffs & trade",
+      "Earnings",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 27
+  },
+  "2025-12-10-7e917261": {
+    "overview": "Justin Klein hosts the December 9, 2025 episode, focusing on year-end tax planning, the risks of buy-now-pay-later debt, and commodity breakouts. Callers ask about PepsiCo, Primoris Services, Firefly Aerospace, Netflix, and Entergy. Klein warns against dividend traps in packaged food companies, story stocks, and overvalued names, while expressing cautious optimism about a potential economic re-acceleration in 2026.",
+    "themes": [
+      "Dividends & income",
+      "Consumer & retail",
+      "AI & datacenters",
+      "Commodities",
+      "Inflation",
+      "Taxes",
+      "Valuations",
+      "Energy & oil"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-12-11-96d20760": {
+    "overview": "Luke Guerrero hosts a December 10, 2025 episode focused on discount retail earnings (Dollar General and Dollar Tree) as signals of consumer behavior, the Fed's 25 bps rate cut with three dissents, and a variety of caller questions on individual stocks. The show emphasizes value-seeking consumer trends and the resilience of discount retail amid inflation psychology.",
+    "themes": [
+      "Consumer & retail",
+      "Fed policy",
+      "Interest rates",
+      "Inflation",
+      "Dividends & income",
+      "Valuations",
+      "Commodities",
+      "Gold & precious metals",
+      "Housing & REITs",
+      "Healthcare"
+    ],
+    "tone": "mixed",
+    "nameCount": 25
+  },
+  "2025-12-12-f0c9688f": {
+    "overview": "Justin Klein hosts the December 11, 2025 episode, covering new 2026 401(k) and IRA contribution limits (including a new 'super catch-up' for ages 60–63), market rotation from mega-cap tech into value/small-cap/hard assets, and Permian Basin oil production milestones. Callers ask about an energy-transition ETF, Warner Brothers Discovery amid takeover rumors, shorting biotech stocks, mid-cap ETFs, and Swedish bank Svenska Handelsbanken. Justin also warns against the blurring of investing and gambling via zero-DTE options and leveraged ETFs.",
+    "themes": [
+      "Retirement & planning",
+      "Energy & oil",
+      "Valuations",
+      "Commodities",
+      "Gold & precious metals",
+      "Banks & financials",
+      "Fed policy",
+      "Crypto",
+      "AI & datacenters"
+    ],
+    "tone": "mixed",
+    "nameCount": 29
+  },
+  "2025-12-13-3f61cd81": {
+    "overview": "Luke Guerrero hosts the December 12, 2025 episode, focusing on year-end market dynamics including institutional window dressing, Fed policy uncertainty, and compressed trading days. He reviews several caller questions on individual stocks and ETFs, discusses oil supply gluts and silver demand, and previews a holiday special dropping December 18 on YouTube.",
+    "themes": [
+      "AI & datacenters",
+      "Banks & financials",
+      "Fed policy",
+      "Interest rates",
+      "Volatility & risk",
+      "Commodities",
+      "Energy & oil",
+      "Gold & precious metals",
+      "Taxes",
+      "Earnings"
+    ],
+    "tone": "mixed",
+    "nameCount": 15
+  },
+  "2025-12-16-d5a75987": {
+    "overview": "Justin Klein discusses global economic divergence, with Europe showing surprising strength while the US and Canada cool. He covers the Dow Transportation Index's winning streak, the Fed's balance-sheet expansion, and regional bank performance. Callers ask about a water ETF, options tax treatment, gold miners, Netflix, Costco, and Cialis/Eli Lilly.",
+    "themes": [
+      "International markets",
+      "Interest rates",
+      "Fed policy",
+      "Banks & financials",
+      "Commodities",
+      "Valuations",
+      "Jobs & economy",
+      "Healthcare"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
+  },
+  "2025-12-17-40ded6c9": {
+    "overview": "Host Luke Guerrero discusses the unsustainable U.S. fiscal path, with federal debt projected to reach 106% of GDP by 2027 and 200% by 2040. The episode covers caller questions on energy, nuclear, mining, and industrial stocks, and explores themes including Chinese dominance in AI energy infrastructure, the explosion of prediction markets, and the crowding-out effect of rising government debt on private investment.",
+    "themes": [
+      "AI & datacenters",
+      "Energy & oil",
+      "Commodities",
+      "Interest rates",
+      "Inflation",
+      "Fed policy",
+      "International markets",
+      "Taxes",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 15
+  },
+  "2025-12-18-17ef1454": {
+    "overview": "Justin Klein hosts the December 17, 2025 episode, focusing on commercial real estate recovery prospects, cash-level warnings, and a sharp selloff in AI infrastructure stocks. The show features caller questions on CF Industries, Carr, Motorola Solutions, and semiconductor equipment names, plus a deep dive into whether CRE distress is creating buying opportunities.",
+    "themes": [
+      "AI & datacenters",
+      "Semiconductors",
+      "Interest rates",
+      "Housing & REITs",
+      "Valuations",
+      "Commodities"
+    ],
+    "tone": "bearish",
+    "nameCount": 21
+  },
+  "2025-12-19-d9d3b460": {
+    "overview": "Justin Klein discusses the $3.4 trillion U.S. water infrastructure gap and investment opportunities in water utilities, piping, and treatment companies. He also reviews 2026 market risks including AI expectations, inflation, geopolitical tensions, and crowded trades. Caller questions cover Magnum Ice Cream (MICC spin-off), Coupang (CPNG), 401(k) flows, BHP Group, and Bloom Energy.",
+    "themes": [
+      "AI & datacenters",
+      "Inflation",
+      "Interest rates",
+      "Valuations",
+      "Commodities",
+      "Retirement & planning",
+      "Crypto",
+      "Tariffs & trade",
+      "Jobs & economy"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-12-20-2ae9441d": {
+    "overview": "Luke Guerrero hosts the final full trading week of 2025, focusing on de-dollarization risks and the weaponized dollar. The episode examines how central banks are holding fewer U.S. bonds, the implications for dollar dominance, and the challenges facing global reserve currency status. Caller questions cover Nike, Equinor, Rambus, and other names, while Luke also discusses CPI data quality issues and private fund valuation discrepancies.",
+    "themes": [
+      "Interest rates",
+      "International markets",
+      "Inflation",
+      "Energy & oil",
+      "Semiconductors",
+      "Housing & REITs",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 9
+  },
+  "2025-12-23-f5c987bc": {
+    "overview": "Luke Guerrero hosts a Monday pre-holiday episode focusing on active versus passive bond management, year-end market trends, and a mix of caller and YouTube questions on individual stocks. The show emphasizes that active fixed-income managers have outperformed passive bond funds due to the complexity and fragmentation of the bond market, and reviews 2025's major themes including AI enthusiasm, tariff volatility, and shifting global equity leadership.",
+    "themes": [
+      "Bonds & fixed income",
+      "AI & datacenters",
+      "Tariffs & trade",
+      "International markets",
+      "Crypto",
+      "Gold & precious metals",
+      "Energy & oil",
+      "Volatility & risk",
+      "Consumer & retail",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 23
+  },
+  "2025-12-24-45b65e49": {
+    "overview": "Luke Guerrero hosts a pre-holiday episode examining the January effect—a seasonal pattern where small-cap stocks supposedly outperform early in the year. He explains why the effect has weakened and is no longer a reliable trading strategy. The show also covers mortgage-rate lock-in freezing housing turnover, tariff-refund hedging by companies, and gold hitting record highs on geopolitical tensions.",
+    "themes": [
+      "Valuations",
+      "Housing & REITs",
+      "Tariffs & trade",
+      "Gold & precious metals",
+      "Healthcare",
+      "Semiconductors",
+      "Crypto"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-12-25-452a1033": {
+    "overview": "In this 2025 holiday special, hosts Justin Klein and Luke Guerrero reflect on the year's surprises, including foreign stock outperformance, gold's rally, and the persistence of low volatility despite tariff uncertainty. They discuss what they got right and wrong, highlight a listener's question on dollar debasement, and offer predictions for 2026, including continued dollar weakness, a potential fade in AI hype, and opportunities in small/mid-cap stocks.",
+    "themes": [
+      "Gold & precious metals",
+      "Volatility & risk",
+      "Tariffs & trade",
+      "AI & datacenters",
+      "Inflation",
+      "Commodities",
+      "International markets",
+      "Valuations",
+      "Crypto"
+    ],
+    "tone": "mixed",
+    "nameCount": 7
+  },
+  "2025-12-26-3593f5f0": {
+    "overview": "This is a 'Best of Caller Questions' compilation episode featuring a wide range of listener inquiries on bonds, retirement accounts, debt management, real estate co-ops, investing for children, value vs. growth stocks, and more. The hosts provide educational answers on portfolio construction, tax strategies, and market dynamics without making specific buy/sell calls on individual names.",
+    "themes": [
+      "Bonds & fixed income",
+      "Retirement & planning",
+      "Taxes",
+      "Valuations",
+      "Consumer & retail",
+      "International markets",
+      "Dividends & income"
+    ],
+    "tone": "neutral",
+    "nameCount": 8
+  },
+  "2025-12-27-34691221": {
+    "overview": "Luke Guerrero hosts this post-Christmas episode, reflecting on 2025 and looking ahead to 2026. The main focus is the corporate 'maturity wall'—a trillion-dollar wave of low-rate pandemic-era debt maturing in 2026 that will force companies to refinance at higher rates. Luke also discusses off-balance-sheet AI infrastructure financing, Permian Basin environmental risks, and answers multiple caller questions on insurance, pawn shops, coal, timber REITs, and entertainment stocks.",
+    "themes": [
+      "Interest rates",
+      "Bonds & fixed income",
+      "AI & datacenters",
+      "Energy & oil",
+      "Dividends & income",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 24
+  },
+  "2025-12-30-1bf01c66": {
+    "overview": "This 'Best of Caller Questions' compilation episode features a wide range of listener inquiries on portfolio strategy, tax-advantaged accounts, bonds, options, dividends, and estate planning. Hosts Justin Klein and Luke Guerrero provide guidance on recession preparation, cash allocation, sector rotation, Roth conversions, and financial ratios, emphasizing diversification and individual circumstances.",
+    "themes": [
+      "Retirement & planning",
+      "Taxes",
+      "Bonds & fixed income",
+      "Dividends & income",
+      "Volatility & risk",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 10
+  },
+  "2025-12-31-27075b8d": {
+    "overview": "Luke Guerrero hosts the final 2025 episode, reflecting on the year and discussing the Dogs of the Dow strategy for 2026. He fields caller questions on water infrastructure, international dividend ETFs, small-cap exposure, and precious metals. The show also covers why international stocks outperformed U.S. equities in 2025 and reviews cautious Fed minutes signaling fewer rate cuts ahead.",
+    "themes": [
+      "Dividends & income",
+      "International markets",
+      "Fed policy",
+      "Interest rates",
+      "Commodities",
+      "Gold & precious metals",
+      "Defense & aerospace",
+      "Valuations"
+    ],
+    "tone": "mixed",
+    "nameCount": 17
   }
 }
